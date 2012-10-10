@@ -9,6 +9,40 @@ describe User do
     it { expect(subject).to be == "//gravatar.com/avatar/23f4d5d797a91b6d17d627b90b5a42d9" }
   end
 
+  describe "#member?" do
+    context "when default" do
+      let(:user) { create(:user) }
+      subject { user }
+
+      it { expect(user.member).to_not be == nil }
+    end
+
+    context "when after invoking #update_privilege" do
+      let(:user) { create(:user) }
+      subject { user }
+
+      before {
+        User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+        user.update_privilege
+      }
+
+      it { expect(subject.member).to be == true }
+    end
+  end
+
+  describe "#update_privilege" do
+    let(:user)    { create(:user) }
+    let!(:member) { user.member }
+    subject { user }
+
+    before {
+      User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+      user.update_privilege
+    }
+
+    it { expect(subject.member).to_not be == member }
+  end
+
   describe "#update_token" do
     let(:user)   { create(:user) }
     let!(:token) { user.token }

@@ -13,14 +13,32 @@ describe "Signin/Signout" do
     end
 
     context "when logged in as a user" do
-      let(:user) { create(:user) }
+      context "when user is a member of the specified organization" do
+        let(:user) { create(:user) }
 
-      before {
-        sign_in(user)
-        visit "/"
-      }
+        before {
+          User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+          sign_in(user)
+          visit "/"
+        }
 
-      it { expect(subject).to have_content user.name }
+        it { expect(subject).to have_content user.name }
+        it { expect(subject).to_not have_content "Not a member" }
+      end
+
+      context "when user is not a member of the specified organization" do
+        let(:user) { create(:user) }
+
+        before {
+          User.any_instance.stub(:organizations).and_return([])
+
+          sign_in(user)
+          visit "/"
+        }
+
+        it { expect(subject).to have_content user.name }
+        it { expect(subject).to have_content "Not a member" }
+      end
     end
   end
 
@@ -29,6 +47,8 @@ describe "Signin/Signout" do
       let(:user) { create(:user) }
 
       before {
+        User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+
         sign_in(user)
         sign_out
       }

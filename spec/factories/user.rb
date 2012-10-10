@@ -9,5 +9,14 @@ FactoryGirl.define do
     token               SecureRandom.urlsafe_base64
     access_token        { |n| Digest::SHA1.hexdigest(n.to_s) }
     access_token_secret { |n| Digest::SHA1.hexdigest(n.to_s) }
+    member              false
   end
 end
+
+
+
+
+
+
+
+

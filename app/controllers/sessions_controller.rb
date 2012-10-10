@@ -4,7 +4,12 @@ class SessionsController < ApplicationController
 
     if @user.save
       sign_in @user
-      redirect_to '/', notice: 'Successfully signed in!'
+
+      if @user.member?
+        redirect_to '/', notice: 'Successfully signed in!'
+      else
+        redirect_to '/', notice: 'Not a member!'
+      end
     else
       redirect_to '/', alert: 'Some error occured when signing in!'
     end
