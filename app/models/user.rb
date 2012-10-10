@@ -26,7 +26,6 @@ class User < ActiveRecord::Base
   end
 
   def update_token
-    token = SecureRandom.urlsafe_base64
-    save
+    self.token = SecureRandom.urlsafe_base64
   end
 end
