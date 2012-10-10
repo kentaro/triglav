@@ -11,6 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120921024240) do
+
+  create_table "users", :force => true do |t|
+    t.string   "provider"
+    t.integer  "uid"
+    t.string   "name"
+    t.string   "image"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true
+  add_index "users", ["token"], :name => "index_users_on_token", :unique => true
 
 end
