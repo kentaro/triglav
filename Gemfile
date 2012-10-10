@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem 'rails_config'
 
 gem 'jquery-rails'
 gem "twitter-bootstrap-rails"
@@ -12,6 +13,7 @@ gem 'octokit'
 gem 'mysql2'
 
 group :development do
+  gem 'launchy'
 end
 
 group :test do

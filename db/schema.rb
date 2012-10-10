@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921024240) do
+ActiveRecord::Schema.define(:version => 20121010053144) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(:version => 20120921024240) do
     t.string   "name"
     t.string   "image"
     t.string   "token"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "access_token"
+    t.string   "access_token_secret"
   end
 
   add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid", :unique => true

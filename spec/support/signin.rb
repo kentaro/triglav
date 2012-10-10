@@ -9,7 +9,11 @@ def sign_in (user)
       "raw_info" => {
         "avatar_url" => user.image
       }
-    }
+    },
+    "credentials" => {
+      "token"  => user.access_token,
+      "secret" => user.access_token_secret,
+    },
   }
 
   visit "/signin"
