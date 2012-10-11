@@ -5,4 +5,6 @@ Hyperion::Application.routes.draw do
   get    '/signin' => redirect('/auth/github')
   delete '/signout', to: 'sessions#destroy'
   get    '/auth/:provider/callback', to: 'sessions#create'
+
+  resources :services
 end
