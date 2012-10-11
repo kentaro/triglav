@@ -1,7 +1,8 @@
 require 'octokit'
 
-class User < ActiveRecord::Base
-  attr_accessible :provider, :uid, :name
+class User
+  include ActiveRecord::Model
+  include ActiveModel::ForbiddenAttributesProtection
 
   validate :provider, presence: true, inclusion: { in: %w(github) }
   validate :name,     presence: true, uniqueness: true, length: { maximum: 40 }

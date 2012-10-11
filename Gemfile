@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
-gem 'rails_config'
+gem 'rails', github: 'rails/rails'
 
+# for edge rails
+gem 'journey',                         github: 'rails/journey'
+gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
+
+gem 'rails_config'
 gem 'jquery-rails'
-gem "twitter-bootstrap-rails"
+gem 'turbolinks'
 
 gem 'omniauth'
 gem 'omniauth-github'
@@ -25,8 +29,10 @@ group :test do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'therubyracer', :platforms => :ruby
+  # for edge rails
+  gem 'sprockets-rails', github: 'rails/sprockets-rails'
+  gem 'sass-rails',      github: 'rails/sass-rails'
+  gem 'coffee-rails',    github: 'rails/coffee-rails'
+
   gem 'uglifier', '>= 1.0.3'
 end

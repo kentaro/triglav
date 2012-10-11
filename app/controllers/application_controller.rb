@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
-  protect_from_forgery
+
+  protect_from_forgery with: :exception
   before_filter :require_member
 
   private
