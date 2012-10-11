@@ -8,17 +8,17 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find(params[:id])
-    respond_with @services
+    respond_with @service
   end
 
   def new
     @service = Service.new
-    respond_with @services
+    respond_with @service
   end
 
   def edit
     @service = Service.find(params[:id])
-    respond_with @services
+    respond_with @service
   end
 
   def create

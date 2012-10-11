@@ -1,4 +1,6 @@
 Hyperion::Application.routes.draw do
+  resources :roles
+
   root to: 'Root#index'
   get  '/caveat', to: 'Root#caveat'
 
