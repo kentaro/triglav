@@ -1,4 +1,6 @@
 Hyperion::Application.routes.draw do
+  resources :hosts
+
   resources :roles
 
   root to: 'Root#index'
