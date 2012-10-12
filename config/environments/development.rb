@@ -34,4 +34,11 @@ Hyperion::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+
+  # ... custom settings ...
+  config.middleware.insert_before(
+    Rack::Lock, Rack::LiveReload,
+    min_delay: 100,
+    max_delay: 10000,
+  )
 end

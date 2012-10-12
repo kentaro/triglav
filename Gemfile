@@ -19,6 +19,11 @@ gem 'mysql2'
 
 group :development do
   gem 'launchy'
+
+  gem 'guard'
+  gem 'guard-livereload'
+  gem 'rb-fsevent'
+  gem 'rack-livereload'
 end
 
 group :test do
