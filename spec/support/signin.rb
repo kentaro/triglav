@@ -16,7 +16,7 @@ def sign_in (user)
     },
   }
 
-  visit "/signin"
+  visit signin_path
 end
 
 def sign_in_as_member (user)
@@ -25,6 +25,6 @@ def sign_in_as_member (user)
 end
 
 def sign_out
-  visit "/"
+  visit root_path
   click_link "Sign out"
 end

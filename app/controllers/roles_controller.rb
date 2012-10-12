@@ -7,7 +7,7 @@ class RolesController < ApplicationController
   end
 
   def show
-    @role = Role.find(params[:id])
+    @role = Role.find_by_name(params[:id])
     respond_with @role
   end
 
@@ -17,7 +17,7 @@ class RolesController < ApplicationController
   end
 
   def edit
-    @role = Role.find(params[:id])
+    @role = Role.find_by_name(params[:id])
     respond_with @role
   end
 
@@ -36,7 +36,7 @@ class RolesController < ApplicationController
   end
 
   def update
-    @role = Role.find(params[:id])
+    @role = Role.find_by_name(params[:id])
 
     respond_to do |format|
       if @role.update_attributes(role_params)
@@ -50,7 +50,7 @@ class RolesController < ApplicationController
   end
 
   def destroy
-    @role = Role.find(params[:id])
+    @role = Role.find_by_name(params[:id])
     @role.destroy
 
     respond_to do |format|

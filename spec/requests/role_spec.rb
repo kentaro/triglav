@@ -9,7 +9,7 @@ describe '/roles' do
     before {
       sign_in_as_member(user)
 
-      visit '/roles/new'
+      visit new_role_path
       fill_in 'Name',        with: 'app'
       fill_in 'Description', with: 'role for app servers'
     }
@@ -24,7 +24,7 @@ describe '/roles' do
     before {
       sign_in_as_member(user)
 
-      visit "/roles/#{role.id}/edit"
+      visit edit_role_path(role)
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
       click_button 'Update Role'
@@ -40,7 +40,7 @@ describe '/roles' do
 
     before {
       sign_in_as_member(user)
-      visit "/roles/#{role.id}"
+      visit role_path(role)
     }
 
     it { expect { click_link 'Destroy' }.to change { Role.count }.by(-1) }

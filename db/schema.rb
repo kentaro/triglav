@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121011063113) do
+ActiveRecord::Schema.define(version: 20121012101042) do
 
   create_table "hosts", force: true do |t|
     t.string   "ip_address"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(version: 20121011063113) do
     t.datetime "updated_at"
   end
 
+  add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address"
+  add_index "hosts", ["name"], name: "index_hosts_on_name"
+
   create_table "roles", force: true do |t|
     t.string   "name"
     t.text     "description"
@@ -28,12 +31,16 @@ ActiveRecord::Schema.define(version: 20121011063113) do
     t.datetime "updated_at"
   end
 
+  add_index "roles", ["name"], name: "index_roles_on_name"
+
   create_table "services", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "services", ["name"], name: "index_services_on_name"
 
   create_table "users", force: true do |t|
     t.string   "provider"

@@ -9,7 +9,7 @@ describe '/hosts' do
     before {
       sign_in_as_member(user)
 
-      visit '/hosts/new'
+      visit new_host_path
       fill_in 'Ip address',  with: '192.168.0.1'
       fill_in 'Name',        with: 'app001'
       fill_in 'Description', with: 'app server 001'
@@ -19,20 +19,20 @@ describe '/hosts' do
   end
 
   describe 'edit a host' do
-    let(:user)      { create(:user) }
-    let(:host)      { create(:host) }
+    let(:user) { create(:user) }
+    let(:host) { create(:host) }
 
     before {
       sign_in_as_member(user)
 
-      visit "/hosts/#{host.id}/edit"
-      fill_in 'Ip address',  with: 'ip address changed'
+      visit edit_host_path(host)
+      fill_in 'Ip address',  with: '192.168.1.1'
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
       click_button 'Update Host'
     }
 
-    it { expect(page).to have_content('ip address changed') }
+    it { expect(page).to have_content('192.168.1.1') }
     it { expect(page).to have_content('name changed') }
     it { expect(page).to have_content('description changed') }
   end
@@ -43,7 +43,7 @@ describe '/hosts' do
 
     before {
       sign_in_as_member(user)
-      visit "/hosts/#{host.id}"
+      visit host_path(host)
     }
 
     it { expect { click_link 'Destroy' }.to change { Host.count }.by(-1) }

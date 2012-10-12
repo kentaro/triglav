@@ -7,7 +7,7 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id])
+    @service = Service.find_by_name(params[:id])
     respond_with @service
   end
 
@@ -17,7 +17,7 @@ class ServicesController < ApplicationController
   end
 
   def edit
-    @service = Service.find(params[:id])
+    @service = Service.find_by_name(params[:id])
     respond_with @service
   end
 
@@ -36,7 +36,7 @@ class ServicesController < ApplicationController
   end
 
   def update
-    @service = Service.find(params[:id])
+    @service = Service.find_by_name(params[:id])
 
     respond_to do |format|
       if @service.update_attributes(service_params)
@@ -50,7 +50,7 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    @service = Service.find(params[:id])
+    @service = Service.find_by_name(params[:id])
     @service.destroy
 
     respond_to do |format|

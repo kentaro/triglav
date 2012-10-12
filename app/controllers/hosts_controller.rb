@@ -7,7 +7,7 @@ class HostsController < ApplicationController
   end
 
   def show
-    @host = Host.find(params[:id])
+    @host = Host.find_by_ip_address(params[:id])
     respond_with @host
   end
 
@@ -17,7 +17,7 @@ class HostsController < ApplicationController
   end
 
   def edit
-    @host = Host.find(params[:id])
+    @host = Host.find_by_ip_address(params[:id])
     respond_with @host
   end
 
@@ -36,7 +36,7 @@ class HostsController < ApplicationController
   end
 
   def update
-    @host = Host.find(params[:id])
+    @host = Host.find_by_ip_address(params[:id])
 
     respond_to do |format|
       if @host.update_attributes(host_params)
@@ -50,7 +50,7 @@ class HostsController < ApplicationController
   end
 
   def destroy
-    @host = Host.find(params[:id])
+    @host = Host.find_by_ip_address(params[:id])
     @host.destroy
 
     respond_to do |format|

@@ -9,7 +9,7 @@ describe '/services' do
     before {
       sign_in_as_member(user)
 
-      visit '/services/new'
+      visit new_service_path
       fill_in 'Name',        with: 'Hyperion'
       fill_in 'Description', with: 'Server Management Tool'
     }
@@ -24,7 +24,7 @@ describe '/services' do
     before {
       sign_in_as_member(user)
 
-      visit "/services/#{service.id}/edit"
+      visit edit_service_path(service)
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
       click_button 'Update Service'
@@ -40,7 +40,7 @@ describe '/services' do
 
     before {
       sign_in_as_member(user)
-      visit "/services/#{service.id}"
+      visit service_path(service)
     }
 
     it { expect { click_link 'Destroy' }.to change { Service.count }.by(-1) }
