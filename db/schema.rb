@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121012101042) do
+ActiveRecord::Schema.define(version: 20121012115218) do
+
+  create_table "host_relations", force: true do |t|
+    t.integer "service_id"
+    t.integer "role_id"
+    t.integer "host_id"
+  end
+
+  add_index "host_relations", ["host_id"], name: "index_host_relations_on_host_id"
+  add_index "host_relations", ["service_id", "role_id", "host_id"], name: "index_host_relations_on_service_id_and_role_id_and_host_id", unique: true
 
   create_table "hosts", force: true do |t|
     t.string   "ip_address"
@@ -21,8 +30,8 @@ ActiveRecord::Schema.define(version: 20121012101042) do
     t.datetime "updated_at"
   end
 
-  add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address"
-  add_index "hosts", ["name"], name: "index_hosts_on_name"
+  add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address", unique: true
+  add_index "hosts", ["name"], name: "index_hosts_on_name", unique: true
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -48,8 +57,8 @@ ActiveRecord::Schema.define(version: 20121012101042) do
     t.string   "name"
     t.string   "image"
     t.string   "token"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "access_token"
     t.string   "access_token_secret"
     t.boolean  "member"

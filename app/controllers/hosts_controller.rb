@@ -13,11 +13,15 @@ class HostsController < ApplicationController
 
   def new
     @host = Host.new
+    @host.host_relations.build
+
     respond_with @host
   end
 
   def edit
     @host = Host.find_by_ip_address(params[:id])
+    @host.host_relations.build
+
     respond_with @host
   end
 
@@ -62,6 +66,6 @@ class HostsController < ApplicationController
   private
 
   def host_params
-    params.require(:host).permit(:ip_address, :name, :description)
+    params.require(:host).permit(:ip_address, :name, :description, :host_relations_attributes)
   end
 end

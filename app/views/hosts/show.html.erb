@@ -10,6 +10,10 @@
   <dd><%= @host.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @host.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:service) %> - <%= model_class.human_attribute_name(:role) %>:</strong></dt>
+  <% @host.host_relations.each do |relation| -%>
+    <dd><%= relation.service.name %> - <%= relation.role.name %></dd>
+  <% end -%>
 </dl>
 
 <div class="form-actions">
