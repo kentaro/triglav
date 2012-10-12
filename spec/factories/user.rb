@@ -12,11 +12,3 @@ FactoryGirl.define do
     member              false
   end
 end
-
-
-
-
-
-
-
-

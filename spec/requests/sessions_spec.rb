@@ -18,8 +18,7 @@ describe "Signin/Signout" do
         let(:user) { create(:user) }
 
         before {
-          User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
-          sign_in(user)
+          sign_in_as_member(user)
           visit "/"
         }
 
@@ -32,7 +31,6 @@ describe "Signin/Signout" do
 
         before {
           User.any_instance.stub(:organizations).and_return([])
-
           sign_in(user)
           visit "/"
         }
@@ -49,9 +47,7 @@ describe "Signin/Signout" do
       let(:user) { create(:user) }
 
       before {
-        User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
-
-        sign_in(user)
+        sign_in_as_member(user)
         sign_out
       }
 

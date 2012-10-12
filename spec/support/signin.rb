@@ -19,6 +19,11 @@ def sign_in (user)
   visit "/signin"
 end
 
+def sign_in_as_member (user)
+  User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+  sign_in(user)
+end
+
 def sign_out
   visit "/"
   click_link "Sign out"
