@@ -3,13 +3,13 @@ require 'octokit'
 class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
-  validate :provider, presence: true, inclusion: { in: %w(github) }
-  validate :name,     presence: true, uniqueness: true, length: { maximum: 40 }
-  validate :uid,      presence: true, format: { with: /\d+/ }
-  validate :image,    presence: true, format: { with: /\/\/gravatar\.com\/avatar\/[a-z0-9]{32}/ }
-  validate :token,               format: { with: /[a-z0-9_-]{22}/i }
-  validate :access_token,        format: { with: /[a-z0-9]{40}/ }
-  validate :access_token_secret, format: { with: /[a-z0-9]{40}/ }
+  validates :provider, presence: true, inclusion: { in: %w(github) }
+  validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
+  validates :uid,      presence: true, format: { with: /\d+/ }
+  validates :image,    presence: true, format: { with: /\/\/gravatar\.com\/avatar\/[a-z0-9]{32}/ }
+  validates :token,               format: { with: /[a-z0-9_-]{22}/i }
+  validates :access_token,        format: { with: /[a-z0-9]{40}/ }
+  validates :access_token_secret, format: { with: /[a-z0-9]{40}/ }
 
   def self.find_or_create_from_auth_hash(hash)
     user = find_by_provider_and_uid(
