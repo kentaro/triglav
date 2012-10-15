@@ -42,3 +42,16 @@ ja:
         provider: プロバイダー  #g
         token: トークン  #g
         uid: UID  #g
+
+  helpers:
+    titles:
+      new: 新規作成 #g
+    links:
+      cancel: 取り消し #g
+
+  hosts:
+    new:
+      title: ホストの新規作成
+    form:
+      add_service_role_select: 追加
+      remove_service_role_select: 削除

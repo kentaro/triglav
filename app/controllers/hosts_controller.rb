@@ -66,6 +66,7 @@ class HostsController < ApplicationController
   private
 
   def host_params
-    params.require(:host).permit(:ip_address, :name, :description, :host_relations_attributes)
+    # :id, and :_destroy are needed for nested object forms
+    params.require(:host).permit(:ip_address, :name, :description, { host_relations_attributes: [ :service_id, :role_id, :id, :_destroy ] })
   end
 end

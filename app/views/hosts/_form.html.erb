@@ -1,36 +1,37 @@
-<%= form_for @host, :html => { :class => 'form-horizontal' } do |f| %>
-<div class="row">
+<%= form_for @host, html: { class: 'form-horizontal' } do |f| %>
+<div class="row-fluid">
   <div class="span5">
     <div class="control-group">
-      <%= f.label :ip_address, :class => 'control-label' %>
+      <%= f.label :ip_address, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :ip_address, :class => 'text_field' %>
+        <%= f.text_field :ip_address, class: 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :name, :class => 'control-label' %>
+      <%= f.label :name, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_field :name, :class => 'text_field' %>
+        <%= f.text_field :name, class: 'text_field' %>
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :description, :class => 'control-label' %>
+      <%= f.label :description, class: 'control-label' %>
       <div class="controls">
-        <%= f.text_area :description, :class => 'text_area' %>
+        <%= f.text_area :description, class: 'text_area' %>
       </div>
     </div>
   </div>
-  <div class="span4">
+  <div class="span7">
     <%= f.fields_for :host_relations do |relation| %>
-      <%= relation.select :service_id, options_for_select([['---', nil]] + Service.all.map{ |s| [ s.name, s.id ] }, relation.object.service_id) %> -
-      <%= relation.select :role_id, options_for_select([['---', nil]] + Role.all.map{ |r| [ r.name, r.id ]}, relation.object.role_id) %>
+      <%= render partial: 'host_relation_fields', locals: { f: relation } %>
     <% end -%>
+    <%= button_tag(t('hosts.form.add_service_role_select'), id: 'add_relation_fields', data: { association: :host_relations }) %>
+    <%= template_for_relation_fields(f, :host_relations) %>
   </div>
 </div>
 
 <div class="form-actions">
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-      hosts_path, :class => 'btn' %>
+  <%= f.submit nil, class: 'btn btn-primary' %>
+  <%= link_to t('.cancel', default: t("helpers.links.cancel")),
+      hosts_path, class: 'btn' %>
 </div>
 <% end %>
