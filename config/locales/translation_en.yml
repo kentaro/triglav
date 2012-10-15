@@ -1,0 +1,44 @@
+en:
+  activerecord:
+    models:
+      host: Host  #g
+      host_relation: Host Relation  #g
+      role: Role  #g
+      service: Service  #g
+      user: User  #g
+
+    attributes:
+      host:
+        description: Description  #g
+        host_relations: Host relations  #g
+        ip_address: IP Address  #g
+        name: Name  #g
+        roles: Roles  #g
+        services: Services  #g
+
+      host_relation:
+        host: :activerecord.models.host  #g
+        role: :activerecord.models.role  #g
+        service: :activerecord.models.service  #g
+
+      role:
+        description: Description  #g
+        host_relations: Host Relations  #g
+        hosts: Hosts  #g
+        name: Name  #g
+
+      service:
+        description: Description  #g
+        host_relations: Host relations  #g
+        hosts: Hosts  #g
+        name: Name  #g
+
+      user:
+        access_token: Access Token  #g
+        access_token_secret: Access Token Secret  #g
+        image: Image  #g
+        member: Member  #g
+        name: Name  #g
+        provider: Provider  #g
+        token: Token  #g
+        uid: UID  #g

@@ -1,7 +1,6 @@
 require 'octokit'
 
-class User
-  include ActiveRecord::Model
+class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
   validate :provider, presence: true, inclusion: { in: %w(github) }

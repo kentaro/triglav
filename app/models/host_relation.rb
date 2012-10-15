@@ -1,5 +1,4 @@
-class HostRelation
-  include ActiveRecord::Model
+class HostRelation < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
   belongs_to :service

@@ -1,5 +1,4 @@
-class Role
-  include ActiveRecord::Model
+class Role < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
   validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }

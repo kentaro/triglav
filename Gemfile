@@ -18,6 +18,8 @@ gem 'octokit'
 gem 'mysql2'
 
 group :development do
+  gem 'i18n_generators', github: 'kentaro/i18n_generators', branch: 'bing_translator'
+
   gem 'launchy'
 
   gem 'guard'

@@ -1,0 +1,44 @@
+ja:
+  activerecord:
+    models:
+      host: ホスト  #g
+      host_relation: ホスト関係  #g
+      role: 役割  #g
+      service: サービス  #g
+      user: ユーザー  #g
+
+    attributes:
+      host:
+        description: 説明  #g
+        host_relations: ホスト関係  #g
+        ip_address: IPアドレス  #g
+        name: 名前  #g
+        roles: :activerecord.models.role  #g
+        services: サービス  #g
+
+      host_relation:
+        host: :activerecord.models.host  #g
+        role: :activerecord.models.role  #g
+        service: :activerecord.models.service  #g
+
+      role:
+        description: 説明  #g
+        host_relations: ホスト関係  #g
+        hosts: ホスト  #g
+        name: 名前  #g
+
+      service:
+        description: 説明  #g
+        host_relations: ホスト関係  #g
+        hosts: ホスト  #g
+        name: 名前  #g
+
+      user:
+        access_token: アクセストークン  #g
+        access_token_secret: アクセストークンシークレット  #g
+        image: イメージ  #g
+        member: メンバー  #g
+        name: 名前  #g
+        provider: プロバイダー  #g
+        token: トークン  #g
+        uid: UID  #g

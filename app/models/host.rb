@@ -1,5 +1,4 @@
-class Host
-  include ActiveRecord::Model
+class Host < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
 
   validates :ip_address,  presence: true, format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }
