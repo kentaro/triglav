@@ -121,6 +121,8 @@ en:
   services:
     index:
       title: Services
+    show:
+      hosts: :hosts.index.title
 
   roles:
     index:

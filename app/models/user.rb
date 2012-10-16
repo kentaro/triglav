@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
   validates :uid,      presence: true, format: { with: /\d+/ }
   validates :image,    presence: true, format: { with: /\/\/gravatar\.com\/avatar\/[a-z0-9]{32}/ }
-  validates :token,        format: { with: /[a-z0-9_-]{22}/i }
-  validates :access_token, format: { with: /[a-z0-9]{40}/ }
+  validates :token,        format: { with: /\A([a-z0-9_\-]{22}|)\Z/i }
+  validates :access_token, format: { with: /\A([a-z0-9]{40}|)\Z/ }
 
   def self.find_or_create_from_auth_hash(hash)
     user = self.find_by_provider_and_uid(
@@ -45,7 +45,6 @@ class User < ActiveRecord::Base
     organizations.each do |org|
       if org['login'] == Settings.github.organization
         self.member = true
-        self.save
         break
       end
     end

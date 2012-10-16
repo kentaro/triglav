@@ -120,6 +120,8 @@ ja:
   services:
     index:
       title: サービス一覧
+    show:
+      hosts: :hosts.index.title
 
   roles:
     index:
