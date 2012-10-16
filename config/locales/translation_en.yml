@@ -8,6 +8,11 @@ en:
       user: User  #g
 
     attributes:
+      common:
+        id: ID
+        created_at: Created
+        updated_at: Updated
+
       host:
         description: Description  #g
         host_relations: Host relations  #g
@@ -15,23 +20,35 @@ en:
         name: Name  #g
         roles: Roles  #g
         services: Services  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       host_relation:
         host: :activerecord.models.host  #g
         role: :activerecord.models.role  #g
         service: :activerecord.models.service  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       role:
         description: Description  #g
         host_relations: Host Relations  #g
         hosts: Hosts  #g
         name: Name  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       service:
         description: Description  #g
         host_relations: Host relations  #g
         hosts: Hosts  #g
         name: Name  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       user:
         access_token: Access Token  #g
@@ -42,3 +59,45 @@ en:
         provider: Provider  #g
         token: Token  #g
         uid: UID  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
+
+
+  helpers:
+    titles:
+      new: "New %{model}"
+      edit: "Edit %{model}"
+    links:
+      new: Create
+      edit: Edit
+      destroy: Destroy
+      cancel: Cancel
+      back: Back
+      confirm: Are you sure?
+    actions: Edit/Delete
+
+  layout:
+    title: Hyperion
+    team: Hyperion Developer Team
+    nav:
+      services: :activerecord.models.service
+      roles: :activerecord.models.role
+      hosts: :activerecord.models.host
+      sign_in: Sign in
+      sign_out: Sign out
+
+  services:
+    index:
+      title: Services
+
+  roles:
+    index:
+      title: Roles
+
+  hosts:
+    index:
+      title: Hosts
+    form:
+      add_service_role_select: Add
+      remove_service_role_select: Remove

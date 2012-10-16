@@ -8,6 +8,11 @@ ja:
       user: ユーザー  #g
 
     attributes:
+      common:
+        id: ID
+        created_at: 登録時刻
+        updated_at: 更新時刻
+
       host:
         description: 説明  #g
         host_relations: ホスト関係  #g
@@ -15,23 +20,35 @@ ja:
         name: 名前  #g
         roles: :activerecord.models.role  #g
         services: サービス  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       host_relation:
         host: :activerecord.models.host  #g
         role: :activerecord.models.role  #g
         service: :activerecord.models.service  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       role:
         description: 説明  #g
         host_relations: ホスト関係  #g
         hosts: ホスト  #g
         name: 名前  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       service:
         description: 説明  #g
         host_relations: ホスト関係  #g
         hosts: ホスト  #g
         name: 名前  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
       user:
         access_token: アクセストークン  #g
@@ -42,16 +59,44 @@ ja:
         provider: プロバイダー  #g
         token: トークン  #g
         uid: UID  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
   helpers:
     titles:
-      new: 新規作成 #g
+      new: "%{model}の新規作成"
+      edit: "%{model}の編集"
     links:
-      cancel: 取り消し #g
+      new: 新規作成
+      edit: 編集
+      destroy: 削除
+      cancel: 取り消し
+      back: 戻る
+      confirm: 本当によろしいですか？
+    actions: 変更・削除
+
+  layout:
+    title: はいぺりおん
+    team: はいぺりおん開発チーム
+    nav:
+      services: :activerecord.models.service
+      roles: :activerecord.models.role
+      hosts: :activerecord.models.host
+      sign_in: サインイン
+      sign_out: サインアウト
+
+  services:
+    index:
+      title: サービス一覧
+
+  roles:
+    index:
+      title: ロール一覧
 
   hosts:
-    new:
-      title: ホストの新規作成
+    index:
+      title: ホスト一覧
     form:
       add_service_role_select: 追加
       remove_service_role_select: 削除
