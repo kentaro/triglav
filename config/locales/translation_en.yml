@@ -52,7 +52,6 @@ en:
 
       user:
         access_token: Access Token  #g
-        access_token_secret: Access Token Secret  #g
         image: Image  #g
         member: Member  #g
         name: Name  #g

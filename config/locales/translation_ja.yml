@@ -52,7 +52,6 @@ ja:
 
       user:
         access_token: アクセストークン  #g
-        access_token_secret: アクセストークンシークレット  #g
         image: イメージ  #g
         member: メンバー  #g
         name: 名前  #g
