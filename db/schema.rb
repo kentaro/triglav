@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121016080727) do
+ActiveRecord::Schema.define(version: 20121016143004) do
+
+  create_table "activities", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "model_id"
+    t.string   "model_type"
+    t.string   "tag"
+    t.text     "diff"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "host_relations", force: true do |t|
     t.integer "service_id"
@@ -28,6 +38,7 @@ ActiveRecord::Schema.define(version: 20121016080727) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address", unique: true
@@ -38,6 +49,7 @@ ActiveRecord::Schema.define(version: 20121016080727) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "roles", ["name"], name: "index_roles_on_name"
@@ -47,6 +59,7 @@ ActiveRecord::Schema.define(version: 20121016080727) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
   add_index "services", ["name"], name: "index_services_on_name"
@@ -61,6 +74,7 @@ ActiveRecord::Schema.define(version: 20121016080727) do
     t.datetime "updated_at"
     t.string   "access_token"
     t.boolean  "member"
+    t.datetime "deleted_at"
   end
 
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true

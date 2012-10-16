@@ -18,6 +18,11 @@ gem 'octokit'
 gem 'mysql2'
 
 group :development do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+
   gem 'i18n_generators', github: 'kentaro/i18n_generators', branch: 'bing_translator'
 
   gem 'launchy'
@@ -29,6 +34,11 @@ group :development do
 end
 
 group :test do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+
   gem 'rspec-rails',        github: 'rspec/rspec-rails'
   gem 'rspec',              github: 'rspec/rspec'
   gem 'rspec-core',         github: 'rspec/rspec-core'

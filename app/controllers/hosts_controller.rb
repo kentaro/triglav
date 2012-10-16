@@ -26,10 +26,11 @@ class HostsController < ApplicationController
   end
 
   def create
-    @host = Host.new(host_params)
+    @host   = Host.new(host_params)
+    context = HostContext.new(user: current_user, host: @host)
 
     respond_to do |format|
-      if @host.save
+      if context.create
         format.html { redirect_to @host, notice: 'notice.hosts.create.success' }
         format.json { render json: @host, status: :created, location: @host }
       else
@@ -40,10 +41,11 @@ class HostsController < ApplicationController
   end
 
   def update
-    @host = Host.find_by_ip_address(params[:id])
+    @host   = Host.find_by_ip_address(params[:id])
+    context = HostContext.new(user: current_user, host: @host)
 
     respond_to do |format|
-      if @host.update_attributes(host_params)
+      if context.update(host_params)
         format.html { redirect_to @host, notice: 'notice.hosts.update.success' }
         format.json { head :no_content }
       else
@@ -54,8 +56,9 @@ class HostsController < ApplicationController
   end
 
   def destroy
-    @host = Host.find_by_ip_address(params[:id])
-    @host.destroy
+    @host   = Host.find_by_ip_address(params[:id])
+    context = HostContext.new(user: current_user, host: @host)
+    context.destroy
 
     respond_to do |format|
       format.html { redirect_to hosts_url, notice: 'notice.hosts.destroy.success' }
@@ -66,7 +69,16 @@ class HostsController < ApplicationController
   private
 
   def host_params
-    # :id, and :_destroy are needed for nested object forms
-    params.require(:host).permit(:ip_address, :name, :description, { host_relations_attributes: [ :service_id, :role_id, :id, :_destroy ] })
+    params.require(:host).permit(:ip_address, :name, :description, {
+        host_relations_attributes: [
+          :service_id,
+          :role_id,
+
+          # :both id and :_destroy are needed for nested object forms
+          :id,
+          :_destroy
+        ]
+      }
+    )
   end
 end

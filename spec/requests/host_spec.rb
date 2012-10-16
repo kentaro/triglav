@@ -57,6 +57,6 @@ describe '/hosts' do
       visit host_path(host)
     }
 
-    it { expect { click_link 'Destroy' }.to change { Host.count }.by(-1) }
+    it { expect { click_link 'Destroy' }.to change { Host.without_deleted.count }.by(-1) }
   end
 end

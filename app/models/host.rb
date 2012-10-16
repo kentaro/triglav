@@ -1,5 +1,6 @@
 class Host < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include LogicallyDeletableRole
 
   validates :ip_address,  presence: true, uniqueness: true, format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }
@@ -8,6 +9,9 @@ class Host < ActiveRecord::Base
   has_many :host_relations
   has_many :services, through: :host_relations
   has_many :roles,    through: :host_relations
+
+  # i haven't gotten polymorphic association worked now
+  has_many :activities, as: :model
 
   accepts_nested_attributes_for :host_relations,
     allow_destroy: true,
