@@ -9,7 +9,7 @@ gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_fi
 gem 'rails_config'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 
 gem 'omniauth'
 gem 'omniauth-github'
