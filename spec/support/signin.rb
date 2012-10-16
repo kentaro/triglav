@@ -11,8 +11,7 @@ def sign_in (user)
       }
     },
     "credentials" => {
-      "token"  => user.access_token,
-      "secret" => user.access_token_secret,
+      "token" => user.access_token,
     },
   }
 

@@ -11,8 +11,6 @@ class User < ActiveRecord::Base
   validates :access_token, format: { with: /[a-z0-9]{40}/ }
 
   def self.find_or_create_from_auth_hash(hash)
-    p hash['credentials']
-
     user = self.find_by_provider_and_uid(
       hash['provider'],
       hash['uid']
