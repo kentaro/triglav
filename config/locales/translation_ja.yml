@@ -86,6 +86,37 @@ ja:
       sign_in: サインイン
       sign_out: サインアウト
 
+  notice:
+    sessions:
+      create:
+        success: サインインしました。
+        alert:
+          not_member: このアプリを利用するには、適切なオーガナイゼイションに所属していなければなりません。
+          error: サインイン処理中にエラーが起きました。
+      destroy:
+        success: サインアウトしました。
+    services:
+      create:
+        success: サービスを新規作成しました。
+      update:
+        success: サービスを更新しました。
+      destroy:
+        success: サービスを削除しました。
+    roles:
+      create:
+        success: ロールを新規作成しました。
+      update:
+        success: ロールを更新しました。
+      destroy:
+        success: ロールを削除しました。
+    hosts:
+      create:
+        success: ホストを新規作成しました。
+      update:
+        success: ホストを更新しました。
+      destroy:
+        success: ホストを削除しました。
+
   services:
     index:
       title: サービス一覧

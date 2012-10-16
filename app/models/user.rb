@@ -7,12 +7,13 @@ class User < ActiveRecord::Base
   validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
   validates :uid,      presence: true, format: { with: /\d+/ }
   validates :image,    presence: true, format: { with: /\/\/gravatar\.com\/avatar\/[a-z0-9]{32}/ }
-  validates :token,               format: { with: /[a-z0-9_-]{22}/i }
-  validates :access_token,        format: { with: /[a-z0-9]{40}/ }
-  validates :access_token_secret, format: { with: /[a-z0-9]{40}/ }
+  validates :token,        format: { with: /[a-z0-9_-]{22}/i }
+  validates :access_token, format: { with: /[a-z0-9]{40}/ }
 
   def self.find_or_create_from_auth_hash(hash)
-    user = find_by_provider_and_uid(
+    p hash['credentials']
+
+    user = self.find_by_provider_and_uid(
       hash['provider'],
       hash['uid']
     ) || create(
@@ -27,8 +28,7 @@ class User < ActiveRecord::Base
     end
 
     if (!hash['credentials'].blank?)
-      user.access_token        = hash['credentials']['token']
-      user.access_token_secret = hash['credentials']['secret']
+      user.access_token = hash['credentials']['token']
     end
 
     user.update_privilege

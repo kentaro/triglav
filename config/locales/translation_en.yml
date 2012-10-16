@@ -87,6 +87,37 @@ en:
       sign_in: Sign in
       sign_out: Sign out
 
+  notice:
+    sessions:
+      create:
+        success: Successfully signed in.
+        alert:
+          not_member: "You're not a member of our organization."
+          error: Some error occured when signing in.
+      destroy:
+        success: Successfully signed out.
+    services:
+      create:
+        success: Service was successfully created.
+      update:
+        success: Service was successfully updated.
+      destroy:
+        success: Service was successfully destroyed.
+    roles:
+      create:
+        success: Role was successfully created.
+      update:
+        success: Role was successfully updated.
+      destroy:
+        success: Role was successfully destroyed.
+    hosts:
+      create:
+        success: Host was successfully created.
+      update:
+        success: Host was successfully updated.
+      destroy:
+        success: Host was successfully destroyed.
+
   services:
     index:
       title: Services

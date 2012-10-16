@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121012115218) do
+ActiveRecord::Schema.define(version: 20121016080727) do
 
   create_table "host_relations", force: true do |t|
     t.integer "service_id"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 20121012115218) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "access_token"
-    t.string   "access_token_secret"
     t.boolean  "member"
   end
 

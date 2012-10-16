@@ -4,22 +4,22 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
 
-    if @user.save
+    if @user.save!
       sign_in @user
 
       if @user.member?
-        redirect_to '/', notice: 'Successfully signed in!'
+        redirect_to '/', notice: 'notice.sessions.create.success'
       else
-        redirect_to '/', notice: 'Not a member!'
+        redirect_to '/', alert: 'notice.sessions.create.alert.not_member'
       end
     else
-      redirect_to '/', alert: 'Some error occured when signing in!'
+      redirect_to '/', alert: 'notice.sessions.create.alert.error'
     end
   end
 
   def destroy
     sign_out
-    redirect_to '/'
+    redirect_to '/', notice: 'notice.sessions.destroy.success'
   end
 
   protected

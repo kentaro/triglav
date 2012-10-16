@@ -30,7 +30,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.save
-        format.html { redirect_to @host, notice: 'Host was successfully created.' }
+        format.html { redirect_to @host, notice: 'notice.hosts.create.success' }
         format.json { render json: @host, status: :created, location: @host }
       else
         format.html { render action: "new" }
@@ -44,7 +44,7 @@ class HostsController < ApplicationController
 
     respond_to do |format|
       if @host.update_attributes(host_params)
-        format.html { redirect_to @host, notice: 'Host was successfully updated.' }
+        format.html { redirect_to @host, notice: 'notice.hosts.update.success' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -58,7 +58,7 @@ class HostsController < ApplicationController
     @host.destroy
 
     respond_to do |format|
-      format.html { redirect_to hosts_url }
+      format.html { redirect_to hosts_url, notice: 'notice.hosts.destroy.success' }
       format.json { head :no_content }
     end
   end
