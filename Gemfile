@@ -31,7 +31,10 @@ end
 group :test do
   gem 'rspec', '~> 2.11.0'
   gem 'rspec-rails'
-  gem 'capybara'
+
+  # for capybara >=2.0
+  gem 'capybara', github: 'jnicklas/capybara'
+
   gem 'factory_girl'
   gem 'database_cleaner'
 end

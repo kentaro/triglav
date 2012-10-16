@@ -26,5 +26,5 @@ end
 
 def sign_out
   visit root_path
-  click_link "Sign out"
+  find('.navbar').click_link("Sign out")
 end

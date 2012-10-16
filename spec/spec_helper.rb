@@ -17,6 +17,9 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
+  # capybara >= 2.0
+  config.include Capybara::DSL
+
   # factory girl
   FactoryGirl.find_definitions
   config.include FactoryGirl::Syntax::Methods

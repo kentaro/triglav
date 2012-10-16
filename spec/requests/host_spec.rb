@@ -15,8 +15,8 @@ describe '/hosts' do
       fill_in 'IP Address',  with: '192.168.0.1'
       fill_in 'Name',        with: 'app001'
       fill_in 'Description', with: 'app server 001'
-      find('select[1]').select(service.name)
-      find('select[2]').select(role.name)
+      find('div[class="fields"][1]/select[1]').select(service.name)
+      find('div[class="fields"][1]/select[2]').select(role.name)
     }
 
     it { expect { click_button 'Create Host' }.to change { Host.count }.by(1) }
@@ -33,8 +33,8 @@ describe '/hosts' do
       fill_in 'IP Address',  with: '192.168.1.1'
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
-      find('select[1]').select(host.services.first.name)
-      find('select[2]').select(host.roles.first.name)
+      find('div[class="fields"][1]/select[1]').select(host.services.first.name)
+      find('div[class="fields"][1]/select[2]').select(host.roles.first.name)
 
       click_button 'Update Host'
     }
