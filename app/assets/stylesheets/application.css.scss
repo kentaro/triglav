@@ -11,3 +11,19 @@
  *= require_self
  *= require_tree .
  */
+
+a.btn-primary:link,
+a.btn-primary:visited,
+a.btn-danger:link,
+a.btn-danger:visited,
+a.btn-warning:link,
+a.btn-warning:visited,
+a.btn-success:link,
+a.btn-success:visited,
+a.btn-info:link,
+a.btn-info:visited,
+a.btn-inverse:link,
+a.btn-inverse:visited,
+{
+  color: #fff
+}
