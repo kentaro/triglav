@@ -36,4 +36,7 @@ Hyperion::Application.configure do
 
   # Use the testing queue.
   config.queue = ActiveSupport::TestQueue
+
+  # ... custom settings ...
+  config.i18n.default_locale = 'en'
 end

@@ -10,7 +10,7 @@ describe '/hosts' do
       sign_in_as_member(user)
 
       visit new_host_path
-      fill_in 'Ip address',  with: '192.168.0.1'
+      fill_in 'IP Address',  with: '192.168.0.1'
       fill_in 'Name',        with: 'app001'
       fill_in 'Description', with: 'app server 001'
     }
@@ -26,7 +26,7 @@ describe '/hosts' do
       sign_in_as_member(user)
 
       visit edit_host_path(host)
-      fill_in 'Ip address',  with: '192.168.1.1'
+      fill_in 'IP Address',  with: '192.168.1.1'
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
       click_button 'Update Host'
