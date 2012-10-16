@@ -24,7 +24,7 @@ describe '/hosts' do
 
   describe 'edit a host' do
     let(:user) { create(:user) }
-    let(:host) { create(:host, :with_relations) }
+    let(:host) { create(:host, :with_relations, count: 3) }
 
     before {
       sign_in_as_member(user)

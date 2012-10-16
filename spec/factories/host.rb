@@ -5,14 +5,15 @@ FactoryGirl.define do
     sequence(:description) { |n| "description #{n}" }
 
     trait :with_relations do
+      ignore { count 1 }
       host_relations {
-        [
-          create(:host_relation, {
+        count.times.inject([]) do |r, i|
+          r << create(:host_relation, {
               service: create(:service),
               role:    create(:role),
             }
           )
-        ]
+        end
       }
     end
   end
