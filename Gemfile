@@ -29,8 +29,11 @@ group :development do
 end
 
 group :test do
-  gem 'rspec', '~> 2.11.0'
-  gem 'rspec-rails'
+  gem 'rspec-rails',        github: 'rspec/rspec-rails'
+  gem 'rspec',              github: 'rspec/rspec'
+  gem 'rspec-core',         github: 'rspec/rspec-core'
+  gem 'rspec-expectations', github: 'rspec/rspec-expectations'
+  gem 'rspec-mocks',        github: 'rspec/rspec-mocks'
 
   # for capybara >=2.0
   gem 'capybara', github: 'jnicklas/capybara'
