@@ -30,8 +30,10 @@ describe '/roles' do
       click_button 'Update Role'
     }
 
-    it { expect(page).to have_content('name changed') }
-    it { expect(page).to have_content('description changed') }
+    it {
+      expect(page).to have_content('name changed')
+      expect(page).to have_content('description changed')
+    }
   end
 
   describe 'delete a role' do

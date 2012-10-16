@@ -3,7 +3,7 @@ ja:
     models:
       host: ホスト  #g
       host_relation: ホスト関係  #g
-      role: 役割  #g
+      role: ロール  #g
       service: サービス  #g
       user: ユーザー  #g
 

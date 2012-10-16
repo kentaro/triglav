@@ -9,8 +9,10 @@ describe "Signin/Signout" do
         visit "/"
       }
 
-      it { expect(current_path).to be == '/caveat' }
-      it { expect(subject).to have_content "Sign in" }
+      it {
+        expect(current_path).to be == '/caveat'
+        expect(subject).to have_content "Sign in"
+      }
     end
 
     context "when logged in as a user" do
@@ -22,8 +24,10 @@ describe "Signin/Signout" do
           visit "/"
         }
 
-        it { expect(current_path).to be == '/' }
-        it { expect(subject).to have_content user.name }
+        it {
+          expect(current_path).to be == '/'
+          expect(subject).to have_content user.name
+        }
       end
 
       context "when user is not a member of the specified organization" do
@@ -35,9 +39,11 @@ describe "Signin/Signout" do
           visit "/"
         }
 
-        it { expect(current_path).to be == '/caveat' }
-        it { expect(subject).to have_content user.name }
-        it { expect(subject).to have_content "Not a member" }
+        it {
+          expect(current_path).to be == '/caveat'
+          expect(subject).to have_content user.name
+          expect(subject).to have_content "Not a member"
+        }
       end
     end
   end
@@ -51,8 +57,10 @@ describe "Signin/Signout" do
         sign_out
       }
 
-      it { expect(current_path).to be == '/caveat' }
-      it { expect(subject).to have_content "Sign in" }
+      it {
+        expect(current_path).to be == '/caveat'
+        expect(subject).to have_content "Sign in"
+      }
     end
   end
 end

@@ -1,6 +1,6 @@
 <div class="fields">
-  <%= f.select :service_id, options_for_select([['---', nil]] + Service.all.map{ |s| [ s.name, s.id ] }, f.object.service_id) %> -
-  <%= f.select :role_id, options_for_select([['---', nil]] + Role.all.map{ |r| [ r.name, r.id ]}, f.object.role_id) %>
+  <%= f.select :service_id, options_for_select([[t('activerecord.models.service'), nil]] + Service.all.map{ |s| [ s.name, s.id ] }, f.object.service_id) %> -
+  <%= f.select :role_id, options_for_select([[t('activerecord.models.role'), nil]] + Role.all.map{ |r| [ r.name, r.id ]}, f.object.role_id) %>
   <%= f.hidden_field(:_destroy, value: 0) %>
   <button class="remove_relation_fields"><%= t('hosts.form.remove_service_role_select') %></button>
 </div>

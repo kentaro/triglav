@@ -30,8 +30,10 @@ describe '/services' do
       click_button 'Update Service'
     }
 
-    it { expect(page).to have_content('name changed') }
-    it { expect(page).to have_content('description changed') }
+    it {
+      expect(page).to have_content('name changed')
+      expect(page).to have_content('description changed')
+    }
   end
 
   describe 'delete a service' do
