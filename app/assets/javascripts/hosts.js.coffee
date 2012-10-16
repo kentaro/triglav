@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$('.remove_relation_fields').click (event) ->
+$('.remove_relation_fields').live 'click', (event) ->
   event.preventDefault()
   $(this).prev('input[type=hidden]').val('1')
   $(this).parent().hide()

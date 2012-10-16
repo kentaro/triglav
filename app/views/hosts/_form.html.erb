@@ -24,7 +24,7 @@
     <%= f.fields_for :host_relations do |relation| %>
       <%= render partial: 'host_relation_fields', locals: { f: relation } %>
     <% end -%>
-    <%= button_tag(t('hosts.form.add_service_role_select'), id: 'add_relation_fields', data: { association: :host_relations }) %>
+    <%= button_tag(t('hosts.form.add_service_role_select'), id: 'add_relation_fields', class: 'btn btn-inverse btn-mini', data: { association: :host_relations }) %>
     <%= template_for_relation_fields(f, :host_relations) %>
   </div>
 </div>
