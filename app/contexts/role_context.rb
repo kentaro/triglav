@@ -8,7 +8,7 @@ class RoleContext
 
   def create ()
     if @role.save
-      @role.activities.create(user_id: @user.id, tag: 'role.create')
+      @role.activities.create(user_id: @user.id, tag: 'create')
       true
     else
       false
@@ -21,7 +21,7 @@ class RoleContext
 
       @role.activities.create(
         user_id: @user.id,
-        tag:     'role.update',
+        tag:     'update',
         diff:    diff,
       )
       true
@@ -31,7 +31,7 @@ class RoleContext
   end
 
   def destroy ()
-    @role.activities.create(user_id: @user.id, tag: 'role.destroy')
+    @role.activities.create(user_id: @user.id, tag: 'destroy')
     @role.destroy
   end
 end

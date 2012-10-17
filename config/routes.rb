@@ -1,6 +1,6 @@
 Hyperion::Application.routes.draw do
-  root to: 'services#index'
-  get  '/caveat', to: 'root#caveat'
+  root to: 'root#index'
+  get '/caveat', to: 'root#caveat'
 
   get    '/signin' => redirect('/auth/github')
   delete '/signout', to: 'sessions#destroy'

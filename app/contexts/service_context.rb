@@ -8,7 +8,7 @@ class ServiceContext
 
   def create ()
     if @service.save
-      @service.activities.create(user_id: @user.id, tag: 'service.create')
+      @service.activities.create(user_id: @user.id, tag: 'create')
       true
     else
       false
@@ -21,7 +21,7 @@ class ServiceContext
 
       @service.activities.create(
         user_id: @user.id,
-        tag:     'service.update',
+        tag:     'update',
         diff:    diff,
       )
       true
@@ -31,7 +31,7 @@ class ServiceContext
   end
 
   def destroy ()
-    @service.activities.create(user_id: @user.id, tag: 'service.destroy')
+    @service.activities.create(user_id: @user.id, tag: 'destroy')
     @service.destroy
   end
 end

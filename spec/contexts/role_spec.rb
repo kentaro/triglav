@@ -14,7 +14,7 @@ describe RoleContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == role
-      expect(activity.tag).to be == 'role.create'
+      expect(activity.tag).to be == 'create'
     }
   end
 
@@ -39,7 +39,7 @@ describe RoleContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == role
-      expect(activity.tag).to be == 'role.update'
+      expect(activity.tag).to be == 'update'
       expect(activity.diff).to be == {
         'name'        => [old_name, 'updated'],
         'description' => [old_desc, 'updated'],
@@ -61,7 +61,7 @@ describe RoleContext do
       expect(activity.user).to be  == user
       expect(activity.model).to be == role
       expect(activity.model.deleted?).to be_true
-      expect(activity.tag).to be == 'role.destroy'
+      expect(activity.tag).to be == 'destroy'
     }
   end
 end

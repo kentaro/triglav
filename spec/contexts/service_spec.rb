@@ -14,7 +14,7 @@ describe ServiceContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == service
-      expect(activity.tag).to be == 'service.create'
+      expect(activity.tag).to be == 'create'
     }
   end
 
@@ -39,7 +39,7 @@ describe ServiceContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == service
-      expect(activity.tag).to be == 'service.update'
+      expect(activity.tag).to be == 'update'
       expect(activity.diff).to be == {
         'name'        => [old_name, 'updated'],
         'description' => [old_desc, 'updated'],
@@ -61,7 +61,7 @@ describe ServiceContext do
       expect(activity.user).to be  == user
       expect(activity.model).to be == service
       expect(activity.model.deleted?).to be_true
-      expect(activity.tag).to be == 'service.destroy'
+      expect(activity.tag).to be == 'destroy'
     }
   end
 end

@@ -2,10 +2,11 @@ en:
   activerecord:
     models:
       host: Host  #g
-      host_relation: Host Relation  #g
+      host_relation: Relation  #g
       role: Role  #g
       service: Service  #g
       user: User  #g
+      activity: Activity
 
     attributes:
       common:
@@ -13,9 +14,18 @@ en:
         created_at: Created
         updated_at: Updated
 
+      activity:
+        user: User
+        model: Model
+        tag: Tag
+        diff: Changes
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
+
       host:
         description: Description  #g
-        host_relations: Host relations  #g
+        host_relations: :activerecord.models.host_relation
         ip_address: IP Address  #g
         name: Name  #g
         roles: Roles  #g
@@ -75,6 +85,17 @@ en:
       back: Back
       confirm: Are you sure?
     actions: Edit/Delete
+    activities:
+      old: Old
+      new: New
+      added: Added
+      deleted: Deleted
+      blank: (Blank)
+      tag:
+        create: Create
+        update: Update
+        destroy: Destroy
+      relation: "%{type} Relation"
 
   layout:
     title: Hyperion
@@ -116,6 +137,11 @@ en:
         success: Host was successfully updated.
       destroy:
         success: Host was successfully destroyed.
+
+  root:
+    index:
+      activities: :activerecord.models.activity
+      services: :services.index.title
 
   services:
     index:

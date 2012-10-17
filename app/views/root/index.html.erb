@@ -1,2 +1,11 @@
-<%= current_user.name %>
-<%= link_to "Sign out", signout_path, method: :delete %>
+<div class="page-header">
+  <h1><%= t('.activities', default: Activity.model_name.human.pluralize) %></h1>
+</div>
+
+<%= render partial: 'shared/activities', locals: { activities: @activities } %>
+
+<div class="page-header">
+  <h1><%= t('.services', default: Service.model_name.human.pluralize) %></h1>
+</div>
+
+<%= render partial: 'shared/services', locals: { services: @services } %>

@@ -2,10 +2,11 @@ ja:
   activerecord:
     models:
       host: ホスト  #g
-      host_relation: ホスト関係  #g
+      host_relation: リレーション
       role: ロール  #g
       service: サービス  #g
       user: ユーザー  #g
+      activity: タイムライン
 
     attributes:
       common:
@@ -13,9 +14,18 @@ ja:
         created_at: 登録時刻
         updated_at: 更新時刻
 
+      activity:
+        user: ユーザー
+        model: モデル
+        tag: 種別
+        diff: 変更点
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
+
       host:
         description: 説明  #g
-        host_relations: ホスト関係  #g
+        host_relations: :activerecord.models.host_relation
         ip_address: IPアドレス  #g
         name: 名前  #g
         roles: :activerecord.models.role  #g
@@ -74,6 +84,17 @@ ja:
       back: 戻る
       confirm: 本当によろしいですか？
     actions: 変更・削除
+    activities:
+      old: 変更前
+      new: 変更後
+      added: 追加
+      deleted: 削除
+      blank: (なし)
+      tag:
+        create: 新規作成
+        update: 更新
+        destroy: 削除
+      relation: "リレーションの%{type}"
 
   layout:
     title: はいぺりおん
@@ -115,6 +136,11 @@ ja:
         success: ホストを更新しました。
       destroy:
         success: ホストを削除しました。
+
+  root:
+    index:
+      activities: :activerecord.models.activity
+      services: :services.index.title
 
   services:
     index:

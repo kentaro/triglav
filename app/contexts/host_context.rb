@@ -8,7 +8,7 @@ class HostContext
 
   def create ()
     if @host.save
-      @host.activities.create(user_id: @user.id, tag: 'host.create')
+      @host.activities.create(user_id: @user.id, tag: 'create')
       true
     else
       false
@@ -17,7 +17,7 @@ class HostContext
 
   def update (params)
     old_relations = @host.host_relations.inject([]) do |result, item|
-      result.push('service' => item.service, 'role' => item.role)
+      result.push('service' => item.service.name, 'role' => item.role.name)
       result
     end
 
@@ -25,7 +25,7 @@ class HostContext
       diff = @host.previous_changes.select{ |k, v| k !~ /_at$/ }
 
       new_relations = @host.host_relations.reload.inject([]) do |result, item|
-        result.push('service' => item.service, 'role' => item.role)
+        result.push('service' => item.service.name, 'role' => item.role.name)
         result
       end
 
@@ -44,7 +44,7 @@ class HostContext
 
       @host.activities.create(
         user_id: @user.id,
-        tag:     'host.update',
+        tag:     'update',
         diff:    diff,
       )
       true
@@ -54,7 +54,7 @@ class HostContext
   end
 
   def destroy ()
-    @host.activities.create(user_id: @user.id, tag: 'host.destroy')
+    @host.activities.create(user_id: @user.id, tag: 'destroy')
     @host.destroy
   end
 end

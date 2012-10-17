@@ -14,7 +14,7 @@ describe HostContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == host
-      expect(activity.tag).to be == 'host.create'
+      expect(activity.tag).to be == 'create'
     }
   end
 
@@ -61,21 +61,21 @@ describe HostContext do
       expect(activity).to be_true
       expect(activity.user).to be  == user
       expect(activity.model).to be == host
-      expect(activity.tag).to be == 'host.update'
+      expect(activity.tag).to be == 'update'
       expect(activity.diff).to be == {
         'name'           => [old_name, 'updated'],
         'description'    => [old_desc, 'updated'],
         'host_relations' => {
           'deleted' => [
             {
-              'service' => service,
-              'role'    => role
+              'service' => service.name,
+              'role'    => role.name
             },
           ],
           'added' => [
             {
-              'service' => new_service,
-              'role'    => new_role
+              'service' => new_service.name,
+              'role'    => new_role.name
             },
           ],
         }
@@ -97,7 +97,7 @@ describe HostContext do
       expect(activity.user).to be  == user
       expect(activity.model).to be == host
       expect(activity.model.deleted?).to be_true
-      expect(activity.tag).to be == 'host.destroy'
+      expect(activity.tag).to be == 'destroy'
     }
   end
 end
