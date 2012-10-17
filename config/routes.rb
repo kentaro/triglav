@@ -9,4 +9,6 @@ Hyperion::Application.routes.draw do
   resources :services, constraints: { id: /[^\/]+/ }
   resources :roles,    constraints: { id: /[^\/]+/ }
   resources :hosts,    constraints: { id: /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/ }
+
+  get '/activities', to: 'activities#index'
 end

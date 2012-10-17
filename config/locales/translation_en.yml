@@ -106,6 +106,7 @@ en:
       hosts: :activerecord.models.host
       sign_in: Sign in
       sign_out: Sign out
+      activities: :activerecord.models.activities
 
   notice:
     sessions:
@@ -145,6 +146,7 @@ en:
 
   activities:
     index:
+      activities: :activerecord.models.activity
       empty: No activity recorded.
 
   services:

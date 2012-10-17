@@ -48,6 +48,7 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
               <% if signed_in? -%>
+              <li><%= link_to t('layout.nav.activities', default: 'Activity'), activities_path  %></li>
               <li><%= link_to t('layout.nav.services', default: 'Service'), services_path  %></li>
               <li><%= link_to t('layout.nav.roles', default: 'Roles'), roles_path %></li>
               <li><%= link_to t('layout.nav.hosts', default: 'Hosts'), hosts_path %></li>

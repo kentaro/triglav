@@ -105,6 +105,7 @@ ja:
       hosts: :activerecord.models.host
       sign_in: サインイン
       sign_out: サインアウト
+      activities: アクティビティ
 
   notice:
     sessions:
@@ -144,6 +145,7 @@ ja:
 
   activities:
     index:
+      activities: :activerecord.models.activity
       empty: まだアクティビティが記録されていません。
 
   services:

@@ -1,0 +1,5 @@
+<div class="page-header">
+  <h1><%= t('.activities', default: Activity.model_name.human.pluralize) %></h1>
+</div>
+
+<%= render partial: 'shared/activities', locals: { activities: @activities } %>
