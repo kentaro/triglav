@@ -1,6 +1,6 @@
 class Service < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
-  include HasHostRelationsRole
+  include LogicallyDeletableRole
 
   validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }
   validates :description, length: { maximum: 1000 }
