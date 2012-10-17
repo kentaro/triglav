@@ -146,16 +146,19 @@ en:
   services:
     index:
       title: Services
+      destroyed_services: Deleted Services
     show:
       hosts: :hosts.index.title
 
   roles:
     index:
       title: Roles
+      destroyed_roles: Deleted Roles
 
   hosts:
     index:
       title: Hosts
+      destroyed_hosts: Deleted Hosts
     form:
       add_service_role_select: Add
       remove_service_role_select: Remove

@@ -2,8 +2,8 @@ class HostsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @hosts = Host.all
-    respond_with @hosts
+    @hosts_without_deleted = Host.without_deleted
+    @deleted_hosts = Host.deleted
   end
 
   def show

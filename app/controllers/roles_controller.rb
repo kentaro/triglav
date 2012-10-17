@@ -2,8 +2,8 @@ class RolesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @roles = Role.all
-    respond_with @roles
+    @roles_without_deleted = Role.without_deleted
+    @deleted_roles = Role.deleted
   end
 
   def show

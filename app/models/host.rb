@@ -6,7 +6,7 @@ class Host < ActiveRecord::Base
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }
   validates :description, length: { maximum: 1000 }
 
-  has_many :host_relations
+  has_many :host_relations, dependent: :delete_all
   has_many :services, through: :host_relations
   has_many :roles,    through: :host_relations
   has_many :activities, as: :model

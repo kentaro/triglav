@@ -7,6 +7,9 @@ module LogicallyDeletableRole
         scope :without_deleted, ->() {
           where("#{table_name}.deleted_at IS NULL")
         }
+        scope :deleted, ->() {
+          where("#{table_name}.deleted_at IS NOT NULL")
+        }
       end
 
       klass.extend ClassMethods

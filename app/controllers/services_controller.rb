@@ -2,8 +2,8 @@ class ServicesController < ApplicationController
   respond_to :html, :json
 
   def index
-    @services = Service.all
-    respond_with @services
+    @services_without_deleted = Service.without_deleted
+    @deleted_services = Service.deleted
   end
 
   def show

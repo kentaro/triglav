@@ -3,7 +3,13 @@
   <h1><%=t '.title', default: model_class.model_name.human.pluralize %></h1>
 </div>
 
-<%= render partial: 'shared/services', locals: { services: @services } %>
+<%= render partial: 'shared/services', locals: { services: @services_without_deleted } %>
 <%= link_to t('.new', default: t("helpers.links.new")),
             new_service_path,
             class: 'btn btn-primary' %>
+
+<% unless @deleted_services.blank? -%>
+  <hr />
+  <h2><%= t('.destroyed_services') %></h2>
+  <%= render partial: 'shared/services', locals: { services: @deleted_services } %>
+<% end -%>

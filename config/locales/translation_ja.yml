@@ -145,16 +145,19 @@ ja:
   services:
     index:
       title: サービス一覧
+      destroyed_services: 削除済みサービス一覧
     show:
       hosts: :hosts.index.title
 
   roles:
     index:
       title: ロール一覧
+      destroyed_roles: 削除済みロール一覧
 
   hosts:
     index:
       title: ホスト一覧
+      destroyed_hosts: 削除済みホスト一覧
     form:
       add_service_role_select: 追加
       remove_service_role_select: 削除
