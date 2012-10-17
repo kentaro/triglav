@@ -2,7 +2,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:ip_address) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
@@ -13,8 +12,7 @@
   <tbody>
     <% hosts.each do |host| %>
       <tr>
-        <td><%= link_to host.id, host_path(host) %></td>
-        <td><%= host.ip_address %></td>
+        <td><%= link_to host.ip_address, host_path(host) %></td>
         <td><%= host.name %></td>
         <td><%= host.description %></td>
         <td><%=l host.created_at %></td>

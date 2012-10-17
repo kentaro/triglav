@@ -2,7 +2,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -12,8 +11,7 @@
   <tbody>
     <% services.each do |service| %>
       <tr>
-        <td><%= link_to service.id, service_path(service) %></td>
-        <td><%= service.name %></td>
+        <td><%= link_to service.name, service_path(service) %></td>
         <td><%= service.description %></td>
         <td><%=l service.created_at %></td>
         <td>

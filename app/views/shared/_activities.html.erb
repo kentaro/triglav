@@ -20,10 +20,10 @@
           <% if activity.model_type == 'User' -%>
             <%= activity.model.class.model_name.human %>
           <% else -%>
-            <%= link_to activity.model.class.model_name.human, activity.model %>
-            <% if activity.model.respond_to?('name') -%>
-              (<%= activity.model.name %>)
-            <% end -%>
+            <%
+              name = activity.model.class.model_name.human
+              name << " (#{activity.model.name})" if activity.model.respond_to?('name') -%>
+            <%= link_to name, activity.model %>
           <% end -%>
         </td>
         <td><%= t("helpers.activities.tag.#{activity.tag}") %></td>
