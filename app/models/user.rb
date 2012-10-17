@@ -2,6 +2,7 @@ require 'octokit'
 
 class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include LogicallyDeletableRole
 
   validates :provider, presence: true, inclusion: { in: %w(github) }
   validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
@@ -9,6 +10,8 @@ class User < ActiveRecord::Base
   validates :image,    presence: true, format: { with: /\/\/gravatar\.com\/avatar\/[a-z0-9]{32}/ }
   validates :token,        format: { with: /\A([a-z0-9_\-]{22}|)\Z/i }
   validates :access_token, format: { with: /\A([a-z0-9]{40}|)\Z/ }
+
+  has_many :activities, as: :model
 
   def self.find_or_create_from_auth_hash(hash)
     user = self.find_by_provider_and_uid(
