@@ -45,6 +45,6 @@ describe '/services' do
       visit service_path(service)
     }
 
-    it { expect { click_link 'Destroy' }.to change { Service.count }.by(-1) }
+    it { expect { click_link 'Destroy' }.to change { Service.without_deleted.count }.by(-1) }
   end
 end

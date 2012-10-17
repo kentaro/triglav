@@ -1,5 +1,6 @@
 class Service < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
+  include LogicallyDeletableRole
 
   validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }
   validates :description, length: { maximum: 1000 }
@@ -7,6 +8,7 @@ class Service < ActiveRecord::Base
   has_many :host_relations
   has_many :roles, through: :host_relations
   has_many :hosts, through: :host_relations
+  has_many :activities, as: :model
 
   # To enable /services/:name instead of /services/:id
   def to_param
@@ -17,11 +19,3 @@ class Service < ActiveRecord::Base
     roles.includes(:hosts).uniq
   end
 end
-
-
-
-
-
-
-
-

@@ -23,9 +23,10 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
+    context  = ServiceContext.new(user: current_user, service: @service)
 
     respond_to do |format|
-      if @service.save
+      if context.create
         format.html { redirect_to @service, notice: 'notice.services.create.success' }
         format.json { render json: @service, status: :created, location: @service }
       else
@@ -37,9 +38,10 @@ class ServicesController < ApplicationController
 
   def update
     @service = Service.find_by_name(params[:id])
+    context  = ServiceContext.new(user: current_user, service: @service)
 
     respond_to do |format|
-      if @service.update_attributes(service_params)
+      if context.update(service_params)
         format.html { redirect_to @service, notice: 'notice.services.update.success' }
         format.json { head :no_content }
       else
@@ -51,7 +53,8 @@ class ServicesController < ApplicationController
 
   def destroy
     @service = Service.find_by_name(params[:id])
-    @service.destroy
+    context  = ServiceContext.new(user: current_user, service: @service)
+    context.destroy
 
     respond_to do |format|
       format.html { redirect_to services_url, notice: 'notice.services.destroy.success' }

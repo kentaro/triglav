@@ -9,8 +9,6 @@ class Host < ActiveRecord::Base
   has_many :host_relations
   has_many :services, through: :host_relations
   has_many :roles,    through: :host_relations
-
-  # i haven't gotten polymorphic association worked now
   has_many :activities, as: :model
 
   accepts_nested_attributes_for :host_relations,
