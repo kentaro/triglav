@@ -49,7 +49,8 @@ describe RoleContext do
 
   describe '#destroy' do
     let(:user)    { create(:user) }
-    let(:role) { create(:role) }
+    let(:host)    { create(:host, :with_relations, count: 1) }
+    let(:role)    { host.roles.first }
     let(:context) { RoleContext.new(user: user, role: role) }
 
     before { context.destroy }
@@ -62,6 +63,7 @@ describe RoleContext do
       expect(activity.model).to be == role
       expect(activity.model.deleted?).to be_true
       expect(activity.tag).to be == 'destroy'
+      expect(activity.model.host_relations).to be_blank
     }
   end
 end

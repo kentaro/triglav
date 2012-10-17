@@ -1,12 +1,13 @@
 class Host < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include LogicallyDeletableRole
+  include HasHostRelationsRole
 
   validates :ip_address,  presence: true, uniqueness: true, format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }
   validates :description, length: { maximum: 1000 }
 
-  has_many :host_relations, dependent: :delete_all
+  has_many :host_relations
   has_many :services, through: :host_relations
   has_many :roles,    through: :host_relations
   has_many :activities, as: :model

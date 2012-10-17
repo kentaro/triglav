@@ -85,7 +85,7 @@ describe HostContext do
 
   describe '#destroy' do
     let(:user)    { create(:user) }
-    let(:host)    { create(:host) }
+    let(:host)    { create(:host, :with_relations, count: 1) }
     let(:context) { HostContext.new(user: user, host: host) }
 
     before { context.destroy }
@@ -98,6 +98,7 @@ describe HostContext do
       expect(activity.model).to be == host
       expect(activity.model.deleted?).to be_true
       expect(activity.tag).to be == 'destroy'
+      expect(activity.model.host_relations).to be_blank
     }
   end
 end

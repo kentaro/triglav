@@ -49,7 +49,8 @@ describe ServiceContext do
 
   describe '#destroy' do
     let(:user)    { create(:user) }
-    let(:service) { create(:service) }
+    let(:host)    { create(:host, :with_relations, count: 1) }
+    let(:service) { host.services.first }
     let(:context) { ServiceContext.new(user: user, service: service) }
 
     before { context.destroy }
@@ -62,6 +63,7 @@ describe ServiceContext do
       expect(activity.model).to be == service
       expect(activity.model.deleted?).to be_true
       expect(activity.tag).to be == 'destroy'
+      expect(activity.model.host_relations).to be_blank
     }
   end
 end
