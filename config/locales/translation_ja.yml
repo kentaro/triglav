@@ -142,10 +142,15 @@ ja:
       activities: :activerecord.models.activity
       services: :services.index.title
 
+  activities:
+    index:
+      empty: まだアクティビティが記録されていません。
+
   services:
     index:
       title: サービス一覧
       destroyed_services: 削除済みサービス一覧
+      empty: まだサービスが登録されていません。
     show:
       hosts: :hosts.index.title
 
@@ -153,11 +158,13 @@ ja:
     index:
       title: ロール一覧
       destroyed_roles: 削除済みロール一覧
+      empty: まだロールが登録されていません。
 
   hosts:
     index:
       title: ホスト一覧
       destroyed_hosts: 削除済みホスト一覧
+      empty: まだホストが登録されていません。
     form:
       add_service_role_select: 追加
       remove_service_role_select: 削除

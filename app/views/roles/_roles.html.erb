@@ -1,4 +1,8 @@
 <%- model_class = Role -%>
+
+<% if roles.empty? -%>
+  <p><%= t('roles.index.empty') %></p>
+<% else -%>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,3 +31,4 @@
     <% end %>
   </tbody>
 </table>
+<% end -%>

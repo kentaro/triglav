@@ -1,31 +1,36 @@
 <%- model_class = Host -%>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:ip_address) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <th><%=t '.actions', default: t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% hosts.each do |host| %>
+
+<% if hosts.empty? -%>
+  <p><%= t('hosts.index.empty') %></p>
+<% else -%>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to host.ip_address, host_path(host) %></td>
-        <td><%= host.name %></td>
-        <td><%= host.description %></td>
-        <td><%=l host.created_at %></td>
-        <td>
-          <%= link_to t('.edit', default: t("helpers.links.edit")),
-                      edit_host_path(host), class: 'btn btn-mini' %>
-          <%= link_to t('.destroy', default: t("helpers.links.destroy")),
-                      host_path(host),
-                      method: :delete,
-                      data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
-                      class: 'btn btn-mini btn-danger' %>
-        </td>
+        <th><%= model_class.human_attribute_name(:ip_address) %></th>
+        <th><%= model_class.human_attribute_name(:name) %></th>
+        <th><%= model_class.human_attribute_name(:description) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%=t '.actions', default: t("helpers.actions") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% hosts.each do |host| %>
+        <tr>
+          <td><%= link_to host.ip_address, host_path(host) %></td>
+          <td><%= host.name %></td>
+          <td><%= host.description %></td>
+          <td><%=l host.created_at %></td>
+          <td>
+            <%= link_to t('.edit', default: t("helpers.links.edit")),
+                edit_host_path(host), class: 'btn btn-mini' %>
+            <%= link_to t('.destroy', default: t("helpers.links.destroy")),
+                host_path(host),
+                method: :delete,
+                data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) },
+                class: 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>

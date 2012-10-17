@@ -143,10 +143,15 @@ en:
       activities: :activerecord.models.activity
       services: :services.index.title
 
+  activities:
+    index:
+      empty: No activity recorded.
+
   services:
     index:
       title: Services
       destroyed_services: Deleted Services
+      empty: No service registered.
     show:
       hosts: :hosts.index.title
 
@@ -154,11 +159,13 @@ en:
     index:
       title: Roles
       destroyed_roles: Deleted Roles
+      empty: No role registered.
 
   hosts:
     index:
       title: Hosts
       destroyed_hosts: Deleted Hosts
+      empty: No host registered.
     form:
       add_service_role_select: Add
       remove_service_role_select: Remove
