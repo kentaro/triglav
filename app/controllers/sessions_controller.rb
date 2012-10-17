@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_filter :require_member, only: [:create, :destroy]
 
   def create
-    @user   = User.find_or_create_from_auth_hash(auth_hash)
+    @user   = User.find_or_new_from_auth_hash(auth_hash)
     context = UserContext.new(user: @user)
 
     if context.create

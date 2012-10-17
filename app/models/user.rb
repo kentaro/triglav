@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
 
   has_many :activities, as: :model
 
-  def self.find_or_create_from_auth_hash(hash)
-    user = self.find_by_provider_and_uid(
+  def self.find_or_new_from_auth_hash(hash)
+    user = find_by_provider_and_uid(
       hash['provider'],
       hash['uid']
-    ) || create(
+    ) || new(
       provider: hash['provider'],
       uid:      hash['uid'],
       name:     hash['info']['nickname'],
