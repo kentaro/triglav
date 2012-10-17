@@ -22,10 +22,11 @@ class RolesController < ApplicationController
   end
 
   def create
-    @role = Role.new(role_params)
+    @role   = Role.new(role_params)
+    context = RoleContext.new(user: current_user, role: @role)
 
     respond_to do |format|
-      if @role.save
+      if context.create
         format.html { redirect_to @role, notice: 'notice.roles.create.success' }
         format.json { render json: @role, status: :created, location: @role }
       else
@@ -36,10 +37,11 @@ class RolesController < ApplicationController
   end
 
   def update
-    @role = Role.find_by_name(params[:id])
+    @role   = Role.find_by_name(params[:id])
+    context = RoleContext.new(user: current_user, role: @role)
 
     respond_to do |format|
-      if @role.update_attributes(role_params)
+      if context.update(role_params)
         format.html { redirect_to @role, notice: 'notice.roles.update.success' }
         format.json { head :no_content }
       else
@@ -51,7 +53,8 @@ class RolesController < ApplicationController
 
   def destroy
     @role = Role.find_by_name(params[:id])
-    @role.destroy
+    context = RoleContext.new(user: current_user, role: @role)
+    context.destroy
 
     respond_to do |format|
       format.html { redirect_to roles_url, notice: 'notice.roles.destroy.success' }

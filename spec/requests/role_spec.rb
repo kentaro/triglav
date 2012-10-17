@@ -45,6 +45,6 @@ describe '/roles' do
       visit role_path(role)
     }
 
-    it { expect { click_link 'Destroy' }.to change { Role.count }.by(-1) }
+    it { expect { click_link 'Destroy' }.to change { Role.without_deleted.count }.by(-1) }
   end
 end
