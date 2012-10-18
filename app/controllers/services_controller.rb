@@ -63,6 +63,17 @@ class ServicesController < ApplicationController
     end
   end
 
+  def revert
+    @service = Service.find_by_name(params[:id])
+    context  = ServiceContext.new(user: current_user, service: @service)
+    context.revert
+
+    respond_to do |format|
+      format.html { redirect_to services_url, notice: 'notice.services.revert.success' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def service_params

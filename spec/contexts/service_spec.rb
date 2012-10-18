@@ -66,4 +66,22 @@ describe ServiceContext do
       expect(activity.model.host_relations).to be_blank
     }
   end
+
+  describe '#revert' do
+    let(:user)    { create(:user) }
+    let(:service) { create(:service, deleted_at: Time.now) }
+    let(:context) { ServiceContext.new(user: user, service: service) }
+
+    before { context.revert }
+
+    it {
+      activity = Activity.first
+
+      expect(activity).to be_true
+      expect(activity.user).to be  == user
+      expect(activity.model).to be == service
+      expect(activity.model.deleted?).to be_false
+      expect(activity.tag).to be == 'revert'
+    }
+  end
 end

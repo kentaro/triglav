@@ -34,4 +34,9 @@ class RoleContext
     @role.activities.create(user_id: @user.id, tag: 'destroy')
     @role.destroy
   end
+
+  def revert ()
+    @role.activities.create(user_id: @user.id, tag: 'revert')
+    @role.update_attribute(:deleted_at, nil)
+  end
 end

@@ -3,7 +3,7 @@
   <h1><%=t '.title', default: model_class.model_name.human.pluralize %></h1>
 </div>
 
-<%= render partial: 'roles', locals: { roles: @roles_without_deleted } %>
+<%= render partial: 'roles', locals: { roles: @roles_without_deleted, is_deletable: true } %>
 <%= link_to t('.new', default: t("helpers.links.new")),
             new_role_path,
             class: 'btn btn-primary' %>
@@ -11,5 +11,5 @@
 <% unless @deleted_roles.blank? -%>
   <hr />
   <h2><%= t('.destroyed_roles') %></h2>
-  <%= render partial: 'roles', locals: { roles: @deleted_roles } %>
+  <%= render partial: 'roles', locals: { roles: @deleted_roles, is_deletable: false } %>
 <% end -%>

@@ -82,9 +82,12 @@ en:
       edit: Edit
       destroy: Destroy
       cancel: Cancel
+      revert: Revert
       back: Back
       confirm: Are you sure?
-    actions: Edit/Delete
+    actions:
+      edit_delete: Edit/Delete
+      edit_revert: Edit/Revert
     activities:
       old: Old
       new: New
@@ -95,6 +98,7 @@ en:
         create: Create
         update: Update
         destroy: Destroy
+        revert: Revert Deletion
       relation: "%{type} Relation"
 
   layout:
@@ -138,6 +142,8 @@ en:
         success: Host was successfully updated.
       destroy:
         success: Host was successfully destroyed.
+      revert:
+        success: Host was successfully reverted.
 
   root:
     index:

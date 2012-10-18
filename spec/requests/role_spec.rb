@@ -47,4 +47,16 @@ describe '/roles' do
 
     it { expect { click_link 'Destroy' }.to change { Role.without_deleted.count }.by(-1) }
   end
+
+  describe 'revert a role' do
+    let(:user)  { create(:user)}
+    let!(:role) { create(:role, deleted_at: Time.now) }
+
+    before {
+      sign_in_as_member(user)
+      visit roles_path
+    }
+
+    it { expect { click_link 'Revert' }.to change { Role.without_deleted.count }.by(1) }
+  end
 end

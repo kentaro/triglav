@@ -8,4 +8,4 @@
   <h1><%= t('.services', default: Service.model_name.human.pluralize) %></h1>
 </div>
 
-<%= render partial: 'shared/services', locals: { services: @services } %>
+<%= render partial: 'shared/services', locals: { services: @services, is_deletable: true } %>

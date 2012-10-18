@@ -59,4 +59,16 @@ describe '/hosts' do
 
     it { expect { click_link 'Destroy' }.to change { Host.without_deleted.count }.by(-1) }
   end
+
+  describe 'revert a host' do
+    let(:user)  { create(:user)}
+    let!(:host) { create(:host, deleted_at: Time.now) }
+
+    before {
+      sign_in_as_member(user)
+      visit hosts_path
+    }
+
+    it { expect { click_link 'Revert' }.to change { Host.without_deleted.count }.by(1) }
+  end
 end

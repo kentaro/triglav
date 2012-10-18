@@ -101,4 +101,22 @@ describe HostContext do
       expect(activity.model.host_relations).to be_blank
     }
   end
+
+  describe '#revert' do
+    let(:user)    { create(:user) }
+    let(:host)    { create(:host, deleted_at: Time.now) }
+    let(:context) { HostContext.new(user: user, host: host) }
+
+    before { context.revert }
+
+    it {
+      activity = Activity.first
+
+      expect(activity).to be_true
+      expect(activity.user).to be  == user
+      expect(activity.model).to be == host
+      expect(activity.model.deleted?).to be_false
+      expect(activity.tag).to be == 'revert'
+    }
+  end
 end

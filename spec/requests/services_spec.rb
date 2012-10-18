@@ -47,4 +47,24 @@ describe '/services' do
 
     it { expect { click_link 'Destroy' }.to change { Service.without_deleted.count }.by(-1) }
   end
+
+  describe 'revert a service' do
+    let(:user)     { create(:user)}
+    let!(:service) { create(:service, deleted_at: Time.now) }
+
+    before {
+      sign_in_as_member(user)
+      visit services_path
+    }
+
+    it { expect { click_link 'Revert' }.to change { Service.without_deleted.count }.by(1) }
+  end
 end
+
+
+
+
+
+
+
+

@@ -81,9 +81,12 @@ ja:
       edit: 編集
       destroy: 削除
       cancel: 取り消し
+      revert: 戻す
       back: 戻る
       confirm: 本当によろしいですか？
-    actions: 変更・削除
+    actions:
+      edit_delete: 変更・削除
+      edit_revert: 変更・取消
     activities:
       old: 変更前
       new: 変更後
@@ -94,6 +97,7 @@ ja:
         create: 新規作成
         update: 更新
         destroy: 削除
+        revert: 削除取消
       relation: "リレーションの%{type}"
 
   layout:
@@ -137,6 +141,8 @@ ja:
         success: ホストを更新しました。
       destroy:
         success: ホストを削除しました。
+      revert:
+        success: ホストの削除状態を解除しました。
 
   root:
     index:

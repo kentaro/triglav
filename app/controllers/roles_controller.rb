@@ -63,6 +63,17 @@ class RolesController < ApplicationController
     end
   end
 
+  def revert
+    @role   = Role.find_by_name(params[:id])
+    context = RoleContext.new(user: current_user, role: @role)
+    context.revert
+
+    respond_to do |format|
+      format.html { redirect_to roles_url, notice: 'notice.roles.revert.success' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def role_params

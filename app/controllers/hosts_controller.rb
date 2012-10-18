@@ -67,6 +67,17 @@ class HostsController < ApplicationController
     end
   end
 
+  def revert
+    @host   = Host.find_by_ip_address(params[:id])
+    context = HostContext.new(user: current_user, host: @host)
+    context.revert
+
+    respond_to do |format|
+      format.html { redirect_to hosts_url, notice: 'notice.hosts.revert.success' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def host_params

@@ -57,4 +57,15 @@ class HostContext
     @host.activities.create(user_id: @user.id, tag: 'destroy')
     @host.destroy
   end
+
+  def revert ()
+    @host.activities.create(user_id: @user.id, tag: 'revert')
+    @host.update_attribute(:deleted_at, nil)
+  end
 end
+
+
+
+
+
+

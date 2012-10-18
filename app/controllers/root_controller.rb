@@ -2,7 +2,7 @@ class RootController < ApplicationController
   skip_before_filter :require_member, only: :caveat
 
   def index
-    @services   = Service.all
+    @services   = Service.without_deleted
     @activities = Activity.order('created_at desc').limit(10)
   end
 

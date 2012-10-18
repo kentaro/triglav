@@ -34,4 +34,9 @@ class ServiceContext
     @service.activities.create(user_id: @user.id, tag: 'destroy')
     @service.destroy
   end
+
+  def revert ()
+    @service.activities.create(user_id: @user.id, tag: 'revert')
+    @service.update_attribute(:deleted_at, nil)
+  end
 end
