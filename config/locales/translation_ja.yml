@@ -127,6 +127,8 @@ ja:
         success: サービスを更新しました。
       destroy:
         success: サービスを削除しました。
+      revert:
+        success: サービスの削除状態を解除しました。
     roles:
       create:
         success: ロールを新規作成しました。
@@ -134,6 +136,8 @@ ja:
         success: ロールを更新しました。
       destroy:
         success: ロールを削除しました。
+      revert:
+        success: ロールの削除状態を解除しました。
     hosts:
       create:
         success: ホストを新規作成しました。

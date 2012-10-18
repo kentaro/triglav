@@ -128,6 +128,8 @@ en:
         success: Service was successfully updated.
       destroy:
         success: Service was successfully destroyed.
+      revert:
+        success: Service was successfully reverted.
     roles:
       create:
         success: Role was successfully created.
@@ -135,6 +137,8 @@ en:
         success: Role was successfully updated.
       destroy:
         success: Role was successfully destroyed.
+      revert:
+        success: Role was successfully reverted.
     hosts:
       create:
         success: Host was successfully created.
