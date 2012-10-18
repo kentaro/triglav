@@ -7,9 +7,7 @@ gem 'journey',                         github: 'rails/journey'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
 gem 'rails_config'
-gem 'jquery-rails'
 gem 'turbolinks'
-gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 
 gem 'omniauth'
 gem 'omniauth-github'
@@ -23,7 +21,7 @@ group :development do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
 
-  gem 'i18n_generators', github: 'kentaro/i18n_generators', branch: 'bing_translator'
+  gem 'i18n_generators', github: 'amatsuda/i18n_generators'
 
   gem 'launchy'
 
@@ -54,9 +52,13 @@ end
 
 group :assets do
   # for edge rails
+  gem 'sprockets',       github: 'sstephenson/sprockets'
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'sass-rails',      github: 'rails/sass-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
+  gem 'jquery-rails'
+  gem 'less-rails',      github: 'kentaro/less-rails', branch: 'fix-error-when-used-with-edge-rails'
+  gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 
   gem 'uglifier', '>= 1.0.3'
 end
