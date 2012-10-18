@@ -4,6 +4,7 @@ class ServicesController < ApplicationController
   def index
     @services_without_deleted = Service.without_deleted
     @deleted_services = Service.deleted
+    respond_with @services_without_deleted
   end
 
   def show

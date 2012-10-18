@@ -4,6 +4,7 @@ class RolesController < ApplicationController
   def index
     @roles_without_deleted = Role.without_deleted
     @deleted_roles = Role.deleted
+    respond_with @roles_without_deleted
   end
 
   def show

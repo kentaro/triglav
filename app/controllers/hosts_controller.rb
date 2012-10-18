@@ -4,6 +4,7 @@ class HostsController < ApplicationController
   def index
     @hosts_without_deleted = Host.without_deleted
     @deleted_hosts = Host.deleted
+    respond_with @hosts_without_deleted
   end
 
   def show

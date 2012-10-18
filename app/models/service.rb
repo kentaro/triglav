@@ -8,6 +8,10 @@ class Service < ActiveRecord::Base
 
   has_many :host_relations, dependent: :delete_all
   has_many :roles, through: :host_relations
+  has_many :hosts, -> { where deleted_at: nil },
+            through:    :host_relations,
+            class_name: 'Host',
+            source:     :host
   has_many :activities, as: :model
 
   # To enable /services/:name instead of /services/:id
