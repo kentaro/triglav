@@ -12,6 +12,22 @@
  *= require_tree .
  */
 
+a {
+  text-decoration: underline !important;
+}
+
+.navbar a {
+  text-decoration: none !important;
+}
+
+a.btn {
+  text-decoration: none !important;
+}
+
+a.brand:hover {
+  background-color: transparent;
+}
+
 a.btn-primary:link,
 a.btn-primary:visited,
 a.btn-danger:link,
