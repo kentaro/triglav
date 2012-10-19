@@ -34,6 +34,6 @@ module Hyperion
     config.assets.version = '1.0'
 
     # ... custom settings ...
-    config.i18n.default_locale = 'ja'
+    config.i18n.default_locale = 'en'
   end
 end
