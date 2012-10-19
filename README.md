@@ -1,3 +1,5 @@
+[![BuildStatus](https://secure.travis-ci.org/kentaro/hyperion.png)](http://travis-ci.org/kentaro/hyperion)
+
 # Hyperion
 
 Server Admin Tool.
