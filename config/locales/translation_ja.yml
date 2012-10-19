@@ -6,7 +6,7 @@ ja:
       role: ロール  #g
       service: サービス  #g
       user: ユーザー  #g
-      activity: タイムライン
+      activity: アクティビティ
 
     attributes:
       common:
@@ -84,6 +84,7 @@ ja:
       revert: 戻す
       back: 戻る
       confirm: 本当によろしいですか？
+      more: 続きを見る
     actions:
       edit_delete: 変更・削除
       edit_revert: 変更・取消
