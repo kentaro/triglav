@@ -360,6 +360,7 @@ DEPENDENCIES
   rack-livereload
   rails!
   rails_config
+  rake
   rb-fsevent
   rspec!
   rspec-core!

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121016143004) do
+ActiveRecord::Schema.define(version: 20121019073052) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20121016143004) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.boolean  "active",      default: true
   end
 
   add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address", unique: true

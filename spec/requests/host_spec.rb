@@ -35,6 +35,7 @@ describe '/hosts' do
       fill_in 'Description', with: 'description changed'
       find('div[class="fields"][1]/select[1]').select(host.services.first.name)
       find('div[class="fields"][1]/select[2]').select(host.roles.first.name)
+      uncheck 'Active'
 
       click_button 'Update Host'
     }
@@ -45,6 +46,7 @@ describe '/hosts' do
       expect(page).to have_content('description changed')
       expect(page).to have_content(host.services.first.name)
       expect(page).to have_content(host.roles.first.name)
+      expect(page).to have_content('Inactive')
     }
   end
 

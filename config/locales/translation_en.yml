@@ -30,6 +30,9 @@ en:
         name: Name  #g
         roles: Roles  #g
         services: Services  #g
+        is_active: Active?
+        active: Active
+        inactive: Inactive
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at

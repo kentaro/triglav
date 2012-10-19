@@ -8,6 +8,8 @@
   <dd><%= @host.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:ip_address) %>:</strong></dt>
   <dd><%= @host.ip_address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:is_active) %>:</strong></dt>
+  <dd><%= t(@host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
   <dd><%= @host.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:service) %> - <%= model_class.human_attribute_name(:role) %>:</strong></dt>

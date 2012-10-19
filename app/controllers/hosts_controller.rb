@@ -81,7 +81,7 @@ class HostsController < ApplicationController
   private
 
   def host_params
-    params.require(:host).permit(:ip_address, :name, :description, {
+    params.require(:host).permit(:ip_address, :name, :active, :description, {
         host_relations_attributes: [
           :service_id,
           :role_id,

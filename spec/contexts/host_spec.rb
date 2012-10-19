@@ -34,6 +34,7 @@ describe HostContext do
       context.update(
         "name"        => 'updated',
         "description" => 'updated',
+        "active"      => '0',
         "host_relations_attributes" => {
           "0" => {
             "service_id" => service.id.to_s,
@@ -65,6 +66,7 @@ describe HostContext do
       expect(activity.diff).to be == {
         'name'           => [old_name, 'updated'],
         'description'    => [old_desc, 'updated'],
+        'active'         => [true, false],
         'host_relations' => {
           'deleted' => [
             {
