@@ -8,7 +8,7 @@ class HostsController < ApplicationController
   end
 
   def show
-    @host = Host.find_by_ip_address(params[:id])
+    @host = Host.find_by_name(params[:id])
     respond_with @host
   end
 
@@ -20,7 +20,7 @@ class HostsController < ApplicationController
   end
 
   def edit
-    @host = Host.find_by_ip_address(params[:id])
+    @host = Host.find_by_name(params[:id])
     @host.host_relations.build
 
     respond_with @host
@@ -42,7 +42,7 @@ class HostsController < ApplicationController
   end
 
   def update
-    @host   = Host.find_by_ip_address(params[:id])
+    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
 
     respond_to do |format|
@@ -57,7 +57,7 @@ class HostsController < ApplicationController
   end
 
   def destroy
-    @host   = Host.find_by_ip_address(params[:id])
+    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
     context.destroy
 
@@ -68,7 +68,7 @@ class HostsController < ApplicationController
   end
 
   def revert
-    @host   = Host.find_by_ip_address(params[:id])
+    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
     context.revert
 

@@ -20,6 +20,6 @@ class Host < ActiveRecord::Base
 
   # To enable /hosts/:ip_address instead of /hosts/:id
   def to_param
-    ip_address
+    name
   end
 end
