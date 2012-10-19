@@ -50,6 +50,10 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production do
+  gem 'unicorn'
+end
+
 group :assets do
   # for edge rails
   gem 'sprockets',       github: 'sstephenson/sprockets'
