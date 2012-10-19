@@ -48,6 +48,8 @@ group :test do
 
   gem 'factory_girl'
   gem 'database_cleaner'
+
+  gem 'rake'
 end
 
 group :production do
