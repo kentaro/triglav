@@ -2,7 +2,7 @@ language: ruby
 before_install:
   - gem install bundler
 before_script:
-  - "cp config/database.yml.sample config/database.yml"
+  - "cp config/database.sample.yml config/database.yml"
   - "cp config/initializers/secret_token.rb.sample config/initializers/secret_token.rb"
   - "cp config/settings/test.sample.yml config/settings/test.yml"
 rvm:
