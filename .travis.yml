@@ -5,5 +5,6 @@ before_script:
   - "cp config/database.sample.yml config/database.yml"
   - "cp config/initializers/secret_token.rb.sample config/initializers/secret_token.rb"
   - "cp config/settings/test.sample.yml config/settings/test.yml"
+script: "RAILS_ENV=test bundle exec rake db:drop db:create db:migrate spec"
 rvm:
   - 1.9.3
