@@ -1,5 +1,8 @@
 bundler_args: --without development --path vendor/bundle
-script: bundle exec rake travis:setup db:reset db:setup db:migrate spec
+script:
+  - bundle exec rake travis:setup
+  - bundle exec rake db:reset db:setup db:migrate db:test:prepare
+  - bundle exec rake spec
 language: ruby
 before_install:
   - gem install bundler
