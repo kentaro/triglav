@@ -23,6 +23,11 @@ github:
 EOS
     end
 
-    "Hyperion::Application.config.secret_token = '#{`bundle exec rake secret > config/initializers/secret_token.rb`}'"
+    open(File.expand_path('../config/initializers/secret_token.rb', __FILE__), 'w') do |f|
+      token = `bundle exec rake secret`.strip
+      f.write <<"EOS"
+Hyperion::Application.config.secret_token = '#{token}'
+EOS
+    end
   end
 end
