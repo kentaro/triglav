@@ -1,7 +1,7 @@
-script: ci/travis.rb
 language: ruby
 before_install:
   - gem install bundler
   - "mysql -e 'create database hyperion_test;'"
+  - ci/travis.rb
 rvm:
   - 1.9.3
