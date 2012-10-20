@@ -23,6 +23,6 @@ github:
 EOS
     end
 
-    `bundle exec rake secret > config/initializers/secret_token.rb`
+    "Hyperion::Application.config.secret_token = '#{`bundle exec rake secret > config/initializers/secret_token.rb`}'"
   end
 end
