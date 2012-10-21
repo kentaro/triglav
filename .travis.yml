@@ -6,5 +6,6 @@ script:
 language: ruby
 before_install:
   - gem install bundler
+  - mysql -e 'create database hyperion_test'
 rvm:
   - 1.9.3
