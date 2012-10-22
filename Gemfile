@@ -29,6 +29,9 @@ group :development do
   gem 'guard-livereload'
   gem 'rb-fsevent'
   gem 'rack-livereload'
+
+  gem 'capistrano'
+  gem 'capistrano_colors'
 end
 
 group :test do
