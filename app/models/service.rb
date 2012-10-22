@@ -13,6 +13,7 @@ class Service < ActiveRecord::Base
             class_name: 'Host',
             source:     :host
   has_many :activities, as: :model
+  has_many :comments,   as: :model
 
   # To enable /services/:name instead of /services/:id
   def to_param

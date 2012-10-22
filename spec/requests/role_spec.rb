@@ -59,4 +59,18 @@ describe '/roles' do
 
     it { expect { click_link 'Revert' }.to change { Role.without_deleted.count }.by(1) }
   end
+
+  describe 'comment' do
+    let(:user)  { create(:user) }
+    let!(:role) { create(:role, deleted_at: nil) }
+
+    before {
+      sign_in_as_member(user)
+      visit role_path(role)
+
+      fill_in 'Content', with: 'comment'
+    }
+
+    it { expect { click_button 'Create Comment' }.to change { role.comments.count }.by(1) }
+  end
 end

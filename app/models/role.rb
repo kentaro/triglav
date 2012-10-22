@@ -12,6 +12,7 @@ class Role < ActiveRecord::Base
             class_name: 'Host',
             source:     :host
   has_many :activities, as: :model
+  has_many :comments,   as: :model
 
   # To enable /roles/:name instead of /roles/:id
   def to_param

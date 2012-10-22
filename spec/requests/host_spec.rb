@@ -73,4 +73,18 @@ describe '/hosts' do
 
     it { expect { click_link 'Revert' }.to change { Host.without_deleted.count }.by(1) }
   end
+
+  describe 'comment' do
+    let(:user)  { create(:user) }
+    let!(:host) { create(:host, deleted_at: nil) }
+
+    before {
+      sign_in_as_member(user)
+      visit host_path(host)
+
+      fill_in 'Content', with: 'comment'
+    }
+
+    it { expect { click_button 'Create Comment' }.to change { host.comments.count }.by(1) }
+  end
 end

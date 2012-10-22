@@ -11,6 +11,7 @@ class Host < ActiveRecord::Base
   has_many :services, through: :host_relations
   has_many :roles,    through: :host_relations
   has_many :activities, as: :model
+  has_many :comments,   as: :model
 
   accepts_nested_attributes_for :host_relations,
     allow_destroy: true,

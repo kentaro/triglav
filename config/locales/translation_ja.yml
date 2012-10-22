@@ -7,6 +7,7 @@ ja:
       service: サービス  #g
       user: ユーザー  #g
       activity: アクティビティ
+      comment: コメント
 
     attributes:
       common:
@@ -71,6 +72,13 @@ ja:
         provider: プロバイダー  #g
         token: トークン  #g
         uid: UID  #g
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
+
+      comment:
+        user: :activerecord.models.user
+        content: 内容
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at
@@ -151,6 +159,10 @@ ja:
         success: ホストを削除しました。
       revert:
         success: ホストの削除状態を解除しました。
+    comments:
+      create:
+        success: コメントを投稿しました。
+        alert: コメントを投稿できませんでした。
 
   root:
     index:
@@ -184,3 +196,7 @@ ja:
     form:
       add_service_role_select: 追加
       remove_service_role_select: 削除
+
+  comments:
+    index:
+      empty: まだコメントが投稿されていません。
