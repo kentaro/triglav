@@ -11,7 +11,9 @@ namespace :travis do
 test:
   adapter: mysql2
   username: root
+  password:
   database: hyperion_test
+  host: localhost
   encoding: utf8
 EOS
     end
