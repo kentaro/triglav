@@ -19,11 +19,10 @@ GIT
       xpath (~> 1.0.0.beta1)
 
 GIT
-  remote: git://github.com/kentaro/less-rails.git
-  revision: 8dabb00942177936812549f3892751a76ca8edbd
-  branch: fix-error-when-used-with-edge-rails
+  remote: git://github.com/metaskills/less-rails.git
+  revision: 36c029282476e91abd96b86c3429c32ab5cd8c57
   specs:
-    less-rails (2.2.3)
+    less-rails (2.2.4)
       actionpack (>= 3.1)
       less (~> 2.2.0)
 

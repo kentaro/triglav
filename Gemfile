@@ -63,7 +63,7 @@ group :assets do
   gem 'sass-rails',      github: 'rails/sass-rails'
   gem 'coffee-rails',    github: 'rails/coffee-rails'
   gem 'jquery-rails'
-  gem 'less-rails',      github: 'kentaro/less-rails', branch: 'fix-error-when-used-with-edge-rails'
+  gem 'less-rails',      github: 'metaskills/less-rails'
   gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
 
   gem 'uglifier', '>= 1.0.3'
