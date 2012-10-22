@@ -1,0 +1,34 @@
+<%- model_class = Comment -%>
+
+<%#
+   I don't know why comments can have empty comment as the last entry...
+   => {"comment":{"id":null,"user_id":null,"model_id":1,"model_type":"Host","content":null,"created_at":null,"updated_at":null}}
+
+   I'll look into the problem later on. The code below is just a workaround for it.
+-%>
+<% comments = comments.select { |c| c.user_id.present? } %>
+<% if comments.empty? -%>
+  <p><%= t('comments.index.empty') %></p>
+<% else -%>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:user) %></th>
+        <th><%= model_class.human_attribute_name(:content) %></th>
+        <th><%= model_class.human_attribute_name(:created_at) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= image_tag comment.user.image, width: 16, height: 16 %>
+            <%= comment.user.name %>
+          </td>
+          <td><%= comment.content %></td>
+          <td><%=l comment.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>

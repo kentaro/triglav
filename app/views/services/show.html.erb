@@ -45,3 +45,9 @@
     <%= render partial: 'shared/hosts', locals: { hosts: role.hosts, is_deletable: true } %>
   <% end -%>
 </div>
+
+<div class="row-fluid">
+  <h2><%= t(Comment.model_name.human.pluralize) %></h2>
+  <%= render partial: 'shared/comment_form', locals: { parent: @service } %>
+  <%= render partial: 'shared/comments', locals: { comments: @service.comments } %>
+</div>

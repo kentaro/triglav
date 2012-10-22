@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121019073052) do
+ActiveRecord::Schema.define(version: 20121021074733) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20121019073052) do
     t.string   "model_type"
     t.string   "tag"
     t.text     "diff"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "model_id"
+    t.string   "model_type"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
