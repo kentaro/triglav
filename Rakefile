@@ -15,6 +15,7 @@ test:
   database: hyperion_test
   host: localhost
   encoding: utf8
+  host: localhost
 EOS
     end
 
