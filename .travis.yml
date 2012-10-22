@@ -1,11 +1,12 @@
-bundler_args: --without development --path vendor/bundle
-script:
-  - bundle exec rake travis:setup
-  - bundle exec rake db:reset db:setup db:migrate db:test:prepare
-  - bundle exec rake spec
 language: ruby
-before_install:
-  - gem install bundler
-  - mysql -e 'create database hyperion_test'
+
 rvm:
   - 1.9.3
+
+bundler_args: --without development:production
+
+before_install:
+  - gem update bundler
+
+script:
+  - bundle exec rake travis:setup db:create db:migrate spec
