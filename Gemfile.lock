@@ -173,6 +173,13 @@ GEM
     arel (3.0.2)
     binding_of_caller (0.6.8)
     builder (3.1.4)
+    capistrano (2.13.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    capistrano_colors (0.5.5)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.8)
@@ -215,6 +222,7 @@ GEM
       guard (>= 1.1.0)
       multi_json (~> 1.0)
     hashie (1.2.0)
+    highline (1.6.15)
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.1)
@@ -253,6 +261,13 @@ GEM
     mysql2 (0.3.11)
     net-http-digest_auth (1.2.1)
     net-http-persistent (2.8)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.6.1)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
     nokogiri (1.5.5)
     ntlm-http (0.1.1)
     oauth2 (0.8.0)
@@ -337,6 +352,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deprecated_finders!
+  capistrano
+  capistrano_colors
   capybara!
   coffee-rails!
   database_cleaner
