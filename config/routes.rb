@@ -6,10 +6,14 @@ Hyperion::Application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
   get    '/auth/:provider/callback', to: 'sessions#create'
 
-  concern   :revertable do member { put 'revert' } end
-  resources :services, constraints: { id: /[^\/]+/ }, concerns: :revertable
-  resources :roles,    constraints: { id: /[^\/]+/ }, concerns: :revertable
-  resources :hosts,    constraints: { id: /[^\/]+/ }, concerns: :revertable
+  concern :revertable do member { put 'revert' } end
+  concern :commentable do
+    resources :comments, only: [:create]
+  end
+
+  resources :services, constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
+  resources :roles,    constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
+  resources :hosts,    constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
 
   get '/activities', to: 'activities#index'
 

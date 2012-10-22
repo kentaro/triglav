@@ -7,6 +7,7 @@ en:
       service: Service  #g
       user: User  #g
       activity: Activity
+      comment: Comment
 
     attributes:
       common:
@@ -75,6 +76,12 @@ en:
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at
 
+      comment:
+        user: User
+        content: Content
+        id: :activerecord.attributes.common.id
+        created_at: :activerecord.attributes.common.created_at
+        updated_at: :activerecord.attributes.common.updated_at
 
   helpers:
     titles:
@@ -152,6 +159,10 @@ en:
         success: Host was successfully destroyed.
       revert:
         success: Host was successfully reverted.
+    comments:
+      create:
+        success: Comment was successfully added.
+        alert: Failed to add comment.
 
   root:
     index:
@@ -185,3 +196,7 @@ en:
     form:
       add_service_role_select: Add
       remove_service_role_select: Remove
+
+  comments:
+    index:
+      empty: No comment added.

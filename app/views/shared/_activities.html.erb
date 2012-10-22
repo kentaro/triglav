@@ -23,6 +23,12 @@
           <td>
             <% if activity.model_type == 'User' -%>
               <%= activity.model.class.model_name.human %>
+            <% elsif activity.model_type == 'Comment' -%>
+              <%
+                name = activity.model.class.model_name.human
+                name << " (#{activity.model.model.name})"
+                -%>
+              <%= link_to name, activity.model.model %>
             <% else -%>
               <%
                 name = activity.model.class.model_name.human

@@ -59,12 +59,18 @@ describe '/services' do
 
     it { expect { click_link 'Revert' }.to change { Service.without_deleted.count }.by(1) }
   end
+
+  describe 'comment' do
+    let(:user)     { create(:user) }
+    let!(:service) { create(:service, deleted_at: nil) }
+
+    before {
+      sign_in_as_member(user)
+      visit service_path(service)
+
+      fill_in 'Content', with: 'comment'
+    }
+
+    it { expect { click_button 'Create Comment' }.to change { service.comments.count }.by(1) }
+  end
 end
-
-
-
-
-
-
-
-
