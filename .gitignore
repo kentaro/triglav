@@ -6,7 +6,7 @@
 
 # local settings
 /config/settings/*.yml
-!/config/settings/test.sample.yml
+!/config/settings/environment.sample.yml
 /config/database.yml
 /config/initializers/secret_token.rb
 /local
