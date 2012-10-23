@@ -18,4 +18,8 @@ namespace :deploy do
       run "supervisorctl #{command} #{application}"
     end
   end
+
+  task :log do
+    stream "tail -f #{deploy_to}/shared/log/production.log"
+  end
 end
