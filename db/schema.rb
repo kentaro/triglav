@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121023030708) do
+ActiveRecord::Schema.define(version: 20121023081649) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20121023030708) do
     t.boolean  "active",      default: true
   end
 
-  add_index "hosts", ["ip_address"], name: "index_hosts_on_ip_address", unique: true
   add_index "hosts", ["name"], name: "index_hosts_on_name", unique: true
 
   create_table "roles", force: true do |t|
