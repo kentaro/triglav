@@ -34,6 +34,7 @@ ja:
         is_active: 有効/無効
         active: アクティブ
         inactive: アクティブでない
+        graph: グラフ
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at
@@ -57,6 +58,7 @@ ja:
 
       service:
         description: 説明  #g
+        munin_url: MuninのURL
         host_relations: ホスト関係  #g
         hosts: ホスト  #g
         name: 名前  #g

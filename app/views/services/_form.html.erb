@@ -11,6 +11,12 @@
       <%= f.text_area :description, class: 'text_area' %>
     </div>
   </div>
+  <div class="control-group">
+    <%= f.label :munin_url, class: 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :munin_url, class: 'text_field' %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <%= f.submit nil, class: 'btn btn-primary' %>

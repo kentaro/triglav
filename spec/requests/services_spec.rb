@@ -27,12 +27,14 @@ describe '/services' do
       visit edit_service_path(service)
       fill_in 'Name',        with: 'name changed'
       fill_in 'Description', with: 'description changed'
+      fill_in 'Munin URL',   with: 'http://other-munin.example.com'
       click_button 'Update Service'
     }
 
     it {
       expect(page).to have_content('name changed')
       expect(page).to have_content('description changed')
+      expect(page).to have_content('http://other-munin.example.com')
     }
   end
 

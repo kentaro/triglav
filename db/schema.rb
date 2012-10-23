@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121021074733) do
+ActiveRecord::Schema.define(version: 20121023030708) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20121021074733) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
+    t.string   "munin_url"
   end
 
   add_index "services", ["name"], name: "index_services_on_name"
