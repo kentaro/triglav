@@ -19,7 +19,7 @@ def sign_in (user)
 end
 
 def sign_in_as_member (user)
-  User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+  User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
   sign_in(user)
 end
 

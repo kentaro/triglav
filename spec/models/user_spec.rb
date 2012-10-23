@@ -22,7 +22,7 @@ describe User do
       subject { user }
 
       before {
-        User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+        User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
         user.update_privilege
       }
 
@@ -36,7 +36,7 @@ describe User do
     subject { user }
 
     before {
-      User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion" }])
+      User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
       user.update_privilege
     }
 
