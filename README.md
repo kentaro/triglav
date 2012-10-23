@@ -6,10 +6,22 @@ Server Admin Tool.
 
 # Setup
 
-## Local Settings
+```
+$ cd
+$ git clone git://github.com/kentaro/hyperion.git
+$ cd hyperion
+$ bundle install --deployment
+$ rake setup
+$ rake db:setup
+$ bundle exec rails s
+```
 
- * /config/settings/{test,development,productinon}.yml
- * /config/database.yml
- * /config/initializers/secret_token.rb
+# LICENSE
 
-Create and add the files above onto your working directory.
+## Copyright
+
+Hyperion Developers
+
+## LICENSE
+
+MIT LICENSE
