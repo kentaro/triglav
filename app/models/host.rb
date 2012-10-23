@@ -4,7 +4,7 @@ class Host < ActiveRecord::Base
   include HasHostRelationsRole
 
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }
-  validates :ip_address,  format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }, allow_nil: true
+  validates :ip_address,  format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }, allow_blank: true
   validates :description, length: { maximum: 1000 }
 
   has_many :host_relations, dependent: :delete_all
