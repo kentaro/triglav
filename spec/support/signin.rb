@@ -1,5 +1,5 @@
-def sign_in (user)
-  OmniAuth.config.mock_auth[:github] = {
+def auth_params_for (user)
+  {
     "uid"      => user.uid,
     "provider" => user.provider,
     "info"     => {
@@ -14,12 +14,15 @@ def sign_in (user)
       "token" => user.access_token,
     },
   }
+end
 
+def sign_in (user)
+  OmniAuth.config.mock_auth[:github] = auth_params_for(user)
   visit signin_path
 end
 
 def sign_in_as_member (user)
-  User.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
+  SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
   sign_in(user)
 end
 

@@ -11,17 +11,16 @@ describe "Signin/Signout" do
 
       it {
         expect(current_path).to be == '/caveat'
-        expect(subject).to have_content "Sign in"
+        expect(subject).to have_content 'Sign in'
       }
     end
 
-    context "when logged in as a user" do
-      context "when user is a member of the specified organization" do
+    context 'when logged in as a user' do
+      context 'when user is a member of the specified organization' do
         let(:user) { create(:user) }
 
         before {
           sign_in_as_member(user)
-          visit "/"
         }
 
         it {
@@ -29,27 +28,81 @@ describe "Signin/Signout" do
           expect(subject).to have_content user.name
         }
       end
+    end
+  end
 
-      context "when user is not a member of the specified organization" do
-        let(:user) { create(:user) }
+  describe 'GET /signin' do
+    context 'when logged in as a new user' do
+      context 'when user is a member of the specified organization' do
+        let(:user) { build(:user) }
 
-        before {
-          User.any_instance.stub(:organizations).and_return([])
-          sign_in(user)
-          visit "/"
+        it {
+          expect { sign_in_as_member(user) }.to change { User.count }.by(1)
         }
 
         it {
-          expect(current_path).to be == '/caveat'
+          sign_in_as_member(user)
+          expect(current_path).to be == '/'
           expect(subject).to have_content user.name
-          expect(subject).to have_content "Not a member"
+        }
+      end
+
+      context 'when user is not a member of the specified organization' do
+        let(:user) { build(:user) }
+
+        before {
+          SessionContext.any_instance.stub(:organizations).and_return([])
+        }
+
+        it {
+          expect { sign_in(user) }.to change { User.count }.by(0)
+        }
+
+        it {
+          sign_in(user)
+          expect(current_path).to be == '/caveat'
+          expect(subject).to have_content "You're not a member"
+        }
+      end
+    end
+
+    context 'when logged in as an existing user' do
+      context 'when user is a member of the specified organization' do
+        let!(:user) { create(:user) }
+
+        it {
+          expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+        }
+
+        it {
+          sign_in_as_member(user)
+          expect(current_path).to be == '/'
+          expect(subject).to have_content user.name
+        }
+      end
+
+      context 'when user is not a member of the specified organization' do
+        let!(:user) { create(:user) }
+
+        before {
+          SessionContext.any_instance.stub(:organizations).and_return([])
+        }
+
+        it {
+          expect { sign_in(user) }.to change { User.count }.by(0)
+        }
+
+        it {
+          sign_in(user)
+          expect(current_path).to be == '/caveat'
+          expect(subject).to have_content "You're not a member"
         }
       end
     end
   end
 
-  describe "DELETE /signout" do
-    context "when logged in as a user" do
+  describe 'DELETE /signout' do
+    context 'when logged in as a user' do
       let(:user) { create(:user) }
 
       before {
@@ -59,7 +112,7 @@ describe "Signin/Signout" do
 
       it {
         expect(current_path).to be == '/caveat'
-        expect(subject).to have_content "Sign in"
+        expect(subject).to have_content 'Sign in'
       }
     end
   end
