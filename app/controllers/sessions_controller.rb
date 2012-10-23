@@ -2,19 +2,25 @@ class SessionsController < ApplicationController
   skip_before_filter :require_member, only: [:create, :destroy]
 
   def create
-    @user   = User.find_or_new_from_auth_hash(auth_hash)
-    context = UserContext.new(user: @user)
+    @user = User.where(
+      provider: auth_params['provider'],
+      uid:      auth_params['uid'],
+    ).first_or_initialize
+    context = SessionContext.new(user: @user)
 
-    if context.create
-      sign_in @user
-
+    if context.create(auth_params)
       if @user.member?
+        sign_in @user
         redirect_to '/', notice: 'notice.sessions.create.success'
       else
-        redirect_to '/', alert: 'notice.sessions.create.alert.not_member'
+        redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'
       end
     else
-      redirect_to '/', alert: 'notice.sessions.create.alert.error'
+      if @user.member?
+        redirect_to '/caveat', alert: 'notice.sessions.create.alert.error'
+      else
+        redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'
+      end
     end
   end
 
@@ -25,7 +31,7 @@ class SessionsController < ApplicationController
 
   protected
 
-  def auth_hash
+  def auth_params
     request.env['omniauth.auth']
   end
 end

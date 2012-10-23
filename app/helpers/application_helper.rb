@@ -2,7 +2,7 @@ module ApplicationHelper
   def sign_in(user)
     return if user.nil?
 
-    user.update_token
+    user.update_attributes(token: SecureRandom.urlsafe_base64)
     cookies.permanent[:token] = user.token
     current_user = user
   end
