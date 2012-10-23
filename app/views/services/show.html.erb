@@ -50,7 +50,7 @@
     <h3 id="<%= role.name %>"><%= role.name %></h3>
     <%= render partial: 'shared/hosts', locals: {
           service:      @service,
-          role:         @role,
+          role:         role,
           hosts:        role.hosts,
           is_deletable: true,
         } %>
