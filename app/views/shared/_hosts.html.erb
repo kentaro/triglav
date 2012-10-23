@@ -28,7 +28,7 @@
           <td><%= host.ip_address %></td>
           <% if service && role && service.munin_url.present? -%>
             <td>
-              <%= link_to image_tag(@service.munin_url_for_graph_of(role: role, host: host)), @service.munin_url_for_service_and(role: role, host: host).to_s, target: '_blank'  %>
+              <%= link_to image_tag(service.munin_url_for_graph_of(role: role, host: host)), service.munin_url_for_service_and(role: role, host: host).to_s, target: '_blank'  %>
             </td>
           <% end -%>
           <td><%= t(host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %></td>
