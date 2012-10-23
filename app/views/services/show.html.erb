@@ -48,7 +48,12 @@
 
   <% @service.roles_with_hosts.each do |role| -%>
     <h3 id="<%= role.name %>"><%= role.name %></h3>
-    <%= render partial: 'shared/hosts', locals: { hosts: role.hosts, is_deletable: true } %>
+    <%= render partial: 'shared/hosts', locals: {
+          service:      @service,
+          role:         @role,
+          hosts:        role.hosts,
+          is_deletable: true,
+        } %>
   <% end -%>
 </div>
 
