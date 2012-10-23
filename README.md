@@ -7,7 +7,6 @@ Server Admin Tool.
 # Setup
 
 ```
-$ cd
 $ git clone git://github.com/kentaro/hyperion.git
 $ cd hyperion
 $ bundle install --deployment
@@ -20,7 +19,7 @@ $ bundle exec rails s
 
 ## Copyright
 
-Hyperion Developers
+&copy; Hyperion Developers
 
 ## LICENSE
 
