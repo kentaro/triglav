@@ -9,6 +9,8 @@ gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_fi
 gem 'rails_config'
 gem 'turbolinks'
 
+gem 'cells', github: 'kentaro/cells', branch: 'edge-rails'
+
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
@@ -45,6 +47,8 @@ group :test do
   gem 'rspec-core',         github: 'rspec/rspec-core'
   gem 'rspec-expectations', github: 'rspec/rspec-expectations'
   gem 'rspec-mocks',        github: 'rspec/rspec-mocks'
+
+  gem 'rspec-cells', github: 'kentaro/rspec-cells', branch: 'edge-rails'
 
   # for capybara >=2.0
   gem 'capybara', github: 'jnicklas/capybara'

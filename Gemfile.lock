@@ -19,6 +19,25 @@ GIT
       xpath (~> 1.0.0.beta1)
 
 GIT
+  remote: git://github.com/kentaro/cells.git
+  revision: fa22054a195f1be685c453e0463c50bb3d57341e
+  branch: edge-rails
+  specs:
+    cells (3.8.6)
+      actionpack (>= 3.0)
+      railties (>= 3.0)
+
+GIT
+  remote: git://github.com/kentaro/rspec-cells.git
+  revision: 97b41675e390849467b48cba0b376a7df9de7dfc
+  branch: edge-rails
+  specs:
+    rspec-cells (0.1.5)
+      cells (~> 3.4)
+      railties (>= 3.0)
+      rspec-rails (~> 2.2)
+
+GIT
   remote: git://github.com/metaskills/less-rails.git
   revision: 36c029282476e91abd96b86c3429c32ab5cd8c57
   specs:
@@ -359,6 +378,7 @@ DEPENDENCIES
   capistrano
   capistrano_colors
   capybara!
+  cells!
   coffee-rails!
   database_cleaner
   factory_girl
@@ -383,6 +403,7 @@ DEPENDENCIES
   rake
   rb-fsevent
   rspec!
+  rspec-cells!
   rspec-core!
   rspec-expectations!
   rspec-mocks!
