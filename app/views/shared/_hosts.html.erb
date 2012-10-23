@@ -8,6 +8,9 @@
       <tr>
         <th><%= model_class.human_attribute_name(:name) %></th>
         <th><%= model_class.human_attribute_name(:ip_address) %></th>
+        <% if @service -%>
+          <th><%= model_class.human_attribute_name(:graph) %></th>
+        <% end -%>
         <th><%= model_class.human_attribute_name(:is_active) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
         <th><%= model_class.human_attribute_name(:created_at) %></th>
@@ -19,6 +22,13 @@
         <tr>
           <td><%= link_to host.name, host_path(host) %></td>
           <td><%= host.ip_address %></td>
+          <% if @service -%>
+            <td>
+              <% if @service.munin_url.present? -%>
+                <%= image_tag @service.munin_url_for_graph_of(host) %>
+              <% end -%>
+            </td>
+          <% end -%>
           <td><%= t(host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %></td>
           <td><%= host.description %></td>
           <td><%=l host.created_at %></td>
