@@ -14,6 +14,8 @@
       <dd><%= @service.name %></dd>
       <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
       <dd><%= @service.description %></dd>
+      <dt><strong><%= model_class.human_attribute_name(:munin_url) %>:</strong></dt>
+      <dd><%= link_to @service.munin_url_for_service.to_s, @service.munin_url_for_service.to_s %></dd>
     </dl>
   </div>
 

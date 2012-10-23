@@ -34,6 +34,7 @@ en:
         is_active: Active?
         active: Active
         inactive: Inactive
+        graph: Graph
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at
@@ -57,6 +58,7 @@ en:
 
       service:
         description: Description  #g
+        munin_url: Munin URL
         host_relations: Host relations  #g
         hosts: Hosts  #g
         name: Name  #g
