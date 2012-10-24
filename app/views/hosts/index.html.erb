@@ -1,13 +1,10 @@
 <%- model_class = Host -%>
 <div class="page-header">
-  <h1><%=t '.title', default: model_class.model_name.human.pluralize %></h1>
+  <h1><%= model_class.model_name.human.pluralize %></h1>
 </div>
 
 <%= render partial: 'shared/hosts', locals: { hosts: @hosts_without_deleted, is_deletable: true } %>
-<%= link_to t('.new', default: t("helpers.links.new")),
-            new_host_path,
-            class: 'btn btn-primary' %>
-
+<%= link_to t('helpers.links.new'), new_host_path, class: 'btn btn-primary' %>
 
 <% unless @deleted_hosts.blank? -%>
   <hr />

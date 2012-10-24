@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="page-header">
-    <h1><%= t('.services', default: Service.model_name.human.pluralize) %></h1>
+    <h1><%= Service.model_name.human.pluralize %></h1>
   </div>
 
   <%= render partial: 'shared/services', locals: { services: @services, is_deletable: true } %>
@@ -8,7 +8,7 @@
 
 <div class="row-fluid">
   <div class="page-header">
-    <h1><%= t('.activities', default: Activity.model_name.human.pluralize) %></h1>
+    <h1><%= Activity.model_name.human.pluralize %></h1>
   </div>
 
   <%= render partial: 'shared/activities', locals: { activities: @activities } %>

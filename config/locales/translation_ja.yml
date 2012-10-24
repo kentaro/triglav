@@ -118,12 +118,8 @@ ja:
     title: はいぺりおん
     hyperion_developers: はいぺりおん開発者たち
     nav:
-      services: :activerecord.models.service
-      roles: :activerecord.models.role
-      hosts: :activerecord.models.host
       sign_in: サインイン
       sign_out: サインアウト
-      activities: アクティビティ
 
   notice:
     sessions:
