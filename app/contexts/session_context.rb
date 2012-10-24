@@ -15,11 +15,17 @@ class SessionContext
     update_access_token(auth_params['credentials'])
     update_privilege
 
+    # We don't bother to save a user who is new for the service and
+    # not a member. But, if existing user newly becomes not-member, we
+    # save the object into database.
     if is_new_record && !user.member?
       return
     end
 
     if user.save
+
+      # Activity is recorded only once when a user signed in to the
+      # service for the first time
       if is_new_record
         user.activities.create(user_id: user.id, tag: 'create')
       end
