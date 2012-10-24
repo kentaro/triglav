@@ -8,7 +8,7 @@ Server Admin Tool.
 
 # Setup
 
-See [[LearningRailsWithHyperion00]]. (Japanese)
+See [LearningRailsWithHyperion00](https://github.com/kentaro/hyperion/wiki/LearningRailsWithHyperion00). (Japanese)
 
 # LICENSE
 
