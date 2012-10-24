@@ -116,7 +116,7 @@ en:
 
   layout:
     title: Hyperion
-    team: Hyperion Developer Team
+    hyperion_developers: Hyperion Developers
     nav:
       services: :activerecord.models.service
       roles: :activerecord.models.role

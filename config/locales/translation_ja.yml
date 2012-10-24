@@ -116,7 +116,7 @@ ja:
 
   layout:
     title: はいぺりおん
-    team: はいぺりおん開発チーム
+    hyperion_developers: はいぺりおん開発者たち
     nav:
       services: :activerecord.models.service
       roles: :activerecord.models.role
