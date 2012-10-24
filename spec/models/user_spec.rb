@@ -120,16 +120,4 @@ describe User do
       end
     end
   end
-
-  describe "#member?" do
-    context "when member columun is nil" do
-      let(:user) { create(:user, member: false) }
-      it { expect(user.member?).to be_false }
-    end
-
-    context "when member columun is true" do
-      let(:user) { create(:user, member: true) }
-      it { expect(user.member).to be_true }
-    end
-  end
 end

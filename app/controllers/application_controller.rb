@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_member
-    if !current_user || !current_user.member?
+    if !current_user || !current_user.member
       redirect_to '/caveat'
     end
   end

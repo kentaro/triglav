@@ -9,14 +9,14 @@ class SessionsController < ApplicationController
     context = SessionContext.new(user: @user)
 
     if context.create(auth_params)
-      if @user.member?
+      if @user.member
         sign_in @user
         redirect_to '/', notice: 'notice.sessions.create.success'
       else
         redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'
       end
     else
-      if @user.member?
+      if @user.member
         redirect_to '/caveat', alert: 'notice.sessions.create.alert.error'
       else
         redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'

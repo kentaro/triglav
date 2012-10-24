@@ -10,8 +10,4 @@ class User < ActiveRecord::Base
   validates :access_token, format: { with: /\A[a-z0-9]{40}\Z/ }, allow_blank: true
 
   has_many :activities, as: :model
-
-  def member?
-    member
-  end
 end
