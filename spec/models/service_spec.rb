@@ -1,6 +1,75 @@
 require 'spec_helper'
 
 describe Service do
+  describe 'validation' do
+    describe 'name' do
+      context 'when invalid' do
+        context 'when name is nil' do
+          let(:service) { build(:service, name: nil) }
+          it { expect(service.valid?).to be_false }
+        end
+
+        context 'when name is empty' do
+          let(:service) { build(:service, name: '') }
+          it { expect(service.valid?).to be_false }
+        end
+
+        context 'when name is too long' do
+          let(:service) { build(:service, name: 'a' * 101) }
+          it { expect(service.valid?).to be_false }
+        end
+
+        context 'when name is not unique' do
+          let(:service) { build(:service) }
+          before { create(:service, name: service.name) }
+          it { expect(service.valid?).to be_false }
+        end
+      end
+    end
+
+    describe 'description' do
+      context 'when valid' do
+        context 'when description is nil' do
+          let(:service) { build(:service, description: nil) }
+          it { expect(service.valid?).to be_true }
+        end
+
+        context 'when description is empty' do
+          let(:service) { build(:service, description: '') }
+          it { expect(service.valid?).to be_true }
+        end
+      end
+
+      context 'when invalid' do
+        context 'when description is too long' do
+          let(:service) { build(:service, description: 'a' * 256) }
+          it { expect(service.valid?).to be_false }
+        end
+      end
+    end
+
+    describe 'munin_url' do
+      context 'when valid' do
+        context 'when munin_url is nil' do
+          let(:service) { build(:service, munin_url: nil) }
+          it { expect(service.valid?).to be_true }
+        end
+
+        context 'when munin_url is empty' do
+          let(:service) { build(:service, munin_url: '') }
+          it { expect(service.valid?).to be_true }
+        end
+      end
+
+      context 'when invalid' do
+        context 'when munin_url is not a URL' do
+          let(:service) { build(:service, munin_url: 'Not a URL') }
+          it { expect(service.valid?).to be_false }
+        end
+      end
+    end
+  end
+
   describe '#munin_url_for_service' do
     let(:service) { create(:service) }
 

@@ -5,7 +5,7 @@ class Host < ActiveRecord::Base
 
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }
   validates :ip_address,  format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }, allow_blank: true
-  validates :description, length: { maximum: 1000 }
+  validates :description, length: { maximum: 255 }
 
   has_many :host_relations, dependent: :delete_all
   has_many :services, through: :host_relations

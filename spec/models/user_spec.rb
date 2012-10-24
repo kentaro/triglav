@@ -56,7 +56,7 @@ describe User do
       context 'when uid is not numeric' do
         let(:user) { build(:user, uid: 'abc') }
 
-        ### `uid` becomes `0`. Why?
+        ### `uid` becomes `0` inspite of being inserted string. Why?
         it { expect(user.valid?).to be_true }
       end
     end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CommentContext do
   describe '#create' do
-    %w(service host).map(&:to_sym).each do |model|
+    %w(service role host).map(&:to_sym).each do |model|
       let(:user)    { create(:user) }
       let(:parent)  { create(model) }
       let(:comment) { parent.comments.build(content: 'comment') }
