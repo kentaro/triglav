@@ -12,30 +12,34 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th><%= model_class.human_attribute_name(:name) %></th>
-        <th><%= model_class.human_attribute_name(:ip_address) %></th>
         <% if service && role && service.munin_url.present? -%>
-          <th><%= model_class.human_attribute_name(:graph) %></th>
+          <th class="graph"><%= model_class.human_attribute_name(:graph) %></th>
         <% end -%>
-        <th><%= model_class.human_attribute_name(:is_active) %></th>
+        <th><%= model_class.human_attribute_name(:name) %>/<%= model_class.human_attribute_name(:ip_address) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
-        <th><%= model_class.human_attribute_name(:created_at) %></th>
+        <th><%= model_class.human_attribute_name(:is_active) %></th>
         <th><%= t(is_deletable ? 'helpers.actions.edit_delete' : 'helpers.actions.edit_revert') %></th>
       </tr>
     </thead>
     <tbody>
       <% hosts.each do |host| %>
         <tr>
-          <td><%= link_to host.name, host_path(host) %></td>
-          <td><%= host.ip_address %></td>
           <% if service && role && service.munin_url.present? -%>
-            <td>
+            <td class="graph">
               <%= link_to image_tag(service.munin_url_for_graph_of(role: role, host: host)), service.munin_url_for_service_and(role: role, host: host).to_s, target: '_blank'  %>
             </td>
           <% end -%>
-          <td><%= t(host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %></td>
-          <td><%= host.description %></td>
-          <td><%=l host.created_at %></td>
+          <td>
+            <h5><%= link_to host.name, host_path(host) %></h5>
+            <p><%= host.ip_address %></p>
+          </td>
+          <td>
+            <p>Created at<br><%=l host.created_at %></p>
+            <p><%= host.description %></p>
+          </td>
+          <td>
+            <%= t(host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %>
+          </td>
           <td>
             <%= link_to t('helpers.links.edit'),
                 edit_host_path(host), class: 'btn btn-mini' %>
