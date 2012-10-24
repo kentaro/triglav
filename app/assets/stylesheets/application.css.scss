@@ -14,12 +14,12 @@
  
 @font-face {
   font-family: 'LigatureSymbols';
-  src: url('/assets/ligature_symbols/LigatureSymbols-2.07.eot');
-  src: url('/assets/ligature_symbols/LigatureSymbols-2.07.eot?#iefix') format('embedded-opentype'),
-       url('/assets/ligature_symbols/LigatureSymbols-2.07.woff') format('woff'),
-       url('/assets/ligature_symbols/LigatureSymbols-2.07.ttf') format('truetype'),
-       url('/assets/ligature_symbols/LigatureSymbols-2.07.svg#LigatureSymbols') format('svg');
-  src: url('/assets/ligature_symbols/LigatureSymbols-2.07.ttf') format('truetype');
+  src: asset-url('ligature_symbols/LigatureSymbols-2.07.eot');
+  src: asset-url('ligature_symbols/LigatureSymbols-2.07.eot?#iefix') format('embedded-opentype'),
+       asset-url('ligature_symbols/LigatureSymbols-2.07.woff') format('woff'),
+       asset-url('ligature_symbols/LigatureSymbols-2.07.ttf') format('truetype'),
+       asset-url('ligature_symbols/LigatureSymbols-2.07.svg#LigatureSymbols') format('svg');
+  src: asset-url('ligature_symbols/LigatureSymbols-2.07.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
