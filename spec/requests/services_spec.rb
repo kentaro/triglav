@@ -10,11 +10,20 @@ describe '/services' do
       sign_in_as_member(user)
 
       visit new_service_path
-      fill_in 'Name',        with: 'Hyperion'
+      fill_in 'Name',        with: 'hyperion'
       fill_in 'Description', with: 'Server Management Tool'
     }
 
-    it { expect { click_button 'Create Service' }.to change { Service.count }.by(1) }
+    it {
+      expect { click_button 'Create Service' }.to change { Service.count }.by(1)
+    }
+
+    it {
+      click_button 'Create Service'
+
+      expect(current_path).to be == '/services/hyperion'
+      expect(subject).to have_content 'Service was successfully created'
+    }
   end
 
   describe 'edit a service' do
@@ -25,15 +34,23 @@ describe '/services' do
       sign_in_as_member(user)
 
       visit edit_service_path(service)
-      fill_in 'Name',        with: 'name changed'
-      fill_in 'Description', with: 'description changed'
+      fill_in 'Name',        with: 'changed'
+      fill_in 'Description', with: 'changed'
       fill_in 'Munin URL',   with: 'http://other-munin.example.com'
-      click_button 'Update Service'
     }
 
     it {
-      expect(page).to have_content('name changed')
-      expect(page).to have_content('description changed')
+      expect { click_button 'Update Service' }.to change { Service.count }.by(0)
+    }
+
+    it {
+      click_button 'Update Service'
+
+      expect(current_path).to be == '/services/changed'
+      expect(subject).to have_content 'Service was successfully updated'
+
+      expect(page).to have_content('changed')
+      expect(page).to have_content('changed')
       expect(page).to have_content('http://other-munin.example.com')
     }
   end
@@ -47,7 +64,16 @@ describe '/services' do
       visit service_path(service)
     }
 
-    it { expect { click_link 'Destroy' }.to change { Service.without_deleted.count }.by(-1) }
+    it {
+      expect { click_link 'Destroy' }.to change { Service.without_deleted.count }.by(-1)
+    }
+
+    it {
+      click_link 'Destroy'
+
+      expect(current_path).to be == services_path
+      expect(subject).to have_content 'Service was successfully destroyed'
+    }
   end
 
   describe 'revert a service' do
@@ -59,7 +85,16 @@ describe '/services' do
       visit services_path
     }
 
-    it { expect { click_link 'Revert' }.to change { Service.without_deleted.count }.by(1) }
+    it {
+      expect { click_link 'Revert' }.to change { Service.without_deleted.count }.by(1)
+    }
+
+    it {
+      click_link 'Revert'
+
+      expect(current_path).to be == services_path
+      expect(subject).to have_content 'Service was successfully reverted'
+    }
   end
 
   describe 'comment' do
@@ -73,6 +108,15 @@ describe '/services' do
       fill_in 'Content', with: 'comment'
     }
 
-    it { expect { click_button 'Create Comment' }.to change { service.comments.count }.by(1) }
+    it {
+      expect { click_button 'Create Comment' }.to change { service.comments.count }.by(1)
+    }
+
+    it {
+      click_button 'Create Comment'
+
+      expect(current_path).to be == service_path(service)
+      expect(subject).to have_content 'Comment was successfully added'
+    }
   end
 end

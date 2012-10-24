@@ -44,6 +44,7 @@ describe "Signin/Signout" do
           sign_in_as_member(user)
           expect(current_path).to be == '/'
           expect(subject).to have_content user.name
+          expect(subject).to have_content "Successfully signed in"
         }
       end
 
@@ -78,6 +79,7 @@ describe "Signin/Signout" do
           sign_in_as_member(user)
           expect(current_path).to be == '/'
           expect(subject).to have_content user.name
+          expect(subject).to have_content "Successfully signed in"
         }
       end
 
@@ -113,6 +115,7 @@ describe "Signin/Signout" do
       it {
         expect(current_path).to be == '/caveat'
         expect(subject).to have_content 'Sign in'
+        expect(subject).to have_content 'Successfully signed out'
       }
     end
   end
