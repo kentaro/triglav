@@ -10,6 +10,12 @@ Server Admin Tool.
 
 See [LearningRailsWithHyperion00](https://github.com/kentaro/hyperion/wiki/LearningRailsWithHyperion00). (Japanese)
 
+# How to contribute
+
+ * issueもコミットメッセージも日本語でおｋ
+ * 適当にpull requestください
+ * フィーチャーリクエストは、issue書いてからの方が望ましいです
+
 # LICENSE
 
 ## Copyright
