@@ -70,6 +70,28 @@ describe Service do
     end
   end
 
+  describe '#role_with_hosts' do
+    let(:host1)     { create(:host, :with_relations, count: 1) }
+    let(:host2)     { create(:host) }
+    let(:host3)     { create(:host) }
+    let(:role1)     { host1.roles.first    }
+    let(:role2)     { create(:role) }
+    let(:service1)  { host1.services.first }
+    let(:service2)  { create(:service) }
+
+    let!(:relation1) { create(:host_relation, service_id: service1.id, role_id: role1.id, host_id: host2.id) }
+    let!(:relation2) { create(:host_relation, service_id: service2.id, role_id: role2.id, host_id: host1.id) }
+    let!(:relation3) { create(:host_relation, service_id: service2.id, role_id: role1.id, host_id: host3.id) }
+
+    it {
+      role  = service1.roles_with_hosts.keys.first
+      hosts = service1.roles_with_hosts[role]
+
+      expect(role).to be  == role1
+      expect(hosts).to be == [host1, host2]
+    }
+  end
+
   describe '#munin_url_for_service' do
     let(:service) { create(:service) }
 

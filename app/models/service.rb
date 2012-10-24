@@ -22,7 +22,13 @@ class Service < ActiveRecord::Base
   end
 
   def roles_with_hosts
-    roles.includes(:hosts).references(:hosts).uniq
+    relations = host_relations.includes(:role, :host).references(:host_relations)
+    roles_with_hosts = {}
+    relations.each do |relation|
+      roles_with_hosts[relation.role] ||= []
+      roles_with_hosts[relation.role] << relation.host
+    end
+    roles_with_hosts
   end
 
   def munin_url_for_service

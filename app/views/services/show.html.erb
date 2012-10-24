@@ -38,20 +38,20 @@
 
 <div class="row-fluid">
   <h2><%= t('.hosts', default: 'Hosts') %></h2>
-  <% if @service.roles_with_hosts.size -%>
+  <% if @service.roles_with_hosts.present? -%>
     <ul>
-      <% @service.roles_with_hosts.map(&:name).each do |key| -%>
-        <li><%= link_to key, "##{key}"  %></li>
+      <% @service.roles_with_hosts.keys.each do |role| -%>
+        <li><%= link_to role.name, "##{role.name}"  %></li>
       <% end -%>
     </ul>
   <% end -%>
 
-  <% @service.roles_with_hosts.each do |role| -%>
+  <% @service.roles_with_hosts.each do |role, hosts| -%>
     <h3 id="<%= role.name %>"><%= role.name %></h3>
     <%= render partial: 'shared/hosts', locals: {
           service:      @service,
           role:         role,
-          hosts:        role.hosts,
+          hosts:        hosts,
           is_deletable: true,
         } %>
   <% end -%>
