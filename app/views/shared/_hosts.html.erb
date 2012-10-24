@@ -1,7 +1,9 @@
 <%-
    model_class = Host
-   service   ||= nil
-   role      ||= nil
+
+   service      ||= nil
+   role         ||= nil
+   is_deletable ||= nil
    -%>
 
 <% if hosts.empty? -%>
