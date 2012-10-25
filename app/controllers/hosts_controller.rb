@@ -1,3 +1,5 @@
+require 'munin'
+
 class HostsController < ApplicationController
   respond_to :html, :json
 
@@ -8,7 +10,9 @@ class HostsController < ApplicationController
   end
 
   def show
-    @host = Host.find_by_name(params[:id])
+    @host  = Host.find_by_name(params[:id])
+    @munin = Munin.new
+
     respond_with @host
   end
 
