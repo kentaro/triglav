@@ -12,3 +12,7 @@ $('#add_relation_fields').click (event) ->
   new_id = new Date().getTime()
   regexp = new RegExp("new_" + $(this).attr('data-association'), 'g')
   $($('#relation_fields_template').html().replace(regexp, new_id)).insertBefore $(this)
+
+$ ->
+  $('.graph').error () ->
+    $(this).parentsUntil('.sub_category').hide()
