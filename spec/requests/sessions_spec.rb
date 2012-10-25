@@ -101,6 +101,123 @@ describe "Signin/Signout" do
         }
       end
     end
+
+    context 'when Settings.github.organizations is blank (free member mode)' do
+      context 'when user is a member of some organization' do
+        context 'Settings.github.organizations returns nil' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return(nil)
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+
+        context 'Settings.github.organizations returns empty string' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return('')
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+
+        context 'Settings.github.organizations returns empty array' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return(nil)
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+      end
+
+      context 'when user is not a member of any organization' do
+        context 'Settings.github.organizations returns nil' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return(nil)
+            SessionContext.any_instance.stub(:organizations).and_return([])
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+
+        context 'Settings.github.organizations returns empty string' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return('')
+            SessionContext.any_instance.stub(:organizations).and_return([])
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+
+        context 'Settings.github.organizations returns empty array' do
+          let!(:user) { create(:user) }
+          before {
+            Settings.github.stub(:organizations).and_return(nil)
+            SessionContext.any_instance.stub(:organizations).and_return([])
+          }
+
+          it {
+            expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+          }
+
+          it {
+            sign_in_as_member(user)
+            expect(current_path).to be == '/'
+            expect(subject).to have_content user.name
+            expect(subject).to have_content "Successfully signed in"
+          }
+        end
+      end
+    end
   end
 
   describe 'DELETE /signout' do
