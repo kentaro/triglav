@@ -198,6 +198,8 @@ en:
     form:
       add_service_role_select: Add
       remove_service_role_select: Remove
+    show:
+      graphs: Graphs
 
   comments:
     index:

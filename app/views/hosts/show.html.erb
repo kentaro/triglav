@@ -21,9 +21,32 @@
 <div class="form-actions">
   <%= link_to t('helpers.links.edit'), edit_host_path(@host), class: 'btn' %>
   <%= link_to t('helpers.links.destroy'), host_path(@host), method: 'delete',
-        data: { confirm: t('helpers.links.confirm') },
-        class: 'btn btn-danger' %>
+      data: { confirm: t('helpers.links.confirm') },
+      class: 'btn btn-danger' %>
 </div>
+
+<% if @munin.find_service_that_hash_munin_url_by(@host) -%>
+  <div>
+    <h2><%= t('hosts.show.graphs') %></h2>
+    <p><%= link_to @munin.url_for(host: @host).to_s, @munin.url_for(host: @host).to_s %></p>
+    <% @munin.categories.each do |category| -%>
+      <h3><%= category[:name] %></h3>
+      <div class="sub_category">
+        <% category[:sub_categories].each do |sub_category| -%>
+          <div class="row-fluid">
+            <h4><%= sub_category[:name] %></h4>
+            <div class="span5">
+              <%= image_tag @munin.graph_url_for(host: @host, options: { type: sub_category[:type].to_sym, span: :day }), class: 'graph' %>
+            </div>
+            <div class="span5">
+              <%= image_tag @munin.graph_url_for(host: @host, options: { type: sub_category[:type].to_sym, span: :week }), class: 'graph' %>
+            </div>
+          </div>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>
 
 <div class="row-fluid">
   <h2><%= Comment.model_name.human.pluralize %></h2>
