@@ -4,6 +4,7 @@
    service      ||= nil
    role         ||= nil
    is_deletable ||= nil
+   munin        ||= nil
    -%>
 
 <% if hosts.empty? -%>
@@ -12,7 +13,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if service && role && service.munin_url.present? -%>
+        <% if munin -%>
           <th class="graph"><%= model_class.human_attribute_name(:graph) %></th>
         <% end -%>
         <th><%= model_class.human_attribute_name(:name) %>/<%= model_class.human_attribute_name(:ip_address) %></th>
@@ -24,9 +25,9 @@
     <tbody>
       <% hosts.each do |host| %>
         <tr>
-          <% if service && role && service.munin_url.present? -%>
+          <% if munin -%>
             <td class="graph">
-              <%= link_to image_tag(service.munin_url_for_graph_of(role: role, host: host)), service.munin_url_for_service_and(role: role, host: host).to_s, target: '_blank'  %>
+              <%= link_to image_tag(munin.graph_url_for(role: role, host: host).to_s), munin.url_for(role: role, host: host).to_s, target: '_blank'  %>
             </td>
           <% end -%>
           <td>

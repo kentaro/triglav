@@ -194,6 +194,8 @@ ja:
     form:
       add_service_role_select: 追加
       remove_service_role_select: 削除
+    show:
+      graphs: グラフ
 
   comments:
     index:

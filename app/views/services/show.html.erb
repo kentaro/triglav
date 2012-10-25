@@ -17,7 +17,7 @@
       <% if @service.munin_url.present? -%>
         <dt><strong><%= model_class.human_attribute_name(:munin_url) %>:</strong></dt>
         <dd>
-          <%= link_to @service.munin_url_for_service.to_s, @service.munin_url_for_service.to_s %>
+          <%= link_to @service.munin_url, @service.munin_url %>
         </dd>
       <% end -%>
     </dl>
@@ -50,6 +50,7 @@
           role:         role,
           hosts:        hosts,
           is_deletable: true,
+          munin:        @munin,
         } %>
   <% end -%>
 </div>
