@@ -19,6 +19,13 @@ GIT
       xpath (~> 1.0.0.beta1)
 
 GIT
+  remote: git://github.com/kentaro/rspec-formatter-beep.git
+  revision: e932c001db0f71500d0df5fa379f5395ba19f084
+  specs:
+    rspec-formatter-beep (0.0.1)
+      rspec
+
+GIT
   remote: git://github.com/metaskills/less-rails.git
   revision: 36c029282476e91abd96b86c3429c32ab5cd8c57
   specs:
@@ -392,6 +399,7 @@ DEPENDENCIES
   rspec!
   rspec-core!
   rspec-expectations!
+  rspec-formatter-beep!
   rspec-mocks!
   rspec-rails!
   sass-rails!

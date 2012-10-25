@@ -55,6 +55,7 @@ group :test do
   gem 'database_cleaner'
 
   gem 'rake'
+  gem 'rspec-formatter-beep', github: 'kentaro/rspec-formatter-beep'
 end
 
 group :production do
