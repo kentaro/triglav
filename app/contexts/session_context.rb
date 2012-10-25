@@ -57,12 +57,18 @@ class SessionContext
   end
 
   def update_privilege
-    organizations.each do |org|
-      if org['login'].in?(Settings.github.organizations || [])
-        user.member = true
-        return
+    if Settings.github.try(:organizations).present?
+      organizations.each do |org|
+        if org['login'].in?(Settings.github.organizations || [])
+          user.member = true
+          return
+        end
       end
+    else
+      user.member = true
+      return
     end
+
     user.member = false
   end
 
