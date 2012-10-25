@@ -1,6 +1,7 @@
 # XXX This is just an example.
 require 'capistrano_colors'
-require "bundler/capistrano"
+require 'capistrano_banner'
+require 'bundler/capistrano'
 
 set :application,  "hyperion"
 set :deploy_to,    "/var/www/#{application}"
@@ -23,3 +24,5 @@ namespace :deploy do
     stream "tail -f #{deploy_to}/shared/log/production.log"
   end
 end
+
+banner force: true
