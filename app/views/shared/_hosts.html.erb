@@ -35,8 +35,13 @@
             <p><%= host.ip_address %></p>
           </td>
           <td>
-            <p>Created at<br><%=l host.created_at %></p>
-            <p><%= host.description %></p>
+            <% if host.description.present? -%>
+              <p><%= host.description %></p>
+            <% end -%>
+            <p>
+              <small><span class="label">Created at</span>
+              <%=l host.created_at %></small>
+            </p>
           </td>
           <td>
             <%= t(host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %>
