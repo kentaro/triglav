@@ -56,6 +56,8 @@ group :test do
 
   gem 'rake'
   gem 'rspec-formatter-beep', github: 'kentaro/rspec-formatter-beep'
+
+  gem 'simplecov'
 end
 
 group :production do

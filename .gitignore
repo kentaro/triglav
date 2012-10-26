@@ -4,6 +4,7 @@
 /log/*.log
 /tmp
 .DS_Store
+/coverage
 
 # local settings
 /config/settings/*.yml
