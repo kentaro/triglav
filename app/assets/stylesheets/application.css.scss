@@ -71,9 +71,9 @@ $black: #000;
 
 $font-color: $black;
 $font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-$font-size: 100%;
-$font-size-small: 90%;
-$font-size-large: 110%;
+$font-size: 14px;
+$font-size-small: $font-size*0.88;
+$font-size-large: $font-size*1.33;
 $line-height: 1.66;
 $line-height-small: $line-height*0.8;
 $letter-spacing: 0;
@@ -91,12 +91,17 @@ $letter-spacing: 0;
     letter-spacing: $letter-spacing;
   } @else if $type == link {
     color: $font-color;
-    text-decoration: none;
+    text-decoration: none !important;
     background: none;
   } @else if $type == bubble {
     color: $font-color;
     font-size: $font-size-small;
     line-height: $line-height-small;
+    letter-spacing: $letter-spacing;
+  } @else if $type == header {
+    color: $font-color !important;
+    font-size: $font-size-large !important;
+    line-height: $line-height !important;
     letter-spacing: $letter-spacing;
   }
   
@@ -107,7 +112,7 @@ $letter-spacing: 0;
   @include font(link);
   
   &:hover {
-	  @include font(link);
+    @include font(link);
   }
 }
 
@@ -199,7 +204,9 @@ textarea:focus {
 
 
 
-
+h1, h2, h3, h4, h5, h6 {
+  @include font(header);
+}
 
 a.btn-primary:link,
 a.btn-primary:visited,
@@ -215,6 +222,10 @@ a.btn-inverse:link,
 a.btn-inverse:visited,
 {
   color: #fff
+}
+
+a.brand:hover {
+  background-color: transparent;
 }
 
 .more {
