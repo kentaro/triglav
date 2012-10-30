@@ -65,7 +65,7 @@ $gap: 20px;
 
 $white: #fff;
 $gray-light: #eee;
-$gray: #999;
+$gray: #aaa;
 $gray-dark: #666;
 $black: #000;
 
@@ -101,6 +101,12 @@ $letter-spacing: 0;
   } @else if $type == header {
     color: $font-color !important;
     font-size: $font-size-large !important;
+    font-weight: normal;
+    line-height: $line-height !important;
+    letter-spacing: $letter-spacing;
+  } @else if $type == footer {
+    color: $font-color !important;
+    font-size: $font-size-small !important;
     line-height: $line-height !important;
     letter-spacing: $letter-spacing;
   }
@@ -205,6 +211,8 @@ textarea:focus {
 
 
 h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  
   @include font(header);
 }
 
@@ -235,8 +243,10 @@ a.brand:hover {
 
 
 
+
 .navbar {
   padding: $gap 0;
+  margin: 0 !important;
   
   .navbar-inner {
     background: none;
@@ -246,9 +256,18 @@ a.brand:hover {
     
     .nav {
       li {
-        border-left: 1px solid $gray-light;
+        border-left: 1px solid $gray;
       }
     }
+  }
+}
+
+.container-fluid {
+  h1 {
+    padding: $gap 0;
+    
+    @include font(header);
+    border-top: 1px solid $gray;
   }
 }
 
@@ -262,4 +281,11 @@ table {
       width: 250px;
     }
   }
+}
+
+
+
+
+footer {
+  @include font(footer);
 }

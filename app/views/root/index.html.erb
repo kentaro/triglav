@@ -1,17 +1,10 @@
 <div class="row-fluid">
-  <div class="page-header">
-    <h1><%= Service.model_name.human.pluralize %></h1>
-  </div>
-
+  <h1><%= Service.model_name.human.pluralize %></h1>
   <%= render partial: 'shared/services', locals: { services: @services, is_deletable: true } %>
 </div>
 
 <div class="row-fluid">
-  <div class="page-header">
-    <h1><%= Activity.model_name.human.pluralize %></h1>
-  </div>
-
+  <h1><%= Activity.model_name.human.pluralize %></h1>
   <%= render partial: 'shared/activities', locals: { activities: @activities } %>
-
   <p class="more"><%= link_to t('helpers.links.more'), activities_path %></p>
 </div>
