@@ -232,6 +232,28 @@ a.brand:hover {
   text-align: right;
 }
 
+
+
+
+.navbar {
+  padding: $gap 0;
+  
+  .navbar-inner {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    border: 0;
+    
+    .nav {
+      li {
+        border-left: 1px solid $gray-light;
+      }
+    }
+  }
+}
+
+
+
 table {
   .graph {
     width: 250px;

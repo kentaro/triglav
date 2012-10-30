@@ -38,35 +38,33 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <div class="navbar navbar-fluid-top">
+    <nav class="navbar navbar-fluid-top">
       <div class="navbar-inner">
-        <div class="container-fluid">
+        <div class="container">
           <a class="brand lsf-icon" title="sepia" href="/"><%= t('layout.title') %></a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav pull-right">
-              <% if signed_in? -%>
-              <li><%= link_to Activity.model_name.human.pluralize, activities_path  %></li>
-              <li><%= link_to Service.model_name.human.pluralize, services_path  %></li>
-              <li><%= link_to Role.model_name.human.pluralize, roles_path %></li>
-              <li><%= link_to Host.model_name.human.pluralize, hosts_path %></li>
-              <li class="dropdown">
-                <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <%= image_tag current_user.image, width: 16, height: 16 %>
-                  <%= current_user.name %>
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                  <li><%= link_to t('layout.nav.sign_out'), signout_path, method: :delete %></li>
-                </ul>
-              </li>
-              <% else -%>
-              <li><%= link_to t('layout.nav.sign_in'), signin_path %></li>
-              <% end -%>
-            </ul>
-          </div><!--/.nav-collapse -->
+          <ul class="nav pull-right">
+            <% if signed_in? -%>
+            <li><%= link_to Activity.model_name.human.pluralize, activities_path  %></li>
+            <li><%= link_to Service.model_name.human.pluralize, services_path  %></li>
+            <li><%= link_to Role.model_name.human.pluralize, roles_path %></li>
+            <li><%= link_to Host.model_name.human.pluralize, hosts_path %></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <%= image_tag current_user.image, width: 16, height: 16 %>
+                <%= current_user.name %>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li><%= link_to t('layout.nav.sign_out'), signout_path, method: :delete %></li>
+              </ul>
+            </li>
+            <% else -%>
+            <li><%= link_to t('layout.nav.sign_in'), signin_path %></li>
+            <% end -%>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
 
     <div class="container-fluid">
       <div class="row-fluid">
