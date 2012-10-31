@@ -60,3 +60,8 @@
   <%= render partial: 'shared/comment_form', locals: { parent: @service } %>
   <%= render partial: 'shared/comments', locals: { comments: @service.comments } %>
 </div>
+
+<div class="row-fluid">
+  <h2><%= Activity.model_name.human.pluralize %></h2>
+  <%= render partial: 'shared/activities', locals: { activities: @service.activities } %>
+</div>
