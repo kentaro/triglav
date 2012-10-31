@@ -7,6 +7,14 @@ GIT
       rails (>= 3.0.0)
 
 GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: 07cd48d293bcbb42daa52a423cba91549343d393
+  specs:
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
+GIT
   remote: git://github.com/jnicklas/capybara.git
   revision: e73628d558e4789e5916f9c0350bed79cc0c0d39
   specs:
@@ -24,6 +32,14 @@ GIT
   specs:
     rspec-formatter-beep (0.0.1)
       rspec
+
+GIT
+  remote: git://github.com/mcasimir/kaminari-bootstrap.git
+  revision: d28af1aed603ddd4a1e0556532c63ad7a7473edc
+  specs:
+    kaminari-bootstrap (0.1.3)
+      kaminari (>= 0.13.0)
+      rails
 
 GIT
   remote: git://github.com/metaskills/less-rails.git
@@ -385,6 +401,8 @@ DEPENDENCIES
   i18n_generators!
   journey!
   jquery-rails
+  kaminari!
+  kaminari-bootstrap!
   launchy
   less-rails!
   mysql2

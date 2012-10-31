@@ -204,3 +204,11 @@ en:
   comments:
     index:
       empty: No comment added.
+
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "..."

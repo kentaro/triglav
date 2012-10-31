@@ -92,10 +92,21 @@ a.btn-inverse:visited,
   margin-right: 10%;
 }
 
+.pagination {
+  text-align: center;
+
+  a {
+    text-decoration: none !important;
+  }
+  a:hover {
+    color: #000;
+  }
+}
+
 table {
   .graph {
     width: 250px;
-    
+
     img {
       width: 250px;
     }
