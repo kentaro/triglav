@@ -11,7 +11,11 @@
  *= require_self
  *= require_tree .
  */
- 
+
+/* import */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
 @font-face {
   font-family: 'LigatureSymbols';
   src: asset-url('ligature_symbols/LigatureSymbols-2.07.eot');
@@ -55,20 +59,161 @@
   font-smoothing: antialiased;
 }
 
+/* common */
+
+$gap: 20px;
+
+$white: #fff;
+$gray-light: #eee;
+$gray: #aaa;
+$gray-dark: #666;
+$black: #000;
+
+$font-color: $black;
+$font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-size: 14px;
+$font-size-small: $font-size*0.88;
+$font-size-large: $font-size*1.33;
+$line-height: 1.66;
+$line-height-small: $line-height*0.8;
+$letter-spacing: 0;
+
+@mixin font($type: default) {
+  @if $type == default {
+    color: $font-color;
+    font-size: $font-size;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+  } @else if $type == reset {
+    color: $font-color;
+    font-size: $font-size;
+    line-height: 1;
+    letter-spacing: $letter-spacing;
+  } @else if $type == link {
+    color: $font-color;
+    text-decoration: none !important;
+    background: none;
+  } @else if $type == bubble {
+    color: $font-color;
+    font-size: $font-size-small;
+    line-height: $line-height-small;
+    letter-spacing: $letter-spacing;
+  } @else if $type == header {
+    color: $font-color !important;
+    font-size: $font-size-large !important;
+    font-weight: normal;
+    line-height: $line-height !important;
+    letter-spacing: $letter-spacing;
+  } @else if $type == footer {
+    color: $font-color !important;
+    font-size: $font-size-small !important;
+    line-height: $line-height !important;
+    letter-spacing: $letter-spacing;
+  }
+  
+  font-family: $font-family;
+}
+
+@mixin link {
+  @include font(link);
+  
+  &:hover {
+    @include font(link);
+  }
+}
+
+@mixin border-radius($size: small) {
+  @if $size == small {
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {  
+      #{$prefix}border-radius: $gap/4;
+    }
+  } @else if $size == large {
+	  @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {  
+      #{$prefix}border-radius: $gap/2;
+    } 
+  }
+}
+
+.bubble {
+  position: relative;
+  padding: $gap/2;
+  margin: $gap;
+	
+	@include font(bubble);
+	background-color: $gray-light;
+	@include border-radius;
+	
+	&.center { text-align: center; }
+	&.right { text-align: right; }
+	
+	&:after {
+    content: "";
+    position: absolute;
+    bottom: -18px;
+    left: 36px;
+    width: 0;
+    height: 0;
+    
+    border-top: 18px solid #eeeeee;
+    border-right: 24px solid transparent;
+  }
+}
+
+/* detail */
+
+html {
+	font-size: $font-size;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body {	
+	@include font(reset);
+}
+
 a {
-  text-decoration: underline !important;
+	@include link;
 }
 
-.navbar a {
-  text-decoration: none !important;
+h1, h2, h3, h4, h5, h6, h7 {
+	font-weight: normal;
 }
 
-a.btn {
-  text-decoration: none !important;
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+textarea {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 2px;
+  
+	@include font;
+	border: 0;
+	background-color: #fff;
+	border-top: 1px solid rgba(0, 0, 0, 0.3);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-a.brand:hover {
-  background-color: transparent;
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='password']:focus,
+input[type='search']:focus,
+input[type='number']:focus,
+textarea:focus {
+  background-color: #fff;
+}
+
+
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  
+  @include font(header);
 }
 
 a.btn-primary:link,
@@ -87,9 +232,12 @@ a.btn-inverse:visited,
   color: #fff
 }
 
+a.brand:hover {
+  background-color: transparent;
+}
+
 .more {
   text-align: right;
-  margin-right: 10%;
 }
 
 .pagination {
@@ -103,6 +251,26 @@ a.btn-inverse:visited,
   }
 }
 
+.navbar {
+  padding: $gap 0;
+  margin: 0 !important;
+
+  .navbar-inner {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    border: 0;
+  }
+}
+
+.container-fluid {
+  h1 {
+    padding: $gap 0;
+
+    @include font(header);
+  }
+}
+
 table {
   .graph {
     width: 250px;
@@ -111,4 +279,8 @@ table {
       width: 250px;
     }
   }
+}
+
+footer {
+  @include font(footer);
 }
