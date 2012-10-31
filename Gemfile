@@ -9,6 +9,9 @@ gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_fi
 gem 'rails_config'
 gem 'turbolinks'
 
+gem 'kaminari', github: 'amatsuda/kaminari'
+gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
+
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'octokit'
