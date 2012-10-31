@@ -253,12 +253,6 @@ a.brand:hover {
     box-shadow: none;
     border-radius: 0;
     border: 0;
-    
-    .nav {
-      li {
-        border-left: 1px solid $gray;
-      }
-    }
   }
 }
 
@@ -267,7 +261,6 @@ a.brand:hover {
     padding: $gap 0;
     
     @include font(header);
-    border-top: 1px solid $gray;
   }
 }
 
