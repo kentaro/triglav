@@ -3,9 +3,9 @@ require 'capistrano_colors'
 require 'capistrano_banner'
 require 'bundler/capistrano'
 
-set :application,  "hyperion"
+set :application,  "triglav"
 set :deploy_to,    "/var/www/#{application}"
-set :repository,   "git://github.com/kentaro/hyperion.git"
+set :repository,   "git://github.com/kentaro/triglav.git"
 set :scm,          :git
 set :bundle_flags, "--deployment --without development test"
 

@@ -1,16 +1,16 @@
-[![BuildStatus](https://secure.travis-ci.org/kentaro/hyperion.png)](http://travis-ci.org/kentaro/hyperion)
+[![BuildStatus](https://secure.travis-ci.org/kentaro/triglav.png)](http://travis-ci.org/kentaro/triglav)
 
-# Hyperion
+# Triglav
 
 Server Admin Tool.
 
- * http://hyperion-kentaro.sqale.jp/ (Demo)
+ * http://triglav-kentaro.sqale.jp/ (Demo)
 
-![Hyperion](https://pbs.twimg.com/media/A584sEFCUAACTO7.jpg:large)
+![Triglav](https://pbs.twimg.com/media/A584sEFCUAACTO7.jpg:large)
 
 # Setup
 
-See [LearningRailsWithHyperion00](https://github.com/kentaro/hyperion/wiki/LearningRailsWithHyperion00). (Japanese)
+See [LearningRailsWithTriglav00](https://github.com/kentaro/triglav/wiki/LearningRailsWithTriglav00). (Japanese)
 
 # How to contribute
 
@@ -22,7 +22,7 @@ See [LearningRailsWithHyperion00](https://github.com/kentaro/hyperion/wiki/Learn
 
 ## Copyright
 
-&copy; Hyperion Developers
+&copy; Triglav Developers
 
 ## LICENSE
 

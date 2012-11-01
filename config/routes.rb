@@ -1,4 +1,4 @@
-Hyperion::Application.routes.draw do
+Triglav::Application.routes.draw do
   root to: 'root#index'
   get '/caveat', to: 'root#caveat'
 

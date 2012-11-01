@@ -129,8 +129,8 @@ en:
       relation: "%{type} Relation"
 
   layout:
-    title: Hyperion
-    hyperion_developers: Hyperion Developers
+    title: Triglav
+    triglav_developers: Triglav Developers
     nav:
       services: :activerecord.models.service
       roles: :activerecord.models.role
