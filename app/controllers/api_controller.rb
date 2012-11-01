@@ -16,4 +16,15 @@ class ApiController < ApplicationController
 
     render json: hosts
   end
+
+  def roles
+    service = Service.where(name: params[:service]).first
+    roles   = []
+
+    if service
+      roles = service.roles.uniq
+    end
+
+    render json: roles
+  end
 end
