@@ -10,7 +10,7 @@ describe '/services' do
       sign_in_as_member(user)
 
       visit new_service_path
-      fill_in 'Name',        with: 'hyperion'
+      fill_in 'Name',        with: 'triglav'
       fill_in 'Description', with: 'Server Management Tool'
     }
 
@@ -21,7 +21,7 @@ describe '/services' do
     it {
       click_button 'Create Service'
 
-      expect(current_path).to be == '/services/hyperion'
+      expect(current_path).to be == '/services/triglav'
       expect(subject).to have_content 'Service was successfully created'
     }
   end
