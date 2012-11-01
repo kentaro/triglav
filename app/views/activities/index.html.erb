@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= Activity.model_name.human.pluralize %></h1>
+  <h1><%= Activity.model_name.human(count: 2) %></h1>
 </div>
 
 <%= render partial: 'shared/activities', locals: { activities: @activities } %>
