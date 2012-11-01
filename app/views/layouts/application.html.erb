@@ -44,10 +44,10 @@
           <a class="brand lsf-icon" title="sepia" href="/"><%= t('layout.title') %></a>
           <ul class="nav pull-right">
             <% if signed_in? -%>
-            <li><%= link_to Activity.model_name.human.pluralize, activities_path  %></li>
-            <li><%= link_to Service.model_name.human.pluralize, services_path  %></li>
-            <li><%= link_to Role.model_name.human.pluralize, roles_path %></li>
-            <li><%= link_to Host.model_name.human.pluralize, hosts_path %></li>
+            <li><%= link_to Activity.model_name.human(count: 2), activities_path  %></li>
+            <li><%= link_to Service.model_name.human(count: 2), services_path  %></li>
+            <li><%= link_to Role.model_name.human(count: 2), roles_path %></li>
+            <li><%= link_to Host.model_name.human(count: 2), hosts_path %></li>
             <li class="dropdown">
               <a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="#">
                 <%= image_tag current_user.image, width: 16, height: 16 %>
