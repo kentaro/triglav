@@ -21,7 +21,7 @@ describe 'i18n' do
         visit '/'
       }
 
-      it { expect(page).to have_content 'Hyperion' }
+      it { expect(page).to have_content 'Triglav' }
     end
 
     context 'when HTTP_ACCEPT_LANGUAGE is empty' do
@@ -30,7 +30,7 @@ describe 'i18n' do
         visit '/'
       }
 
-      it { expect(page).to have_content 'Hyperion' }
+      it { expect(page).to have_content 'Triglav' }
     end
 
     context 'when HTTP_ACCEPT_LANGUAGE is unknown' do
@@ -39,7 +39,7 @@ describe 'i18n' do
         visit '/'
       }
 
-      it { expect(page).to have_content 'Hyperion' }
+      it { expect(page).to have_content 'Triglav' }
     end
   end
 end

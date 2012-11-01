@@ -22,7 +22,7 @@ def sign_in (user)
 end
 
 def sign_in_as_member (user)
-  SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
+  SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
   sign_in(user)
 end
 

@@ -8,7 +8,7 @@ describe SessionContext do
         let(:context) { SessionContext.new(user: user) }
 
         before {
-          SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
+          SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
         }
 
         it {
@@ -53,7 +53,7 @@ describe SessionContext do
       let(:context) { SessionContext.new(user: user) }
 
       before {
-        SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
+        SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
       }
 
       it {
@@ -105,7 +105,7 @@ describe SessionContext do
     let(:context) { SessionContext.new(user: user) }
 
     before {
-      SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "hyperion-developers" }])
+      SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
       context.update_privilege
     }
 
