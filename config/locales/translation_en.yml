@@ -1,13 +1,27 @@
 en:
   activerecord:
     models:
-      host: Host  #g
-      host_relation: Relation  #g
-      role: Role  #g
-      service: Service  #g
-      user: User  #g
-      activity: Activity
-      comment: Comment
+      host:
+        one: Host
+        other: Hotsts
+      host_relation:
+        one: Relation
+        other: Relations
+      role:
+        one: Role
+        other: Roles
+      service:
+        one: Service
+        other: Services
+      user:
+        one: User
+        other: Users
+      activity:
+        one: Activity
+        other: Activities
+      comment:
+        one: Comment
+        other: Comments
 
     attributes:
       common:
