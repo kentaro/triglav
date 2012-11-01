@@ -115,8 +115,8 @@ ja:
       relation: "リレーションの%{type}"
 
   layout:
-    title: はいぺりおん
-    triglav_developers: はいぺりおん開発者たち
+    title: Triglav
+    triglav_developers: Triglav Developers
     nav:
       sign_in: サインイン
       sign_out: サインアウト
