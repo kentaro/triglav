@@ -14,6 +14,7 @@ class SessionContext
     update_image(auth_params['extra']['raw_info']['avatar_url'])
     update_access_token(auth_params['credentials'])
     update_privilege
+    update_api_token
 
     # We don't bother to save a user who is new for the service and
     # not a member. But, if existing user newly becomes not-member, we
@@ -70,6 +71,16 @@ class SessionContext
     end
 
     user.member = false
+  end
+
+  def update_api_token
+    if user.member
+      if user.api_token.blank?
+        user.api_token = SecureRandom.urlsafe_base64
+      end
+    else
+      user.api_token = nil
+    end
   end
 
   def organizations

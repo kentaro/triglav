@@ -87,6 +87,7 @@ en:
         name: Name  #g
         provider: Provider  #g
         token: Token  #g
+        api_token: API Token
         uid: UID  #g
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
@@ -112,6 +113,7 @@ en:
       back: Back
       confirm: Are you sure?
       more: Read more
+      update: Update
     actions:
       edit_delete: Edit/Delete
       edit_revert: Edit/Revert
@@ -132,12 +134,10 @@ en:
     title: Triglav
     triglav_developers: Triglav Developers
     nav:
-      services: :activerecord.models.service
-      roles: :activerecord.models.role
-      hosts: :activerecord.models.host
+      api: API
+      my_page: My page
       sign_in: Sign in
       sign_out: Sign out
-      activities: :activerecord.models.activities
 
   notice:
     sessions:
@@ -148,6 +148,9 @@ en:
           error: Some error occured when signing in.
       destroy:
         success: Successfully signed out.
+    users:
+      update_api_token:
+        success: API token was successfully updated.
     services:
       create:
         success: Service was successfully created.
@@ -189,6 +192,13 @@ en:
     index:
       activities: :activerecord.models.activity
       empty: No activity recorded.
+
+  api:
+    index:
+      title: API
+      sub_title1: Access the APIs
+      paragraph1: You need an API token to access Triglav APIs. Get your own one from %{my_page}.
+      sub_title2: エンドポイント
 
   services:
     index:

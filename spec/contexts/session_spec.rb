@@ -27,6 +27,9 @@ describe SessionContext do
           expect(activity.user).to be  == user
           expect(activity.model).to be == user
           expect(activity.tag).to be == 'create'
+
+          expect(user.member).to be_true
+          expect(user.api_token).to be_true
         }
       end
 
@@ -45,20 +48,60 @@ describe SessionContext do
         it {
           expect { context.create(auth_params_for(user)) }.to change { Activity.count }.by(0)
         }
+
+        it {
+          context.create(auth_params_for(user))
+
+          expect(user.member).to be_false
+          expect(user.api_token).to be_nil
+        }
       end
     end
 
     context 'when user signs in again' do
-      let(:user)    { create(:user) }
-      let(:context) { SessionContext.new(user: user) }
+      context 'when user is a member' do
+        let(:user)    { create(:user) }
+        let(:context) { SessionContext.new(user: user) }
 
-      before {
-        SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
-      }
+        before {
+          SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
+        }
 
-      it {
-        expect { context.create(auth_params_for(user)) }.to change { Activity.count }.by(0)
-      }
+        it {
+          expect { context.create(auth_params_for(user)) }.to change { Activity.count }.by(0)
+        }
+
+        it {
+          context.create(auth_params_for(user))
+
+          expect(user.member).to be_true
+          expect(user.api_token).to be_true
+        }
+      end
+
+      context 'when user is not a member' do
+        let(:user)    { build(:user) }
+        let(:context) { SessionContext.new(user: user) }
+
+        before {
+          SessionContext.any_instance.stub(:organizations).and_return([])
+        }
+
+        it {
+          expect { context.create(auth_params_for(user)) }.to change { User.count }.by(0)
+        }
+
+        it {
+          expect { context.create(auth_params_for(user)) }.to change { Activity.count }.by(0)
+        }
+
+        it {
+          context.create(auth_params_for(user))
+
+          expect(user.member).to be_false
+          expect(user.api_token).to be_nil
+        }
+      end
     end
   end
 
@@ -110,5 +153,60 @@ describe SessionContext do
     }
 
     it { expect(user.member).to be_true }
+  end
+
+  describe "#update_api_token" do
+    context 'user is a member' do
+      context 'api_token has not been set yet' do
+        let(:user)    { create(:user, member: true, api_token: nil) }
+        let(:context) { SessionContext.new(user: user) }
+
+        before {
+          context.update_api_token
+        }
+
+        it { expect(user.api_token).to be_true }
+      end
+
+      context 'api_token is already set' do
+        let(:user)       { create(:user, member: true, api_token: SecureRandom.urlsafe_base64) }
+        let!(:api_token) { user.api_token }
+        let(:context)    { SessionContext.new(user: user) }
+
+        before {
+          context.update_api_token
+        }
+
+        it {
+          expect(user.api_token).to be_true
+          expect(user.api_token).to be == api_token
+        }
+      end
+    end
+
+    context 'user is not a member' do
+      context 'api_token has not been set yet' do
+        let(:user)    { create(:user, member: nil, api_token: nil) }
+        let(:context) { SessionContext.new(user: user) }
+
+        before {
+          context.update_api_token
+        }
+
+        it { expect(user.api_token).to be_nil }
+      end
+
+      context 'api_token is already set' do
+        let(:user)       { create(:user, member: nil, api_token: SecureRandom.urlsafe_base64) }
+        let!(:api_token) { user.api_token }
+        let(:context)    { SessionContext.new(user: user) }
+
+        before {
+          context.update_api_token
+        }
+
+        it { expect(user.api_token).to be_nil }
+      end
+    end
   end
 end

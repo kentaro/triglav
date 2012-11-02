@@ -73,6 +73,7 @@ ja:
         name: 名前  #g
         provider: プロバイダー  #g
         token: トークン  #g
+        api_token: APIトークン
         uid: UID  #g
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
@@ -98,6 +99,8 @@ ja:
       back: 戻る
       confirm: 本当によろしいですか？
       more: 続きを見る
+      update: 更新
+      my_page: マイページ
     actions:
       edit_delete: 変更・削除
       edit_revert: 変更・取消
@@ -118,6 +121,8 @@ ja:
     title: とりぐらふ
     triglav_developers: Triglav Developers
     nav:
+      api: API
+      my_page: :helper.links.my_page
       sign_in: サインイン
       sign_out: サインアウト
 
@@ -130,6 +135,9 @@ ja:
           error: サインイン処理中にエラーが起きました。
       destroy:
         success: サインアウトしました。
+    users:
+      update_api_token:
+        success: APIトークンを更新しました。
     services:
       create:
         success: サービスを新規作成しました。
@@ -171,6 +179,13 @@ ja:
     index:
       activities: :activerecord.models.activity
       empty: まだアクティビティが記録されていません。
+
+  api:
+    index:
+      title: API
+      sub_title1: APIへのアクセス
+      paragraph1: APIへアクセスするにはAPIトークンが必要です。%{my_page}からAPIトークンを取得してください。
+      sub_title2: Endpoints
 
   services:
     index:

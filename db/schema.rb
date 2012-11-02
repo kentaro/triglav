@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121023081649) do
+ActiveRecord::Schema.define(version: 20121101092945) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -85,8 +85,10 @@ ActiveRecord::Schema.define(version: 20121023081649) do
     t.string   "access_token"
     t.boolean  "member"
     t.datetime "deleted_at"
+    t.string   "api_token"
   end
 
+  add_index "users", ["api_token"], name: "index_users_on_api_token", unique: true
   add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   add_index "users", ["token"], name: "index_users_on_token", unique: true
 
