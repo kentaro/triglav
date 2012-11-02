@@ -77,6 +77,6 @@ group :assets do
   gem 'jquery-rails'
   gem 'less-rails',      github: 'metaskills/less-rails'
   gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
-
+  gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 end
