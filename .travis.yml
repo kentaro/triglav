@@ -2,10 +2,12 @@ language: ruby
 
 rvm:
   - 1.9.3
+  - ruby-head
 
 bundler_args: --without development:production
 
 before_install:
+  - gem install nokogiri ffi yajl-ruby redcarpet -- --with-cflags='--std=gnu99'
   - gem update bundler
 
 script:
