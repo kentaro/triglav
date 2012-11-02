@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
   validates :api_token,    format: { with: /\A[a-z0-9_\-]{22}\Z/i }, allow_blank: true
 
   has_many :activities, as: :model
+
+  # To enable /users/:name instead of /users/:id
+  def to_param
+    name
+  end
 end

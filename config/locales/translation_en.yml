@@ -87,6 +87,7 @@ en:
         name: Name  #g
         provider: Provider  #g
         token: Token  #g
+        api_token: API Token
         uid: UID  #g
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
@@ -148,6 +149,9 @@ en:
           error: Some error occured when signing in.
       destroy:
         success: Successfully signed out.
+    users:
+      update_api_token:
+        success: API token was successfully updated.
     services:
       create:
         success: Service was successfully created.

@@ -1,0 +1,5 @@
+<%= form_for current_user, url: update_api_token_user_path(current_user)  do |f| %>
+  <div class="form-actions">
+    <%= f.submit 'Update API Token', class: 'btn btn-primary' %>
+  </div>
+<% end -%>

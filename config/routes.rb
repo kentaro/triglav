@@ -6,7 +6,18 @@ Triglav::Application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
   get    '/auth/:provider/callback', to: 'sessions#create'
 
-  concern :revertable do member { put 'revert' } end
+  resources :users, constraints: { id: /[^\/\.]+/ }, only: [] do
+    member do
+      patch 'update_api_token'
+    end
+  end
+
+  concern :revertable do
+    member do
+      put 'revert'
+    end
+  end
+
   concern :commentable do
     resources :comments, only: [:create]
   end
@@ -18,6 +29,8 @@ Triglav::Application.routes.draw do
   get '/activities', to: 'activities#index'
 
   scope '/api' do
+    get '/', to: 'api#index'
+
     resources :services, constraints: { id: /[^\/\.]+/ }, only: %w(index show)
     resources :roles   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
     resources :hosts   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
