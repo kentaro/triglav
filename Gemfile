@@ -37,6 +37,7 @@ group :development do
   gem 'capistrano_colors'
   gem 'artii'
   gem 'capistrano_banner'
+  gem 'thin'
 end
 
 group :test do
