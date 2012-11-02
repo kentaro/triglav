@@ -1,7 +1,4 @@
 class ApiController < ApplicationController
-  def index
-  end
-
   def hosts
     service = Service.where(name: params[:service]).first
     role    = Role.where(name: params[:role]).first

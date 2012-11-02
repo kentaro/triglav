@@ -113,6 +113,7 @@ en:
       back: Back
       confirm: Are you sure?
       more: Read more
+      update: Update
     actions:
       edit_delete: Edit/Delete
       edit_revert: Edit/Revert
@@ -133,12 +134,9 @@ en:
     title: Triglav
     triglav_developers: Triglav Developers
     nav:
-      services: :activerecord.models.service
-      roles: :activerecord.models.role
-      hosts: :activerecord.models.host
+      my_page: My page
       sign_in: Sign in
       sign_out: Sign out
-      activities: :activerecord.models.activities
 
   notice:
     sessions:

@@ -99,6 +99,7 @@ ja:
       back: 戻る
       confirm: 本当によろしいですか？
       more: 続きを見る
+      update: 更新
     actions:
       edit_delete: 変更・削除
       edit_revert: 変更・取消
@@ -119,6 +120,7 @@ ja:
     title: とりぐらふ
     triglav_developers: Triglav Developers
     nav:
+      my_page: マイページ
       sign_in: サインイン
       sign_out: サインアウト
 

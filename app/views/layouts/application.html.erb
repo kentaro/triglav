@@ -55,6 +55,7 @@
                 <b class="caret"></b>
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <li><%= link_to t('layout.nav.my_page'), user_path(current_user) %></li>
                 <li><%= link_to t('layout.nav.sign_out'), signout_path, method: :delete %></li>
               </ul>
             </li>
