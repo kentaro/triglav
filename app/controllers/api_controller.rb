@@ -19,7 +19,7 @@ class ApiController < ApplicationController
         role_id:    role.id,
       ).includes(:host).map(&:host).uniq.select { |host| !host.deleted_at }
     elsif service && !role
-      hosts = service.hosts
+      hosts = service.hosts.uniq
     end
 
     render json: hosts
