@@ -17,7 +17,7 @@ class ApiController < ApplicationController
       hosts = HostRelation.where(
         service_id: service.id,
         role_id:    role.id,
-      ).includes(:host).map(&:host).select { |host| !host.deleted_at }
+      ).includes(:host).map(&:host).uniq.select { |host| !host.deleted_at }
     elsif service && !role
       hosts = service.hosts
     end
