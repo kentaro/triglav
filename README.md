@@ -6,7 +6,7 @@ Server Admin Tool.
 
  * http://triglav-kentaro.sqale.jp/ (Demo)
 
-![Triglav](https://pbs.twimg.com/media/A584sEFCUAACTO7.jpg:large)
+![Triglav](https://docs.google.com/drawings/pub?id=1XQRxih2OqDrXRIPT07aMo0XHlDtxKuX95Ev0_fOqmIM&w=960&h=720)
 
 # Setup
 
