@@ -100,6 +100,7 @@ ja:
       confirm: 本当によろしいですか？
       more: 続きを見る
       update: 更新
+      my_page: マイページ
     actions:
       edit_delete: 変更・削除
       edit_revert: 変更・取消
@@ -120,7 +121,8 @@ ja:
     title: とりぐらふ
     triglav_developers: Triglav Developers
     nav:
-      my_page: マイページ
+      api: API
+      my_page: :helper.links.my_page
       sign_in: サインイン
       sign_out: サインアウト
 
@@ -177,6 +179,13 @@ ja:
     index:
       activities: :activerecord.models.activity
       empty: まだアクティビティが記録されていません。
+
+  api:
+    index:
+      title: API
+      sub_title1: APIへのアクセス
+      paragraph1: APIへアクセスするにはAPIトークンが必要です。%{my_page}からAPIトークンを取得してください。
+      sub_title2: Endpoints
 
   services:
     index:

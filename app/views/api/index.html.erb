@@ -1,5 +1,13 @@
-<%= form_for current_user, url: update_api_token_user_path(current_user)  do |f| %>
-  <div class="form-actions">
-    <%= f.submit 'Update API Token', class: 'btn btn-primary' %>
-  </div>
-<% end -%>
+<div class="page-header">
+  <h1><%= t('api.index.title') %></h1>
+</div>
+
+<div class="row-fluid">
+  <h2><%= t('api.index.sub_title1') %></h2>
+  <p><%= raw t('api.index.paragraph1', my_page: link_to(t('helpers.links.my_page'), user_path(current_user)).html_safe) %></p>
+</div>
+
+<div class="row-fluid">
+  <h2><%= t('api.index.sub_title2') %></h2>
+  <pre><%= @info %></pre>
+</div>

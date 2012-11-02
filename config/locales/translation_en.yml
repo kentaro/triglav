@@ -134,6 +134,7 @@ en:
     title: Triglav
     triglav_developers: Triglav Developers
     nav:
+      api: API
       my_page: My page
       sign_in: Sign in
       sign_out: Sign out
@@ -191,6 +192,13 @@ en:
     index:
       activities: :activerecord.models.activity
       empty: No activity recorded.
+
+  api:
+    index:
+      title: API
+      sub_title1: Access the APIs
+      paragraph1: You need an API token to access Triglav APIs. Get your own one from %{my_page}.
+      sub_title2: エンドポイント
 
   services:
     index:

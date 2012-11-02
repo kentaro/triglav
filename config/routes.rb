@@ -25,6 +25,8 @@ Triglav::Application.routes.draw do
   get '/activities', to: 'activities#index'
 
   scope '/api' do
+    get '/', to: 'api#index'
+
     resources :services, constraints: { id: /[^\/\.]+/ }, only: %w(index show)
     resources :roles   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
     resources :hosts   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
