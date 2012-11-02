@@ -18,18 +18,18 @@ Triglav::Application.routes.draw do
     resources :comments, only: [:create]
   end
 
-  resources :services, constraints: { id: /[^\/\.]+/ }, concerns: [:revertable, :commentable]
-  resources :roles,    constraints: { id: /[^\/\.]+/ }, concerns: [:revertable, :commentable]
-  resources :hosts,    constraints: { id: /[^\/\.]+/ }, concerns: [:revertable, :commentable]
+  resources :services, constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
+  resources :roles,    constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
+  resources :hosts,    constraints: { id: /[^\/]+/ }, concerns: [:revertable, :commentable]
 
   get '/activities', to: 'activities#index'
 
   scope '/api' do
     get '/', to: 'api#index'
 
-    resources :services, constraints: { id: /[^\/\.]+/ }, only: %w(index show)
-    resources :roles   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
-    resources :hosts   , constraints: { id: /[^\/\.]+/ }, only: %w(index show)
+    resources :services, constraints: { id: /[^\/]+/ }, only: %w(index show)
+    resources :roles   , constraints: { id: /[^\/]+/ }, only: %w(index show)
+    resources :hosts   , constraints: { id: /[^\/]+/ }, only: %w(index show)
 
     get '/services/:service/:action', controller: 'api'
     get '/services/:service/roles/:role/:action', controller: 'api'
