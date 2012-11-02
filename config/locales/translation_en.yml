@@ -114,6 +114,7 @@ en:
       confirm: Are you sure?
       more: Read more
       update: Update
+      my_page: My page
     actions:
       edit_delete: Edit/Delete
       edit_revert: Edit/Revert
@@ -135,7 +136,7 @@ en:
     triglav_developers: Triglav Developers
     nav:
       api: API
-      my_page: My page
+      my_page: :helpers.links.my_page
       sign_in: Sign in
       sign_out: Sign out
 

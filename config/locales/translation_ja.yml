@@ -122,7 +122,7 @@ ja:
     triglav_developers: Triglav Developers
     nav:
       api: API
-      my_page: :helper.links.my_page
+      my_page: :helpers.links.my_page
       sign_in: サインイン
       sign_out: サインアウト
 
