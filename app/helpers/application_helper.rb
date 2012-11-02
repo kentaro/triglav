@@ -19,6 +19,8 @@ module ApplicationHelper
     if (token = cookies[:token])
       @current_user ||= User.find_by_token(token)
     end
+
+    @current_user
   end
 
   def current_user=(user)

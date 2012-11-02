@@ -6,7 +6,6 @@ FactoryGirl.define do
     sequence(:name)  { |n| "user#{n}" }
     provider         "github"
     sequence(:image) { |n| "//gravatar.com/avatar/#{SecureRandom.hex(16)}" }
-    token            SecureRandom.urlsafe_base64
     access_token     { |n| Digest::SHA1.hexdigest(n.to_s) }
     member           false
   end

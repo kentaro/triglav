@@ -119,5 +119,26 @@ describe User do
         end
       end
     end
+
+    describe 'api_token' do
+      context 'when valid' do
+        context 'when api_token is nil' do
+          let(:user) { build(:user, api_token: nil) }
+          it { expect(user.valid?).to be_true }
+        end
+
+        context 'when api_token is empty' do
+          let(:user) { build(:user, api_token: '') }
+          it { expect(user.valid?).to be_true }
+        end
+      end
+
+      context 'when invalid' do
+        context 'when api_token is permitted' do
+          let(:user) { build(:user, api_token: 'abcde') }
+          it { expect(user.valid?).to be_false}
+        end
+      end
+    end
   end
 end
