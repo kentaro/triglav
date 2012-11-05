@@ -12,3 +12,7 @@ before_install:
 
 script:
   - bundle exec rake setup db:create db:migrate spec
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
