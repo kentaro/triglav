@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.where(
-      provider: auth_params['provider'],
-      uid:      auth_params['uid'],
+      provider: auth_params.provider,
+      uid:      auth_params.uid,
     ).first_or_initialize
     context = SessionContext.new(user: @user)
 

@@ -10,9 +10,9 @@ class SessionContext
   def create (auth_params)
     is_new_record = user.new_record?
 
-    update_name(auth_params['info']['nickname'])
-    update_image(auth_params['extra']['raw_info']['avatar_url'])
-    update_access_token(auth_params['credentials'])
+    update_name(auth_params.info.nickname)
+    update_image(auth_params.extra.raw_info.avatar_url)
+    update_access_token(auth_params.credentials)
     update_privilege
     update_api_token
 
