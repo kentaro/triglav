@@ -11,9 +11,9 @@ class SessionContext
     is_new_record = user.new_record?
 
     update_name(auth_params.info.nickname)
-    update_image(auth_params.extra.raw_info.avatar_url)
+    update_image(auth_params.extra.raw_info.try(:avatar_url))
     update_access_token(auth_params.credentials)
-    update_privilege
+    update_privilege(auth_params.provider)
     update_api_token
 
     # We don't bother to save a user who is new for the service and
@@ -57,8 +57,8 @@ class SessionContext
     end
   end
 
-  def update_privilege
-    if Settings.github.try(:organizations).present?
+  def update_privilege(provider)
+    if provider == :github && Settings.github.try(:organizations).present?
       organizations.each do |org|
         if org['login'].in?(Settings.github.organizations || [])
           user.member = true

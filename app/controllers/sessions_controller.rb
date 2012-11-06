@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  protect_from_forgery with: :exception, except: ['create']
   skip_before_filter :require_member, only: [:create, :destroy]
 
   def create
