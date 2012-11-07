@@ -35,6 +35,8 @@ group :development do
 
   gem 'capistrano'
   gem 'capistrano_colors'
+  gem 'triglav-client'
+
   gem 'artii'
   gem 'capistrano_banner'
   gem 'thin'
