@@ -5,6 +5,7 @@
 /tmp
 .DS_Store
 /coverage
+/pkg
 
 # local settings
 /config/settings/*.yml
