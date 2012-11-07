@@ -196,6 +196,7 @@ GEM
     arel (3.0.2)
     artii (2.0.3)
     binding_of_caller (0.6.8)
+    bluecloth (2.2.0)
     builder (3.1.4)
     capistrano (2.13.5)
       highline
@@ -394,6 +395,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-deprecated_finders!
   artii
+  bluecloth
   capistrano
   capistrano_banner
   capistrano_colors

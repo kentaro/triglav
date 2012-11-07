@@ -17,6 +17,7 @@ gem 'omniauth-github'
 gem 'octokit'
 
 gem 'mysql2'
+gem 'bluecloth'
 
 group :development do
   gem 'pry'
