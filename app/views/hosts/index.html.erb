@@ -4,7 +4,7 @@
 </div>
 
 <%= render partial: 'shared/hosts', locals: { hosts: @hosts_without_deleted, is_deletable: true } %>
-<%= link_to t('helpers.links.new'), new_host_path, class: 'btn btn-primary' %>
+<%= link_to t('helpers.links.new'), new_host_path, class: 'btn btn-primary lsf-icon', title: 'plus' %>
 
 <% unless @deleted_hosts.blank? -%>
   <hr />

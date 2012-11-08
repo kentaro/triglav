@@ -118,7 +118,7 @@ ja:
       relation: "リレーションの%{type}"
 
   layout:
-    title: とりぐらふ
+    title: Triglav
     triglav_developers: Triglav Developers
     nav:
       api: API

@@ -108,7 +108,7 @@ $letter-spacing: 0;
     letter-spacing: $letter-spacing;
   } @else if $type == link {
     color: $font-color;
-    text-decoration: none !important;
+    text-decoration: none;
     background: none;
   } @else if $type == bubble {
     color: $font-color;
@@ -116,15 +116,15 @@ $letter-spacing: 0;
     line-height: $line-height-small;
     letter-spacing: $letter-spacing;
   } @else if $type == header {
-    color: $font-color !important;
-    font-size: $font-size-large !important;
+    color: $font-color;
+    font-size: $font-size-large;
     font-weight: normal;
-    line-height: $line-height !important;
+    line-height: $line-height;
     letter-spacing: $letter-spacing;
   } @else if $type == footer {
-    color: $font-color !important;
-    font-size: $font-size-small !important;
-    line-height: $line-height !important;
+    color: $font-color;
+    font-size: $font-size-small;
+    line-height: $line-height;
     letter-spacing: $letter-spacing;
   }
   
@@ -249,36 +249,6 @@ a {
 h1, h2, h3, h4, h5, h6, h7 {
 	font-weight: normal;
 }
-
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='search'],
-input[type='number'],
-textarea {
-  width: 100%;
-  padding: 0;
-  margin-bottom: 2px;
-  
-	@include font;
-	border: 0;
-	background-color: #fff;
-	border-top: 1px solid rgba(0, 0, 0, 0.3);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='password']:focus,
-input[type='search']:focus,
-input[type='number']:focus,
-textarea:focus {
-  background-color: #fff;
-}
-
-
-
-
 
 
 h1, h2, h3, h4, h5, h6 {
