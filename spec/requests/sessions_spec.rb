@@ -13,6 +13,17 @@ describe "Signin/Signout" do
         expect(current_path).to be == '/caveat'
         expect(subject).to have_content 'Sign in'
       }
+
+      context 'development environment' do
+        before {
+          Rails.stub(:env) { ActiveSupport::StringInquirer.new('development') }
+          visit '/'
+        }
+
+        it {
+          expect(subject).to have_content 'Sign in as a developer'
+        }
+      end
     end
 
     context 'when logged in as a user' do
