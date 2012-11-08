@@ -16,7 +16,7 @@
     <% roles.each do |role| %>
       <tr>
         <td><%= link_to role.name, role_path(role) %></td>
-        <td><%= role.description %></td>
+        <td><%= markdown(role.description) %></td>
         <td><%=l role.created_at %></td>
         <td>
           <%= link_to t('helpers.links.edit'),

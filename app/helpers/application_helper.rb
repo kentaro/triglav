@@ -26,4 +26,9 @@ module ApplicationHelper
   def current_user=(user)
     @current_user = user
   end
+
+  def markdown(text)
+    options = { escape_html: true, auto_links: true }
+    BlueCloth.new(text, options).to_html.html_safe
+  end
 end

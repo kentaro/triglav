@@ -36,7 +36,7 @@
           </td>
           <td>
             <% if host.description.present? -%>
-              <p><%= host.description %></p>
+              <p><%= markdown(host.description) %></p>
             <% end -%>
             <p>
               <small><span class="label">Created at</span>
