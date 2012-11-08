@@ -12,7 +12,7 @@ describe 'i18n' do
         visit '/'
       }
 
-      it { expect(page).to have_content 'とりぐらふ' }
+      it { expect(page).to have_content 'サインイン' }
     end
 
     context 'when HTTP_ACCEPT_LANGUAGE is en' do
