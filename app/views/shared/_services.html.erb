@@ -16,7 +16,7 @@
       <% services.each do |service| %>
         <tr>
           <td><%= link_to service.name, service_path(service) %></td>
-          <td><%= service.description %></td>
+          <td><%= markdown(service.description) %></td>
           <td><%=l service.created_at %></td>
           <td>
             <%= link_to t('helpers.links.edit'),

@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:is_active) %>:</strong></dt>
   <dd><%= t(@host.active ? model_class.human_attribute_name(:active) : model_class.human_attribute_name(:inactive)) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @host.description %></dd>
+  <dd><%= markdown(@host.description) %></dd>
   <dt><strong><%= model_class.human_attribute_name(:service) %> - <%= model_class.human_attribute_name(:role) %>:</strong></dt>
   <% @host.host_relations.each do |relation| -%>
     <dd><%= relation.service.name %> - <%= relation.role.name %></dd>
