@@ -138,6 +138,7 @@ en:
       api: API
       my_page: :helpers.links.my_page
       sign_in: Sign in
+      dev_sign_in: Dev sign in
       sign_out: Sign out
 
   notice:
