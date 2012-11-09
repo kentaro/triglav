@@ -21,7 +21,7 @@ describe "Signin/Signout" do
         }
 
         it {
-          expect(subject).to have_content 'Sign in as a developer'
+          expect(subject).to have_content 'Sign in with developer strategy'
         }
       end
     end
