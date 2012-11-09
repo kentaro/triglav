@@ -138,7 +138,7 @@ en:
       api: API
       my_page: :helpers.links.my_page
       sign_in: Sign in
-      dev_sign_in: Sign in as a developer
+      dev_sign_in: Sign in with developer strategy
       sign_out: Sign out
 
   notice:
