@@ -2,19 +2,19 @@
   <div class="control-group">
     <%= f.label :name, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, class: 'text_field' %>
+      <%= f.text_field :name, class: 'text_field span5' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :description, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, class: 'text_area' %>
+      <%= f.text_area :description, class: 'text_area markdown span10', placeholder: '# Markdown' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :munin_url, class: 'control-label' %>
     <div class="controls">
-      <%= f.text_field :munin_url, class: 'text_field' %>
+      <%= f.text_field :munin_url, class: 'text_field span10', placeholder: 'http://' %>
     </div>
   </div>
 
