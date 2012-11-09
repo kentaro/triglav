@@ -12,14 +12,7 @@ class CommentContext
       @comment.activities.create(user_id: @user.id, tag: 'create')
       true
     else
-      p @comment.errors
       false
     end
   end
 end
-
-
-
-
-
-

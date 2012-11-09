@@ -16,7 +16,7 @@ describe "Signin/Signout" do
     end
 
     context 'when logged in as a user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let(:user) { create(:user) }
 
         before {
@@ -33,7 +33,7 @@ describe "Signin/Signout" do
 
   describe 'GET /signin' do
     context 'when logged in as a new user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let(:user) { build(:user) }
 
         it {
@@ -48,7 +48,7 @@ describe "Signin/Signout" do
         }
       end
 
-      context 'when user is not a member of the specified organization' do
+      context 'and user is not a member of the specified organization' do
         let(:user) { build(:user) }
 
         before {
@@ -68,7 +68,7 @@ describe "Signin/Signout" do
     end
 
     context 'when logged in as an existing user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let!(:user) { create(:user) }
 
         it {
@@ -83,7 +83,7 @@ describe "Signin/Signout" do
         }
       end
 
-      context 'when user is not a member of the specified organization' do
+      context 'and user is not a member of the specified organization' do
         let!(:user) { create(:user) }
 
         before {
@@ -103,8 +103,8 @@ describe "Signin/Signout" do
     end
 
     context 'when Settings.github.organizations is blank (free member mode)' do
-      context 'when user is a member of some organization' do
-        context 'Settings.github.organizations returns nil' do
+      context 'and user is a member of some organization' do
+        context 'and Settings.github.organizations returns nil' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -122,7 +122,7 @@ describe "Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty string' do
+        context 'and Settings.github.organizations returns empty string' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return('')
@@ -140,7 +140,7 @@ describe "Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty array' do
+        context 'and Settings.github.organizations returns empty array' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -159,8 +159,8 @@ describe "Signin/Signout" do
         end
       end
 
-      context 'when user is not a member of any organization' do
-        context 'Settings.github.organizations returns nil' do
+      context 'and user is not a member of any organization' do
+        context 'and Settings.github.organizations returns nil' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -179,7 +179,7 @@ describe "Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty string' do
+        context 'and Settings.github.organizations returns empty string' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return('')
@@ -198,7 +198,7 @@ describe "Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty array' do
+        context 'and Settings.github.organizations returns empty array' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
