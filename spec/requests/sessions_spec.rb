@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Signin/Signout" do
+shared_examples "describing Signin/Signout" do
   subject { page }
 
   describe "GET /" do
@@ -13,17 +13,6 @@ describe "Signin/Signout" do
         expect(current_path).to be == '/caveat'
         expect(subject).to have_content 'Sign in'
       }
-
-      context 'development environment' do
-        before {
-          Rails.stub(:env) { ActiveSupport::StringInquirer.new('development') }
-          visit '/'
-        }
-
-        it {
-          expect(subject).to have_content 'Sign in with developer strategy'
-        }
-      end
     end
 
     context 'when logged in as a user' do
@@ -246,5 +235,23 @@ describe "Signin/Signout" do
         expect(subject).to have_content 'Successfully signed out'
       }
     end
+  end
+end
+
+describe "Signin/Signout" do
+  it_behaves_like "describing Signin/Signout"
+
+  context "development environment" do
+    subject { page }
+
+    before {
+      Rails.stub(:env) { ActiveSupport::StringInquirer.new('development') }
+    }
+
+    it {
+      visit '/'
+      expect(subject).to have_content 'Sign in with developer strategy'
+    }
+    it_behaves_like "describing Signin/Signout"
   end
 end
