@@ -3,10 +3,12 @@ Triglav::Application.routes.draw do
   get '/caveat', to: 'root#caveat'
 
   get    '/signin' => redirect('/auth/github')
-  get    '/dev_signin' => redirect('/auth/developer')
   delete '/signout', to: 'sessions#destroy'
   get    '/auth/:provider/callback', to: 'sessions#create'
-  post   '/auth/developer/callback', to: 'sessions#create' if Rails.env.development?
+  if Rails.env.development?
+    get    '/dev_signin' => redirect('/auth/developer')
+    post   '/auth/developer/callback', to: 'sessions#create'
+  end
 
   resources :users, constraints: { id: /[^\/\.]+/ }, only: %w(show update)
 
