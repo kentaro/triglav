@@ -53,6 +53,7 @@ ja:
     - :month
     - :day
   datetime:
+    ago: '%{datetime}前'
     distance_in_words:
       about_x_hours:
         one: 約1時間

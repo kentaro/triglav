@@ -17,7 +17,7 @@
         <tr>
           <td><%= link_to service.name, service_path(service) %></td>
           <td><%= markdown(service.description) %></td>
-          <td><%=l service.created_at %></td>
+          <td><%= datetime_ago(service.created_at) %></td>
           <td>
             <%= link_to t('helpers.links.edit'),
                 edit_service_path(service), class: 'btn btn-mini' %>

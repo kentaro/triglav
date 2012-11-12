@@ -26,7 +26,7 @@
             <%= comment.user.name %>
           </td>
           <td><%= comment.content %></td>
-          <td><%=l comment.created_at %></td>
+          <td><%= datetime_ago(comment.created_at) %></td>
         </tr>
       <% end %>
     </tbody>
