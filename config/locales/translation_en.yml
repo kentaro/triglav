@@ -155,8 +155,10 @@ en:
     services:
       create:
         success: Service was successfully created.
+        alert: Failed to create service.
       update:
         success: Service was successfully updated.
+        alert: Failed to update service.
       destroy:
         success: Service was successfully destroyed.
       revert:
@@ -164,8 +166,10 @@ en:
     roles:
       create:
         success: Role was successfully created.
+        alert: Failed to create role.
       update:
         success: Role was successfully updated.
+        alert: Failed to update role.
       destroy:
         success: Role was successfully destroyed.
       revert:
@@ -173,8 +177,10 @@ en:
     hosts:
       create:
         success: Host was successfully created.
+        alert: Failed to create host.
       update:
         success: Host was successfully updated.
+        alert: Failed to update host.
       destroy:
         success: Host was successfully destroyed.
       revert:

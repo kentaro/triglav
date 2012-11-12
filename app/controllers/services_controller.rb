@@ -31,7 +31,9 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.create
-      flash[:notice] = 'notice.services.create.success'
+      flash[:notice]    = 'notice.services.create.success'
+    else
+      flash.now[:alert] = 'notice.services.create.alert'
     end
 
     respond_with @service
@@ -42,7 +44,9 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.update(service_params)
-      flash[:notice] = 'notice.services.update.success'
+      flash[:notice]    = 'notice.services.update.success'
+    else
+      flash.now[:alert] = 'notice.services.update.alert'
     end
 
     respond_with @service
