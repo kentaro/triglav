@@ -1,30 +1,10 @@
 <%= form_for @host, html: { class: 'form-horizontal' } do |f| %>
 <div class="row-fluid">
   <div class="span5">
-    <div class="control-group">
-      <%= f.label :name, class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :name, class: 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :ip_address, class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :ip_address, class: 'text_field' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :active, class: 'control-label' %>
-      <div class="controls">
-        <%= f.check_box :active, class: 'check_box' %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= f.label :description, class: 'control-label' %>
-      <div class="controls">
-        <%= f.text_area :description, class: 'text_area' %>
-      </div>
-    </div>
+    <%= f.text_field :name, class: 'text_field' %>
+    <%= f.text_field :ip_address, class: 'text_field' %>
+    <%= f.check_box :active, class: 'check_box' %>
+    <%= f.text_area :description, class: 'text_area' %>
   </div>
   <div class="span7">
     <%= f.fields_for :host_relations do |relation| %>
@@ -34,7 +14,6 @@
     <%= template_for_relation_fields(f, :host_relations) %>
   </div>
 </div>
-
 <div class="form-actions">
   <%= f.submit nil, class: 'btn btn-primary' %>
 </div>
