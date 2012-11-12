@@ -1,15 +1,6 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
 /* import */
@@ -62,20 +53,46 @@
 /* common */
 
 $gap: 20px;
+$color-diff: 5;
 
-$white: #fff;
-$gray-light: #eee;
-$gray: #aaa;
+$white: #f2f2f2;
+$gray-light: #e0e0e0;
+$gray: #999;
 $gray-dark: #666;
-$black: #000;
+$black: #333;
+
+$red: #D04255;
+$yellow: #F0BA32;
+$green: #1DAF9E;
+$blue: #1F91BE;
+$purple: #C23685;
+
+$red-light: lighten($red, $color-diff);
+$red-dark: darken($red, $color-diff);
+$blue-light: lighten($blue, $color-diff);
+$blue-dark: darken($blue, $color-diff);
+$green-light: lighten($green, $color-diff);
+$green-dark: darken($green, $color-diff);
+$yellow-light: lighten($yellow, $color-diff);
+$yellow-dark: darken($yellow, $color-diff);
+$purple-light: lighten($purple, $color-diff);
+$purple-dark: darken($purple, $color-diff);
 
 $font-color: $black;
 $font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-$font-size: 14px;
-$font-size-small: $font-size*0.88;
-$font-size-large: $font-size*1.33;
+$font-size: 100%;
+$font-size-small: 90%;
+$font-size-large: 110%;
 $line-height: 1.66;
 $line-height-small: $line-height*0.8;
+$letter-spacing: 0;
+
+$font-color: #000;
+$font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+$font-size: 100%;
+$font-size-small: 90%;
+$font-size-large: 110%;
+$line-height: 1.66;
 $letter-spacing: 0;
 
 @mixin font($type: default) {
@@ -91,7 +108,7 @@ $letter-spacing: 0;
     letter-spacing: $letter-spacing;
   } @else if $type == link {
     color: $font-color;
-    text-decoration: none !important;
+    text-decoration: none;
     background: none;
   } @else if $type == bubble {
     color: $font-color;
@@ -99,15 +116,15 @@ $letter-spacing: 0;
     line-height: $line-height-small;
     letter-spacing: $letter-spacing;
   } @else if $type == header {
-    color: $font-color !important;
-    font-size: $font-size-large !important;
+    color: $font-color;
+    font-size: $font-size-large;
     font-weight: normal;
-    line-height: $line-height !important;
+    line-height: $line-height;
     letter-spacing: $letter-spacing;
   } @else if $type == footer {
-    color: $font-color !important;
-    font-size: $font-size-small !important;
-    line-height: $line-height !important;
+    color: $font-color;
+    font-size: $font-size-small;
+    line-height: $line-height;
     letter-spacing: $letter-spacing;
   }
   
@@ -132,6 +149,60 @@ $letter-spacing: 0;
       #{$prefix}border-radius: $gap/2;
     } 
   }
+}
+
+.btn:hover {
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.33);
+}
+
+.btn-danger {
+  background-color: $red;
+  background: -webkit-linear-gradient($red-light, $red 50%, $red 50%, $red-dark);
+  background: -moz-linear-gradient($red-light, $red 50%, $red 50%, $red-dark);
+  background: -o-linear-gradient($red-light, $red 50%, $red 50%, $red-dark);
+  background: linear-gradient($red-light, $red 50%, $red 50%, $red-dark);
+
+  &:hover { background: $red-dark; }
+}
+
+.btn-warning {
+  background-color: $yellow;
+  background: -webkit-linear-gradient($yellow-light, $yellow 50%, $yellow 50%, $yellow-dark);
+  background: -moz-linear-gradient($yellow-light, $yellow 50%, $yellow 50%, $yellow-dark);
+  background: -o-linear-gradient($yellow-light, $yellow 50%, $yellow 50%, $yellow-dark);
+  background: linear-gradient($yellow-light, $yellow 50%, $yellow 50%, $yellow-dark);
+  
+  &:hover { background: $yellow-dark; }
+}
+
+.btn-success {
+  background-color: $green;
+  background: -webkit-linear-gradient($green-light, $green 50%, $green 50%, $green-dark);
+  background: -moz-linear-gradient($green-light, $green 50%, $green 50%, $green-dark);
+  background: -o-linear-gradient($green-light, $green 50%, $green 50%, $green-dark);
+  background: linear-gradient($green-light, $green 50%, $green 50%, $green-dark);
+  
+  &:hover { background: $green-dark; }
+}
+
+.btn-primary {
+  background-color: $blue;
+  background: -webkit-linear-gradient($blue-light, $blue 50%, $blue 50%, $blue-dark);
+  background: -moz-linear-gradient($blue-light, $blue 50%, $blue 50%, $blue-dark);
+  background: -o-linear-gradient($blue-light, $blue 50%, $blue 50%, $blue-dark);
+  background: linear-gradient($blue-light, $blue 50%, $blue 50%, $blue-dark);
+  
+  &:hover { background: $blue-dark; }
+}
+
+.btn-info {
+  background-color: $purple;
+  background: -webkit-linear-gradient($purple-light, $purple 50%, $purple 50%, $purple-dark);
+  background: -moz-linear-gradient($purple-light, $purple 50%, $purple 50%, $purple-dark);
+  background: -o-linear-gradient($purple-light, $purple 50%, $purple 50%, $purple-dark);
+  background: linear-gradient($purple-light, $purple 50%, $purple 50%, $purple-dark);
+  
+  &:hover { background: $purple-dark; }
 }
 
 .bubble {
@@ -179,36 +250,6 @@ h1, h2, h3, h4, h5, h6, h7 {
 	font-weight: normal;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='search'],
-input[type='number'],
-textarea {
-  width: 100%;
-  padding: 0;
-  margin-bottom: 2px;
-  
-	@include font;
-	border: 0;
-	background-color: #fff;
-	border-top: 1px solid rgba(0, 0, 0, 0.3);
-	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-input[type='text']:focus,
-input[type='email']:focus,
-input[type='password']:focus,
-input[type='search']:focus,
-input[type='number']:focus,
-textarea:focus {
-  background-color: #fff;
-}
-
-
-
-
-
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
@@ -234,6 +275,10 @@ a.btn-inverse:visited,
 
 a.brand:hover {
   background-color: transparent;
+}
+
+.markdown {
+  height: 20em;
 }
 
 .more {

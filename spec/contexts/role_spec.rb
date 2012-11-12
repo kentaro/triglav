@@ -2,49 +2,73 @@ require 'spec_helper'
 
 describe RoleContext do
   describe '#create' do
-    let(:user)    { create(:user) }
-    let(:role)    { create(:role) }
-    let(:context) { RoleContext.new(user: user, role: role) }
+    context 'when role will be successfully created' do
+      let(:user)    { create(:user) }
+      let(:role)    { build(:role)  }
+      let(:context) { RoleContext.new(user: user, role: role) }
 
-    before { context.create }
+      before { context.create }
 
-    it {
-      activity = Activity.first
+      it {
+        activity = Activity.first
 
-      expect(activity).to be_true
-      expect(activity.user).to be  == user
-      expect(activity.model).to be == role
-      expect(activity.tag).to be == 'create'
-    }
+        expect(activity).to be_true
+        expect(activity.user).to be  == user
+        expect(activity.model).to be == role
+        expect(activity.tag).to be == 'create'
+      }
+    end
+
+    context 'when role will fail to be created' do
+      let(:role)    { build(:role, name: nil)     }
+      let(:context) { RoleContext.new(role: role) }
+
+      it {
+        expect(context.create).to be_false
+        expect(role.valid?).to be_false
+      }
+    end
   end
 
   describe '#update' do
-    let(:user)    { create(:user) }
-    let(:role)    { create(:role) }
-    let(:context) { RoleContext.new(user: user, role: role) }
+    context 'when role will be successfully updated' do
+      let(:user)    { create(:user) }
+      let(:role)    { create(:role) }
+      let(:context) { RoleContext.new(user: user, role: role) }
 
-    let!(:old_name) { role.name        }
-    let!(:old_desc) { role.description }
+      let!(:old_name) { role.name        }
+      let!(:old_desc) { role.description }
 
-    before {
-      context.update(
-        "name"        => 'updated',
-        "description" => 'updated',
-      )
-    }
-
-    it {
-      activity = Activity.first
-
-      expect(activity).to be_true
-      expect(activity.user).to be  == user
-      expect(activity.model).to be == role
-      expect(activity.tag).to be == 'update'
-      expect(activity.diff).to be == {
-        'name'        => [old_name, 'updated'],
-        'description' => [old_desc, 'updated'],
+      before {
+        context.update(
+          "name"        => 'updated',
+          "description" => 'updated',
+        )
       }
-    }
+
+      it {
+        activity = Activity.first
+
+        expect(activity).to be_true
+        expect(activity.user).to be  == user
+        expect(activity.model).to be == role
+        expect(activity.tag).to be == 'update'
+        expect(activity.diff).to be == {
+          'name'        => [old_name, 'updated'],
+          'description' => [old_desc, 'updated'],
+        }
+      }
+    end
+
+    context 'when role will fail to be updated' do
+      let(:role)    { create(:role) }
+      let(:context) { RoleContext.new(role: role) }
+
+      it {
+        expect(context.update(name: nil)).to be_false
+        expect(role.valid?).to be_false
+      }
+    end
   end
 
   describe '#destroy' do

@@ -3,6 +3,8 @@
 require File.expand_path('../config/application', __FILE__)
 Triglav::Application.load_tasks
 
+require "bundler/gem_tasks"
+
 desc 'setup files for development'
 task 'setup' do
   %x{cp config/database.sample.yml config/database.yml}

@@ -36,11 +36,11 @@
           </td>
           <td>
             <% if host.description.present? -%>
-              <p><%= host.description %></p>
+              <p><%= markdown(host.description) %></p>
             <% end -%>
             <p>
               <small><span class="label">Created at</span>
-              <%=l host.created_at %></small>
+              <%= datetime_ago(host.created_at) %></small>
             </p>
           </td>
           <td>

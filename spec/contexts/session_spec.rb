@@ -3,12 +3,12 @@ require 'spec_helper'
 describe SessionContext do
   describe '#create' do
     context 'when user signs in for the first time' do
-      context 'when user is a member' do
+      context 'and user is a member' do
         let(:user)    { build(:user) }
         let(:context) { SessionContext.new(user: user) }
 
         before {
-          SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
+          context.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
         }
 
         it {
@@ -33,12 +33,12 @@ describe SessionContext do
         }
       end
 
-      context 'when user is not a member' do
+      context 'and user is not a member' do
         let(:user)    { build(:user) }
         let(:context) { SessionContext.new(user: user) }
 
         before {
-          SessionContext.any_instance.stub(:organizations).and_return([])
+          context.stub(:organizations).and_return([])
         }
 
         it {
@@ -59,12 +59,12 @@ describe SessionContext do
     end
 
     context 'when user signs in again' do
-      context 'when user is a member' do
+      context 'and user is a member' do
         let(:user)    { create(:user) }
         let(:context) { SessionContext.new(user: user) }
 
         before {
-          SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
+          context.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
         }
 
         it {
@@ -79,12 +79,12 @@ describe SessionContext do
         }
       end
 
-      context 'when user is not a member' do
-        let(:user)    { build(:user) }
+      context 'and user is not a member' do
+        let!(:user)   { create(:user) }
         let(:context) { SessionContext.new(user: user) }
 
         before {
-          SessionContext.any_instance.stub(:organizations).and_return([])
+          context.stub(:organizations).and_return([])
         }
 
         it {
@@ -102,6 +102,23 @@ describe SessionContext do
           expect(user.api_token).to be_nil
         }
       end
+    end
+
+    context 'when user will fail to be created' do
+      let(:user)    { build(:user) }
+      let(:context) { SessionContext.new(user: user) }
+
+      before {
+        context.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
+      }
+
+      it {
+        auth_params = auth_params_for(user)
+        auth_params['info']['nickname'] = nil
+
+        expect(context.create(auth_params)).to be_false
+        expect(user.valid?).to be_false
+      }
     end
   end
 
@@ -148,7 +165,7 @@ describe SessionContext do
     let(:context) { SessionContext.new(user: user) }
 
     before {
-      SessionContext.any_instance.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
+      context.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
       context.update_privilege('github')
     }
 
@@ -156,8 +173,8 @@ describe SessionContext do
   end
 
   describe "#update_api_token" do
-    context 'user is a member' do
-      context 'api_token has not been set yet' do
+    context 'when user is a member' do
+      context 'and api_token has not been set yet' do
         let(:user)    { create(:user, member: true, api_token: nil) }
         let(:context) { SessionContext.new(user: user) }
 
@@ -168,7 +185,7 @@ describe SessionContext do
         it { expect(user.api_token).to be_true }
       end
 
-      context 'api_token is already set' do
+      context 'and api_token is already set' do
         let(:user)       { create(:user, member: true, api_token: SecureRandom.urlsafe_base64) }
         let!(:api_token) { user.api_token }
         let(:context)    { SessionContext.new(user: user) }
@@ -184,8 +201,8 @@ describe SessionContext do
       end
     end
 
-    context 'user is not a member' do
-      context 'api_token has not been set yet' do
+    context 'when user is not a member' do
+      context 'and api_token has not been set yet' do
         let(:user)    { create(:user, member: nil, api_token: nil) }
         let(:context) { SessionContext.new(user: user) }
 
@@ -196,7 +213,7 @@ describe SessionContext do
         it { expect(user.api_token).to be_nil }
       end
 
-      context 'api_token is already set' do
+      context 'and api_token is already set' do
         let(:user)       { create(:user, member: nil, api_token: SecureRandom.urlsafe_base64) }
         let!(:api_token) { user.api_token }
         let(:context)    { SessionContext.new(user: user) }
@@ -208,5 +225,19 @@ describe SessionContext do
         it { expect(user.api_token).to be_nil }
       end
     end
+  end
+
+  describe '#organizations' do
+    let(:user)    { create(:user) }
+    let(:context) { SessionContext.new(user: user) }
+    let(:orgs)    { [{ "login" => "triglav-developers" }] }
+
+    before {
+      Octokit::Client.any_instance.stub(:organizations).and_return(orgs)
+    }
+
+    it {
+      expect(context.organizations).to be == orgs
+    }
   end
 end

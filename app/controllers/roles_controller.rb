@@ -26,52 +26,48 @@ class RolesController < ApplicationController
     @role   = Role.new(role_params)
     context = RoleContext.new(user: current_user, role: @role)
 
-    respond_to do |format|
-      if context.create
-        format.html { redirect_to @role, notice: 'notice.roles.create.success' }
-        format.json { render json: @role, status: :created, location: @role }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
+    if context.create
+      flash[:notice]    = 'notice.roles.create.success'
+    else
+      flash.now[:alert] = 'notice.roles.create.alert'
     end
+
+    respond_with @role
   end
 
   def update
     @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
 
-    respond_to do |format|
-      if context.update(role_params)
-        format.html { redirect_to @role, notice: 'notice.roles.update.success' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @role.errors, status: :unprocessable_entity }
-      end
+    if context.update(role_params)
+      flash[:notice]    = 'notice.roles.update.success'
+    else
+      flash.now[:alert] = 'notice.roles.update.alert'
     end
+
+    respond_with @role
   end
 
   def destroy
     @role = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
-    context.destroy
 
-    respond_to do |format|
-      format.html { redirect_to roles_url, notice: 'notice.roles.destroy.success' }
-      format.json { head :no_content }
+    if context.destroy
+      flash[:notice] = 'notice.roles.destroy.success'
     end
+
+    respond_with @role, location: roles_path
   end
 
   def revert
     @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
-    context.revert
 
-    respond_to do |format|
-      format.html { redirect_to roles_url, notice: 'notice.roles.revert.success' }
-      format.json { head :no_content }
+    if context.revert
+      flash[:notice] = 'notice.roles.revert.success'
     end
+
+    respond_with @role, location: roles_path
   end
 
   private

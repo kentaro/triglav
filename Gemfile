@@ -17,6 +17,7 @@ gem 'omniauth-github'
 gem 'octokit'
 
 gem 'mysql2'
+gem 'bluecloth'
 
 group :development do
   gem 'pry'
@@ -35,6 +36,8 @@ group :development do
 
   gem 'capistrano'
   gem 'capistrano_colors'
+  gem 'triglav-client'
+
   gem 'artii'
   gem 'capistrano_banner'
   gem 'thin'
@@ -59,7 +62,6 @@ group :test do
   gem 'database_cleaner'
 
   gem 'rake'
-  gem 'rspec-formatter-beep', github: 'kentaro/rspec-formatter-beep'
 
   gem 'simplecov'
 end

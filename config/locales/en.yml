@@ -53,6 +53,7 @@ en:
     - :month
     - :day
   datetime:
+    ago: ! '%{datetime} ago'
     distance_in_words:
       about_x_hours:
         one: about 1 hour

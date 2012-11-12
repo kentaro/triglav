@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @role.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @role.description %></dd>
+  <dd><%= markdown(@role.description) %></dd>
 </dl>
 
 <div class="form-actions">

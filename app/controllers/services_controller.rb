@@ -30,52 +30,48 @@ class ServicesController < ApplicationController
     @service = Service.new(service_params)
     context  = ServiceContext.new(user: current_user, service: @service)
 
-    respond_to do |format|
-      if context.create
-        format.html { redirect_to @service, notice: 'notice.services.create.success' }
-        format.json { render json: @service, status: :created, location: @service }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
-      end
+    if context.create
+      flash[:notice]    = 'notice.services.create.success'
+    else
+      flash.now[:alert] = 'notice.services.create.alert'
     end
+
+    respond_with @service
   end
 
   def update
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
 
-    respond_to do |format|
-      if context.update(service_params)
-        format.html { redirect_to @service, notice: 'notice.services.update.success' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @service.errors, status: :unprocessable_entity }
-      end
+    if context.update(service_params)
+      flash[:notice]    = 'notice.services.update.success'
+    else
+      flash.now[:alert] = 'notice.services.update.alert'
     end
+
+    respond_with @service
   end
 
   def destroy
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
-    context.destroy
 
-    respond_to do |format|
-      format.html { redirect_to services_url, notice: 'notice.services.destroy.success' }
-      format.json { head :no_content }
+    if context.destroy
+      flash[:notice] = 'notice.services.destroy.success'
     end
+
+    respond_with @service, location: services_path
   end
 
   def revert
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
-    context.revert
 
-    respond_to do |format|
-      format.html { redirect_to services_url, notice: 'notice.services.revert.success' }
-      format.json { head :no_content }
+    if context.revert
+      flash[:notice] = 'notice.services.revert.success'
     end
+
+    respond_with @service, location: services_path
   end
 
   private

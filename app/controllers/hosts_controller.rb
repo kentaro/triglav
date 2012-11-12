@@ -34,52 +34,48 @@ class HostsController < ApplicationController
     @host   = Host.new(host_params)
     context = HostContext.new(user: current_user, host: @host)
 
-    respond_to do |format|
-      if context.create
-        format.html { redirect_to @host, notice: 'notice.hosts.create.success' }
-        format.json { render json: @host, status: :created, location: @host }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @host.errors, status: :unprocessable_entity }
-      end
+    if context.create
+      flash[:notice]    = 'notice.hosts.create.success'
+    else
+      flash.now[:alert] = 'notice.hosts.create.alert'
     end
+
+    respond_with @host
   end
 
   def update
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
 
-    respond_to do |format|
-      if context.update(host_params)
-        format.html { redirect_to @host, notice: 'notice.hosts.update.success' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @host.errors, status: :unprocessable_entity }
-      end
+    if context.update(host_params)
+      flash[:notice]    = 'notice.hosts.update.success'
+    else
+      flash.now[:alert] = 'notice.hosts.update.alert'
     end
+
+    respond_with @host
   end
 
   def destroy
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
-    context.destroy
 
-    respond_to do |format|
-      format.html { redirect_to hosts_url, notice: 'notice.hosts.destroy.success' }
-      format.json { head :no_content }
+    if context.destroy
+      flash[:notice] = 'notice.hosts.destroy.success'
     end
+
+    respond_with @host, location: hosts_path
   end
 
   def revert
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
-    context.revert
 
-    respond_to do |format|
-      format.html { redirect_to hosts_url, notice: 'notice.hosts.revert.success' }
-      format.json { head :no_content }
+    if context.revert
+      flash[:notice] = 'notice.hosts.revert.success'
     end
+
+    respond_with @host, location: hosts_path
   end
 
   private

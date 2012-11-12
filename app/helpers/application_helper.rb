@@ -26,4 +26,13 @@ module ApplicationHelper
   def current_user=(user)
     @current_user = user
   end
+
+  def markdown(text)
+    options = { escape_html: true, auto_links: true }
+    BlueCloth.new(text, options).to_html.html_safe
+  end
+
+  def datetime_ago(datetime)
+    I18n.translate('datetime.ago', datetime: time_ago_in_words(datetime))
+  end
 end

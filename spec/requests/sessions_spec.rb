@@ -16,7 +16,7 @@ shared_examples "describing Signin/Signout" do
     end
 
     context 'when logged in as a user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let(:user) { create(:user) }
 
         before {
@@ -33,7 +33,7 @@ shared_examples "describing Signin/Signout" do
 
   describe 'GET /signin' do
     context 'when logged in as a new user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let(:user) { build(:user) }
 
         it {
@@ -48,7 +48,21 @@ shared_examples "describing Signin/Signout" do
         }
       end
 
-      context 'when user is not a member of the specified organization' do
+      context 'and user is a member but has invalid user info' do
+        let(:user) { build(:user, name: nil) }
+
+        it {
+          expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+        }
+
+        it {
+          sign_in_as_member(user)
+          expect(current_path).to be == '/caveat'
+          expect(subject).to have_content "Some error occured when signing in"
+        }
+      end
+
+      context 'and user is not a member of the specified organization' do
         let(:user) { build(:user) }
 
         before {
@@ -68,7 +82,7 @@ shared_examples "describing Signin/Signout" do
     end
 
     context 'when logged in as an existing user' do
-      context 'when user is a member of the specified organization' do
+      context 'and user is a member of the specified organization' do
         let!(:user) { create(:user) }
 
         it {
@@ -83,7 +97,7 @@ shared_examples "describing Signin/Signout" do
         }
       end
 
-      context 'when user is not a member of the specified organization' do
+      context 'and user is not a member of the specified organization' do
         let!(:user) { create(:user) }
 
         before {
@@ -103,8 +117,8 @@ shared_examples "describing Signin/Signout" do
     end
 
     context 'when Settings.github.organizations is blank (free member mode)' do
-      context 'when user is a member of some organization' do
-        context 'Settings.github.organizations returns nil' do
+      context 'and user is a member of some organization' do
+        context 'and Settings.github.organizations returns nil' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -122,7 +136,7 @@ shared_examples "describing Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty string' do
+        context 'and Settings.github.organizations returns empty string' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return('')
@@ -140,7 +154,7 @@ shared_examples "describing Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty array' do
+        context 'and Settings.github.organizations returns empty array' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -159,8 +173,8 @@ shared_examples "describing Signin/Signout" do
         end
       end
 
-      context 'when user is not a member of any organization' do
-        context 'Settings.github.organizations returns nil' do
+      context 'and user is not a member of any organization' do
+        context 'and Settings.github.organizations returns nil' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
@@ -179,7 +193,7 @@ shared_examples "describing Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty string' do
+        context 'and Settings.github.organizations returns empty string' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return('')
@@ -198,7 +212,7 @@ shared_examples "describing Signin/Signout" do
           }
         end
 
-        context 'Settings.github.organizations returns empty array' do
+        context 'and Settings.github.organizations returns empty array' do
           let!(:user) { create(:user) }
           before {
             Settings.github.stub(:organizations).and_return(nil)
