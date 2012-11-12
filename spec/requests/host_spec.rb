@@ -4,66 +4,113 @@ describe '/hosts' do
   subject { page }
 
   describe 'create a host' do
-    let(:user)     { create(:user)    }
-    let!(:service) { create(:service) }
-    let!(:role)    { create(:role)    }
+    context 'when host will be successfully created' do
+      let(:user)     { create(:user)    }
+      let!(:service) { create(:service) }
+      let!(:role)    { create(:role)    }
 
-    before {
-      sign_in_as_member(user)
-      visit new_host_path
+      before {
+        sign_in_as_member(user)
+        visit new_host_path
 
-      fill_in 'IP Address',  with: '192.168.0.1'
-      fill_in 'Name',        with: 'app001'
-      fill_in 'Description', with: 'app server 001'
-      find('div[class="fields"][1]/select[1]').select(service.name)
-      find('div[class="fields"][1]/select[2]').select(role.name)
-    }
+        fill_in 'IP Address',  with: '192.168.0.1'
+        fill_in 'Name',        with: 'app001'
+        fill_in 'Description', with: 'app server 001'
+        find('div[class="fields"][1]/select[1]').select(service.name)
+        find('div[class="fields"][1]/select[2]').select(role.name)
+      }
 
-    it {
-      expect { click_button 'Create Host' }.to change { Host.count }.by(1)
-    }
+      it {
+        expect { click_button 'Create Host' }.to change { Host.count }.by(1)
+      }
 
-    it {
-      click_button 'Create Host'
+      it {
+        click_button 'Create Host'
 
-      expect(current_path).to be == '/hosts/app001'
-      expect(subject).to have_content 'Host was successfully created'
-    }
+        expect(current_path).to be == '/hosts/app001'
+        expect(subject).to have_content 'Host was successfully created'
+      }
+    end
+
+    context 'when host will fail to be created' do
+      let(:user) { create(:user) }
+
+      before {
+        sign_in_as_member(user)
+        visit new_host_path
+      }
+
+      it {
+        expect { click_button 'Create Host' }.to change { Host.count }.by(0)
+      }
+
+      it {
+        click_button 'Create Host'
+
+        expect(current_path).to be == hosts_path
+        expect(subject).to have_content 'Failed to create host'
+      }
+    end
   end
 
   describe 'edit a host' do
-    let(:user)  { create(:user) }
-    let!(:host) { create(:host, :with_relations, count: 3) }
+    context 'when host will be successfully updated' do
+      let(:user)  { create(:user) }
+      let!(:host) { create(:host, :with_relations, count: 3) }
 
-    before {
-      sign_in_as_member(user)
-      visit edit_host_path(host)
+      before {
+        sign_in_as_member(user)
+        visit edit_host_path(host)
 
-      fill_in 'IP Address',  with: '192.168.1.1'
-      fill_in 'Name',        with: 'changed'
-      fill_in 'Description', with: 'changed'
-      find('div[class="fields"][1]/select[1]').select(host.services.first.name)
-      find('div[class="fields"][1]/select[2]').select(host.roles.first.name)
-      uncheck 'Active'
-    }
+        fill_in 'IP Address',  with: '192.168.1.1'
+        fill_in 'Name',        with: 'changed'
+        fill_in 'Description', with: 'changed'
+        find('div[class="fields"][1]/select[1]').select(host.services.first.name)
+        find('div[class="fields"][1]/select[2]').select(host.roles.first.name)
+        uncheck 'Active'
+      }
 
-    it {
-      expect { click_button 'Update Host' }.to change { Host.count }.by(0)
-    }
+      it {
+        expect { click_button 'Update Host' }.to change { Host.count }.by(0)
+      }
 
-    it {
-      click_button 'Update Host'
+      it {
+        click_button 'Update Host'
 
-      expect(current_path).to be == '/hosts/changed'
-      expect(subject).to have_content 'Host was successfully updated'
+        expect(current_path).to be == '/hosts/changed'
+        expect(subject).to have_content 'Host was successfully updated'
 
-      expect(page).to have_content('192.168.1.1')
-      expect(page).to have_content('changed')
-      expect(page).to have_content('changed')
-      expect(page).to have_content(host.services.first.name)
-      expect(page).to have_content(host.roles.first.name)
-      expect(page).to have_content('Inactive')
-    }
+        expect(page).to have_content('192.168.1.1')
+        expect(page).to have_content('changed')
+        expect(page).to have_content('changed')
+        expect(page).to have_content(host.services.first.name)
+        expect(page).to have_content(host.roles.first.name)
+        expect(page).to have_content('Inactive')
+      }
+    end
+
+    context 'when host will be successfully updated' do
+      let(:user)  { create(:user) }
+      let!(:host) { create(:host, :with_relations, count: 3) }
+
+      before {
+        sign_in_as_member(user)
+        visit edit_host_path(host)
+
+        fill_in 'IP Address',  with: 'Invalid IP Address'
+      }
+
+      it {
+        expect { click_button 'Update Host' }.to change { Host.count }.by(0)
+      }
+
+      it {
+        click_button 'Update Host'
+
+        expect(current_path).to be == host_path(host)
+        expect(subject).to have_content 'Failed to update host'
+      }
+    end
   end
 
   describe 'delete a host' do

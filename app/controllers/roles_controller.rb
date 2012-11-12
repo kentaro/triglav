@@ -27,7 +27,9 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.create
-      flash[:notice] = 'notice.roles.create.success'
+      flash[:notice]    = 'notice.roles.create.success'
+    else
+      flash.now[:alert] = 'notice.roles.create.alert'
     end
 
     respond_with @role
@@ -38,7 +40,9 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.update(role_params)
-      flash[:notice] = 'notice.roles.update.success'
+      flash[:notice]    = 'notice.roles.update.success'
+    else
+      flash.now[:alert] = 'notice.roles.update.alert'
     end
 
     respond_with @role

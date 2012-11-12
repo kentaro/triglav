@@ -35,7 +35,9 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.create
-      flash[:notice] = 'notice.hosts.create.success'
+      flash[:notice]    = 'notice.hosts.create.success'
+    else
+      flash.now[:alert] = 'notice.hosts.create.alert'
     end
 
     respond_with @host
@@ -46,7 +48,9 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.update(host_params)
-      flash[:notice] = 'notice.hosts.update.success'
+      flash[:notice]    = 'notice.hosts.update.success'
+    else
+      flash.now[:alert] = 'notice.hosts.update.alert'
     end
 
     respond_with @host
