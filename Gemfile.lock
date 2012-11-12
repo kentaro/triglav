@@ -27,13 +27,6 @@ GIT
       xpath (~> 1.0.0.beta1)
 
 GIT
-  remote: git://github.com/kentaro/rspec-formatter-beep.git
-  revision: e932c001db0f71500d0df5fa379f5395ba19f084
-  specs:
-    rspec-formatter-beep (0.0.1)
-      rspec
-
-GIT
   remote: git://github.com/mcasimir/kaminari-bootstrap.git
   revision: d28af1aed603ddd4a1e0556532c63ad7a7473edc
   specs:
@@ -428,7 +421,6 @@ DEPENDENCIES
   rspec!
   rspec-core!
   rspec-expectations!
-  rspec-formatter-beep!
   rspec-mocks!
   rspec-rails!
   sass-rails!
