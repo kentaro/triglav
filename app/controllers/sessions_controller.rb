@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
+  protect_from_forgery with: :exception, except: ['create']
   skip_before_filter :require_member, only: [:create, :destroy]
 
   def create
     @user = User.where(
-      provider: auth_params['provider'],
-      uid:      auth_params['uid'],
+      provider: auth_params.provider,
+      uid:      auth_params.uid,
     ).first_or_initialize
     context = SessionContext.new(user: @user)
 

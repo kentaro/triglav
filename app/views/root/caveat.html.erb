@@ -3,7 +3,10 @@
   <% unless current_user.member? -%>
     (Not a member)
   <% end -%>
-  <%= link_to "Sign out", signout_path, method: :delete %>
+  <%= link_to t('layout.nav.sign_out'), signout_path, method: :delete %>
 <% else -%>
-  <%= link_to "Sign in", signin_path %>
+  <%= link_to t('layout.nav.sign_in'), signin_path %>
+  <% if Rails.env.development? %>
+  <%= link_to t('layout.nav.dev_sign_in'), dev_signin_path %>
+  <% end %>
 <% end -%>

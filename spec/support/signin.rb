@@ -1,5 +1,5 @@
 def auth_params_for (user)
-  {
+  Hashie::Mash.new({
     "uid"      => user.uid,
     "provider" => user.provider,
     "info"     => {
@@ -13,7 +13,7 @@ def auth_params_for (user)
     "credentials" => {
       "token" => user.access_token,
     },
-  }
+  })
 end
 
 def sign_in (user)

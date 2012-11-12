@@ -1,3 +1,6 @@
+providers:
+  - developer # Don't use this in production environment
+  - github
 github:
   organizations:
     - triglav-developers

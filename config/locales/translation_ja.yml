@@ -124,6 +124,7 @@ ja:
       api: API
       my_page: :helpers.links.my_page
       sign_in: サインイン
+      dev_sign_in: developerストラテジーでサインイン
       sign_out: サインアウト
 
   notice:
