@@ -5,10 +5,10 @@ describe ApplicationHelper do
     it 'should convert text from markdown to html' do
       markdown_text = <<-EOF.strip_heredoc
         # Title
-        
+
         - foo
         - bar
-        
+
         hoge
       EOF
 
@@ -25,6 +25,12 @@ describe ApplicationHelper do
       EOF
 
       expect(helper.markdown(markdown_text)).to be == html_text.chomp
+    end
+  end
+
+  describe '#datetime_ago' do
+    it 'should return localized string as "XXX ago"' do
+      expect(helper.datetime_ago(Time.now)).to be == 'less than a minute ago'
     end
   end
 end
