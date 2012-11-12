@@ -28,8 +28,7 @@
             を
             <%= t("helpers.activities.tag.#{activity.tag}") %>
             しました。
-            (<%=l activity.created_at %>)
-            
+            (<%= datetime_ago(activity.created_at) %>)
             <% if activity.diff -%>
               <p>
                 変更点:
