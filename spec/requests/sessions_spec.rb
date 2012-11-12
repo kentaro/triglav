@@ -48,6 +48,20 @@ describe "Signin/Signout" do
         }
       end
 
+      context 'and user is a member but has invalid user info' do
+        let(:user) { build(:user, name: nil) }
+
+        it {
+          expect { sign_in_as_member(user) }.to change { User.count }.by(0)
+        }
+
+        it {
+          sign_in_as_member(user)
+          expect(current_path).to be == '/caveat'
+          expect(subject).to have_content "Some error occured when signing in"
+        }
+      end
+
       context 'and user is not a member of the specified organization' do
         let(:user) { build(:user) }
 

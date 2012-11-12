@@ -109,25 +109,50 @@ describe '/hosts' do
   end
 
   describe 'comment' do
-    let(:user)  { create(:user) }
-    let!(:host) { create(:host, deleted_at: nil) }
+    context 'when comment will be successfully posted' do
+      let(:user)  { create(:user) }
+      let!(:host) { create(:host, deleted_at: nil) }
 
-    before {
-      sign_in_as_member(user)
-      visit host_path(host)
+      before {
+        sign_in_as_member(user)
+        visit host_path(host)
 
-      fill_in 'Content', with: 'comment'
-    }
+        fill_in 'Content', with: 'comment'
+      }
 
-    it {
-      expect { click_button 'Create Comment' }.to change { host.comments.count }.by(1)
-    }
+      it {
+        expect { click_button 'Create Comment' }.to change { host.comments.count }.by(1)
+      }
 
-    it {
-      click_button 'Create Comment'
+      it {
+        click_button 'Create Comment'
 
-      expect(current_path).to be == host_path(host)
-      expect(subject).to have_content 'Comment was successfully added'
-    }
+        expect(current_path).to be == host_path(host)
+        expect(subject).to have_content 'Comment was successfully added'
+      }
+    end
+
+    context 'when comment will fail to be posted' do
+      let(:user)  { create(:user) }
+      let!(:host) { create(:host, deleted_at: nil) }
+
+      before {
+        sign_in_as_member(user)
+        visit host_path(host)
+
+        fill_in 'Content', with: ''
+      }
+
+      it {
+        expect { click_button 'Create Comment' }.to change { host.comments.count }.by(0)
+      }
+
+      it {
+        click_button 'Create Comment'
+
+        expect(current_path).to be == host_path(host)
+        expect(subject).to have_content 'Failed to add comment'
+      }
+    end
   end
 end
