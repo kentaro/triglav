@@ -2,49 +2,73 @@ require 'spec_helper'
 
 describe ServiceContext do
   describe '#create' do
-    let(:user)    { create(:user) }
-    let(:service) { create(:service) }
-    let(:context) { ServiceContext.new(user: user, service: service) }
+    context 'when service will be successfully created' do
+      let(:user)    { create(:user) }
+      let(:service) { build(:service) }
+      let(:context) { ServiceContext.new(user: user, service: service) }
 
-    before { context.create }
+      before { context.create }
 
-    it {
-      activity = Activity.first
+      it {
+        activity = Activity.first
 
-      expect(activity).to be_true
-      expect(activity.user).to be  == user
-      expect(activity.model).to be == service
-      expect(activity.tag).to be == 'create'
-    }
+        expect(activity).to be_true
+        expect(activity.user).to be  == user
+        expect(activity.model).to be == service
+        expect(activity.tag).to be == 'create'
+      }
+    end
+
+    context 'when service will fail to be created' do
+      let(:service) { build(:service, name: nil) }
+      let(:context) { ServiceContext.new(service: service) }
+
+      it {
+        expect(context.create).to be_false
+        expect(service.valid?).to be_false
+      }
+    end
   end
 
   describe '#update' do
-    let(:user)    { create(:user) }
-    let(:service) { create(:service) }
-    let(:context) { ServiceContext.new(user: user, service: service) }
+    context 'when service will be successfully updated' do
+      let(:user)    { create(:user) }
+      let(:service) { create(:service) }
+      let(:context) { ServiceContext.new(user: user, service: service) }
 
-    let!(:old_name) { service.name        }
-    let!(:old_desc) { service.description }
+      let!(:old_name) { service.name        }
+      let!(:old_desc) { service.description }
 
-    before {
-      context.update(
-        "name"        => 'updated',
-        "description" => 'updated',
-      )
-    }
-
-    it {
-      activity = Activity.first
-
-      expect(activity).to be_true
-      expect(activity.user).to be  == user
-      expect(activity.model).to be == service
-      expect(activity.tag).to be == 'update'
-      expect(activity.diff).to be == {
-        'name'        => [old_name, 'updated'],
-        'description' => [old_desc, 'updated'],
+      before {
+        context.update(
+          "name"        => 'updated',
+          "description" => 'updated',
+        )
       }
-    }
+
+      it {
+        activity = Activity.first
+
+        expect(activity).to be_true
+        expect(activity.user).to be  == user
+        expect(activity.model).to be == service
+        expect(activity.tag).to be == 'update'
+        expect(activity.diff).to be == {
+          'name'        => [old_name, 'updated'],
+          'description' => [old_desc, 'updated'],
+        }
+      }
+    end
+
+    context 'when service will fail to be updated' do
+      let(:service) { create(:role) }
+      let(:context) { ServiceContext.new(service: service) }
+
+      it {
+        expect(context.update(name: nil)).to be_false
+        expect(service.valid?).to be_false
+      }
+    end
   end
 
   describe '#destroy' do

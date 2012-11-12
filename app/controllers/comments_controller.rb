@@ -10,15 +10,13 @@ class CommentsController < ApplicationController
     @comment = @parent.comments.build(comment_params)
     context  = CommentContext.new(user: current_user, comment: @comment)
 
-    respond_to do |format|
-      if context.create
-        format.html { redirect_to @parent, notice: 'notice.comments.create.success' }
-        format.json { render json: @comment, status: :created, location: @parent }
-      else
-        format.html { redirect_to @parent, alert: 'notice.comments.create.alert' }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if context.create
+      flash[:notice] = 'notice.comments.create.success'
+    else
+      flash[:alert] = 'notice.comments.create.alert'
     end
+
+    redirect_to url_for(@parent)
   end
 
   private

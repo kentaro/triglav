@@ -29,6 +29,11 @@ describe Comment do
 
     describe 'content' do
       context 'when invalid' do
+        context 'when comment is blank' do
+          let(:comment) { build(:comment, content: '') }
+          it { expect(comment.valid?).to be_false }
+        end
+
         context 'when comment is too long' do
           let(:comment) { build(:comment, content: 'a' * 256) }
           it { expect(comment.valid?).to be_false }
