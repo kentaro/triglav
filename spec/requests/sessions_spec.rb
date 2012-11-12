@@ -246,6 +246,7 @@ describe "Signin/Signout" do
 
     before {
       Rails.stub(:env) { ActiveSupport::StringInquirer.new('development') }
+      Rails.application.reload_routes!
     }
 
     it {
