@@ -166,7 +166,7 @@ describe SessionContext do
 
     before {
       context.stub(:organizations).and_return([{ "login" => "triglav-developers" }])
-      context.update_privilege
+      context.update_privilege('github')
     }
 
     it { expect(user.member).to be_true }

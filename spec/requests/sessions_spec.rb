@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Signin/Signout" do
+shared_examples "describing Signin/Signout" do
   subject { page }
 
   describe "GET /" do
@@ -249,5 +249,24 @@ describe "Signin/Signout" do
         expect(subject).to have_content 'Successfully signed out'
       }
     end
+  end
+end
+
+describe "Signin/Signout" do
+  it_behaves_like "describing Signin/Signout"
+
+  context "development environment" do
+    subject { page }
+
+    before {
+      Rails.stub(:env) { ActiveSupport::StringInquirer.new('development') }
+      Rails.application.reload_routes!
+    }
+
+    it {
+      visit '/'
+      expect(subject).to have_content 'Sign in with developer strategy'
+    }
+    it_behaves_like "describing Signin/Signout"
   end
 end

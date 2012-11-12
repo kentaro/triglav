@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include LogicallyDeletableRole
 
-  validates :provider, presence: true, inclusion: { in: %w(github) }
+  validates :provider, presence: true, inclusion: { in: Settings.providers }
   validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
   validates :uid,      presence: true, format: { with: /\A[0-9]+\Z/ }
   validates :image,    presence: true, format: { with: /\A\/\/gravatar\.com\/avatar\/[a-z0-9]{32}\Z/ }
