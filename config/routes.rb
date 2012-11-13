@@ -1,5 +1,5 @@
 Triglav::Application.routes.draw do
-  root to: 'root#index'
+  root 'root#index'
   get '/caveat', to: 'root#caveat'
 
   get    '/signin' => redirect('/auth/github')
