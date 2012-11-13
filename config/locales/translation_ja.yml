@@ -6,7 +6,7 @@ ja:
       role: ロール  #g
       service: サービス  #g
       user: ユーザー  #g
-      activity: アクティビチー
+      activity: アクティビティ
       comment: コメント
 
     attributes:
