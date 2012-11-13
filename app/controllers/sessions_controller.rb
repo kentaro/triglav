@@ -12,22 +12,22 @@ class SessionsController < ApplicationController
     if context.create(auth_params)
       if @user.member
         sign_in @user
-        redirect_to '/', notice: 'notice.sessions.create.success'
+        redirect_to '/',       success: 'notice.sessions.create.success'
       else
-        redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'
+        redirect_to '/caveat', error: 'notice.sessions.create.error.not_member'
       end
     else
       if @user.member
-        redirect_to '/caveat', alert: 'notice.sessions.create.alert.error'
+        redirect_to '/caveat', error: 'notice.sessions.create.error.error'
       else
-        redirect_to '/caveat', alert: 'notice.sessions.create.alert.not_member'
+        redirect_to '/caveat', error: 'notice.sessions.create.error.not_member'
       end
     end
   end
 
   def destroy
     sign_out
-    redirect_to '/', notice: 'notice.sessions.destroy.success'
+    redirect_to '/', success: 'notice.sessions.destroy.success'
   end
 
   protected

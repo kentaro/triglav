@@ -27,9 +27,9 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.create
-      flash[:notice]    = 'notice.roles.create.success'
+      flash[:success]   = 'notice.roles.create.success'
     else
-      flash.now[:alert] = 'notice.roles.create.alert'
+      flash.now[:error] = 'notice.roles.create.error'
     end
 
     respond_with @role
@@ -40,9 +40,9 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.update(role_params)
-      flash[:notice]    = 'notice.roles.update.success'
+      flash[:success]   = 'notice.roles.update.success'
     else
-      flash.now[:alert] = 'notice.roles.update.alert'
+      flash.now[:error] = 'notice.roles.update.error'
     end
 
     respond_with @role
@@ -53,7 +53,7 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.destroy
-      flash[:notice] = 'notice.roles.destroy.success'
+      flash[:success] = 'notice.roles.destroy.success'
     end
 
     respond_with @role, location: roles_path
@@ -64,7 +64,7 @@ class RolesController < ApplicationController
     context = RoleContext.new(user: current_user, role: @role)
 
     if context.revert
-      flash[:notice] = 'notice.roles.revert.success'
+      flash[:success] = 'notice.roles.revert.success'
     end
 
     respond_with @role, location: roles_path

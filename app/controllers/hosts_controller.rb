@@ -35,9 +35,9 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.create
-      flash[:notice]    = 'notice.hosts.create.success'
+      flash[:success]   = 'notice.hosts.create.success'
     else
-      flash.now[:alert] = 'notice.hosts.create.alert'
+      flash.now[:error] = 'notice.hosts.create.error'
     end
 
     respond_with @host
@@ -48,9 +48,9 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.update(host_params)
-      flash[:notice]    = 'notice.hosts.update.success'
+      flash[:success]   = 'notice.hosts.update.success'
     else
-      flash.now[:alert] = 'notice.hosts.update.alert'
+      flash.now[:error] = 'notice.hosts.update.error'
     end
 
     respond_with @host
@@ -61,7 +61,7 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.destroy
-      flash[:notice] = 'notice.hosts.destroy.success'
+      flash[:success] = 'notice.hosts.destroy.success'
     end
 
     respond_with @host, location: hosts_path
@@ -72,7 +72,7 @@ class HostsController < ApplicationController
     context = HostContext.new(user: current_user, host: @host)
 
     if context.revert
-      flash[:notice] = 'notice.hosts.revert.success'
+      flash[:success] = 'notice.hosts.revert.success'
     end
 
     respond_with @host, location: hosts_path

@@ -11,9 +11,9 @@ class CommentsController < ApplicationController
     context  = CommentContext.new(user: current_user, comment: @comment)
 
     if context.create
-      flash[:notice] = 'notice.comments.create.success'
+      flash[:success] = 'notice.comments.create.success'
     else
-      flash[:alert] = 'notice.comments.create.alert'
+      flash[:error]   = 'notice.comments.create.error'
     end
 
     redirect_to url_for(@parent)
