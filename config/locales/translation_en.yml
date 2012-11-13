@@ -145,7 +145,7 @@ en:
     sessions:
       create:
         success: Successfully signed in.
-        alert:
+        error:
           not_member: "You're not a member of our organization."
           error: Some error occured when signing in.
       destroy:
@@ -156,10 +156,10 @@ en:
     services:
       create:
         success: Service was successfully created.
-        alert: Failed to create service.
+        error: Failed to create service.
       update:
         success: Service was successfully updated.
-        alert: Failed to update service.
+        error: Failed to update service.
       destroy:
         success: Service was successfully destroyed.
       revert:
@@ -167,10 +167,10 @@ en:
     roles:
       create:
         success: Role was successfully created.
-        alert: Failed to create role.
+        error: Failed to create role.
       update:
         success: Role was successfully updated.
-        alert: Failed to update role.
+        error: Failed to update role.
       destroy:
         success: Role was successfully destroyed.
       revert:
@@ -178,10 +178,10 @@ en:
     hosts:
       create:
         success: Host was successfully created.
-        alert: Failed to create host.
+        error: Failed to create host.
       update:
         success: Host was successfully updated.
-        alert: Failed to update host.
+        error: Failed to update host.
       destroy:
         success: Host was successfully destroyed.
       revert:
@@ -189,7 +189,7 @@ en:
     comments:
       create:
         success: Comment was successfully added.
-        alert: Failed to add comment.
+        error: Failed to add comment.
 
   root:
     index:

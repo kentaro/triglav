@@ -74,16 +74,16 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span12">
-          <% if flash[:notice] -%>
+          <% if success -%>
             <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">×</button>
-              <%= t(flash[:notice]) %>
+              <%= t(success) %>
             </div>
           <% end -%>
-          <% if flash[:alert] -%>
+          <% if error -%>
             <div class="alert alert-error">
               <button type="button" class="close" data-dismiss="alert">×</button>
-              <%= t(flash[:alert]) %>
+              <%= t(error) %>
             </div>
           <% end -%>
           <%= yield %>
