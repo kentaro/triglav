@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
   before_filter :require_member, :set_locale
+  add_flash_types :success, :error
 
   private
 

@@ -131,7 +131,7 @@ ja:
     sessions:
       create:
         success: サインインしました。
-        alert:
+        error:
           not_member: このアプリを利用するには、適切なオーガナイゼイションに所属していなければなりません。
           error: サインイン処理中にエラーが起きました。
       destroy:
@@ -142,10 +142,10 @@ ja:
     services:
       create:
         success: サービスを新規作成しました。
-        alert: サービスを作成できませんでした。
+        error: サービスを作成できませんでした。
       update:
         success: サービスを更新しました。
-        alert: サービスを更新できませんでした。
+        error: サービスを更新できませんでした。
       destroy:
         success: サービスを削除しました。
       revert:
@@ -153,10 +153,10 @@ ja:
     roles:
       create:
         success: ロールを新規作成しました。
-        alert: ロールを作成できませんでした。
+        error: ロールを作成できませんでした。
       update:
         success: ロールを更新しました。
-        alert: ロールを更新できませんでした。
+        error: ロールを更新できませんでした。
       destroy:
         success: ロールを削除しました。
       revert:
@@ -164,10 +164,10 @@ ja:
     hosts:
       create:
         success: ホストを新規作成しました。
-        alert: ホストを作成できませんでした。
+        error: ホストを作成できませんでした。
       update:
         success: ホストを更新しました。
-        alert: ホストを更新できませんでした。
+        error: ホストを更新できませんでした。
       destroy:
         success: ホストを削除しました。
       revert:
@@ -175,7 +175,7 @@ ja:
     comments:
       create:
         success: コメントを投稿しました。
-        alert: コメントを投稿できませんでした。
+        error: コメントを投稿できませんでした。
 
   root:
     index:

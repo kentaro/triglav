@@ -31,9 +31,9 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.create
-      flash[:notice]    = 'notice.services.create.success'
+      flash[:success]   = 'notice.services.create.success'
     else
-      flash.now[:alert] = 'notice.services.create.alert'
+      flash.now[:error] = 'notice.services.create.error'
     end
 
     respond_with @service
@@ -44,9 +44,9 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.update(service_params)
-      flash[:notice]    = 'notice.services.update.success'
+      flash[:success]   = 'notice.services.update.success'
     else
-      flash.now[:alert] = 'notice.services.update.alert'
+      flash.now[:error] = 'notice.services.update.error'
     end
 
     respond_with @service
@@ -57,7 +57,7 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.destroy
-      flash[:notice] = 'notice.services.destroy.success'
+      flash[:success] = 'notice.services.destroy.success'
     end
 
     respond_with @service, location: services_path
@@ -68,7 +68,7 @@ class ServicesController < ApplicationController
     context  = ServiceContext.new(user: current_user, service: @service)
 
     if context.revert
-      flash[:notice] = 'notice.services.revert.success'
+      flash[:success] = 'notice.services.revert.success'
     end
 
     respond_with @service, location: services_path
