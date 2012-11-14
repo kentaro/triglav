@@ -2,7 +2,7 @@ language: ruby
 
 rvm:
   - 1.9.3
-  - ruby-head
+  - 2.0.0
 
 bundler_args: --without development:production
 
@@ -15,4 +15,4 @@ script:
 
 matrix:
   allow_failures:
-    - rvm: ruby-head
+    - rvm: 2.0.0
