@@ -2,6 +2,7 @@ class Host < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include LogicallyDeletableRole
   include HasHostRelationsRole
+  include ::HasDeclarativePathRole
 
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }, format: { with: /\A[^\/]+\Z/ }
   validates :ip_address,  format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }, allow_blank: true
@@ -18,9 +19,4 @@ class Host < ActiveRecord::Base
     reject_if: lambda{ |attrs|
       attrs[:service_id].blank? || attrs[:role_id].blank?
     }
-
-  # To enable /hosts/:ip_address instead of /hosts/:id
-  def to_param
-    name
-  end
 end

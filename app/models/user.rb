@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include ActiveModel::ForbiddenAttributesProtection
   include LogicallyDeletableRole
+  include HasDeclarativePathRole
 
   validates :provider, presence: true, inclusion: { in: Settings.providers }
   validates :name,     presence: true, uniqueness: true, length: { maximum: 40 }
@@ -11,9 +12,4 @@ class User < ActiveRecord::Base
   validates :api_token,    format: { with: /\A[a-z0-9_\-]{22}\Z/i }, allow_blank: true
 
   has_many :activities, as: :model
-
-  # To enable /users/:name instead of /users/:id
-  def to_param
-    name
-  end
 end

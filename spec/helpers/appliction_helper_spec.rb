@@ -33,4 +33,18 @@ describe ApplicationHelper do
       expect(helper.datetime_ago(Time.now)).to be == 'less than a minute ago'
     end
   end
+
+  %w(user service role host).each do |model|
+    describe "##{model}_path" do
+      context 'when path only contains url-safe chars' do
+        let(model.to_sym) { build(model.to_sym, name: 'name') }
+        it { expect(__send__("#{model}_path", __send__(model))).to be == "/#{model}s/name" }
+      end
+
+      context 'when path only contains url-unsafe chars' do
+        let(model.to_sym) { build(model.to_sym, name: 'name%') }
+        it { expect(__send__("#{model}_path", __send__(model))).to be == "/#{model}s/name%25" }
+      end
+    end
+  end
 end
