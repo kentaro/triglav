@@ -5,8 +5,8 @@ require "active_record/railtie"
 require "action_controller/railtie"
 require "sprockets/railtie"
 
-# Requires role in advance
-require 'roles/has_declarative_path'
+# Require roles in advance
+require File.expand_path('../../app/roles/has_declarative_path', __FILE__)
 
 # Assets should be precompiled for production (so we don't need the gems loaded then)
 Bundler.require(*Rails.groups(assets: %w(development test)))
