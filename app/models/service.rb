@@ -3,9 +3,9 @@ class Service < ActiveRecord::Base
   include LogicallyDeletableRole
   include HasHostRelationsRole
 
-  validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }
+  validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }, format: { with: /\A[^\/]+\Z/ }
   validates :description, length: { maximum: 255 }
-  validates :munin_url,   format: URI::regexp(%w(http https)), allow_blank: true
+  validates :munin_url,   format: { with: URI::regexp(%w(http https)) }, allow_blank: true
 
   has_many :host_relations, dependent: :delete_all
   has_many :roles, through: :host_relations

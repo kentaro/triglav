@@ -3,7 +3,7 @@ class Role < ActiveRecord::Base
   include LogicallyDeletableRole
   include HasHostRelationsRole
 
-  validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }
+  validates :name,        uniqueness: true, presence: true, length: { maximum:  100 }, format: { with: /\A[^\/]+\Z/ }
   validates :description, length: { maximum: 255 }
 
   has_many :host_relations, dependent: :delete_all

@@ -24,6 +24,11 @@ describe Role do
           before { create(:role, name: role.name) }
           it { expect(role.valid?).to be_false }
         end
+
+        context 'when name contains /' do
+          let(:role) { build(:role, name: '</script>') }
+          it { expect(role.valid?).to be_false }
+        end
       end
     end
 

@@ -24,6 +24,11 @@ describe Host do
           before { create(:host, name: host.name) }
           it { expect(host.valid?).to be_false }
         end
+
+        context 'when name contains /' do
+          let(:host) { build(:host, name: '</script>') }
+          it { expect(host.valid?).to be_false }
+        end
       end
     end
 

@@ -24,6 +24,11 @@ describe Service do
           before { create(:service, name: service.name) }
           it { expect(service.valid?).to be_false }
         end
+
+        context 'when name contains /' do
+          let(:service) { build(:service, name: '</script>') }
+          it { expect(service.valid?).to be_false }
+        end
       end
     end
 
