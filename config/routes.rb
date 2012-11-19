@@ -1,5 +1,3 @@
-require 'roles/has_declarative_path'
-
 Triglav::Application.routes.draw do
   root 'root#index'
   get '/caveat', to: 'root#caveat'
