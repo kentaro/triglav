@@ -7,7 +7,6 @@ rvm:
 bundler_args: --without development:production
 
 before_install:
-  - gem install nokogiri ffi yajl-ruby redcarpet -- --with-cflags='--std=gnu99'
   - gem update bundler
 
 script:
