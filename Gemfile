@@ -20,13 +20,6 @@ gem 'mysql2'
 gem 'bluecloth'
 
 group :development do
-  gem 'pry'
-  gem 'pry-remote'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
-
-  gem 'i18n_generators', github: 'amatsuda/i18n_generators'
-
   gem 'launchy'
 
   gem 'guard'
@@ -41,31 +34,31 @@ group :development do
   gem 'artii'
   gem 'capistrano_banner'
   gem 'thin'
-end
 
-group :test do
-  if !ENV['TRAVIS'] && RUBY_VERSION < '2.0'
-    gem 'pry'
-    gem 'pry-remote'
-    gem 'pry-stack_explorer'
-    gem 'pry-debugger'
+  group :test do
+    if !ENV['TRAVIS'] && RUBY_VERSION < '2.0'
+      gem 'pry'
+      gem 'pry-remote'
+      gem 'pry-stack_explorer'
+      gem 'pry-debugger'
+    end
+
+    gem 'rspec-rails',        github: 'rspec/rspec-rails'
+    gem 'rspec',              github: 'rspec/rspec'
+    gem 'rspec-core',         github: 'rspec/rspec-core'
+    gem 'rspec-expectations', github: 'rspec/rspec-expectations'
+    gem 'rspec-mocks',        github: 'rspec/rspec-mocks'
+
+    # for capybara >=2.0
+    gem 'capybara', github: 'jnicklas/capybara'
+
+    gem 'factory_girl'
+    gem 'database_cleaner'
+
+    gem 'rake'
+
+    gem 'simplecov'
   end
-
-  gem 'rspec-rails',        github: 'rspec/rspec-rails'
-  gem 'rspec',              github: 'rspec/rspec'
-  gem 'rspec-core',         github: 'rspec/rspec-core'
-  gem 'rspec-expectations', github: 'rspec/rspec-expectations'
-  gem 'rspec-mocks',        github: 'rspec/rspec-mocks'
-
-  # for capybara >=2.0
-  gem 'capybara', github: 'jnicklas/capybara'
-
-  gem 'factory_girl'
-  gem 'database_cleaner'
-
-  gem 'rake'
-
-  gem 'simplecov'
 end
 
 group :production do
