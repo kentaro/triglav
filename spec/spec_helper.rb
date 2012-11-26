@@ -21,6 +21,14 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 RSpec.configure do |config|
   OmniAuth.config.test_mode = true
 
+  config.before(:each, env: :development) do
+    Rails.stub(:env).and_return(ActiveSupport::StringInquirer.new('development'))
+  end
+
+  config.after(:each, env: :development) do
+    Rails.unstub(:env)
+  end
+
   # factory girl
   FactoryGirl.find_definitions
   config.include FactoryGirl::Syntax::Methods

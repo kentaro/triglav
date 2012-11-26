@@ -14,7 +14,7 @@
       <dd><%= @service.name %></dd>
       <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
       <dd><%= markdown(@service.description) %></dd>
-      <% if @service.munin_url.present? -%>
+      <% if @munin.activated? -%>
         <dt><strong><%= model_class.human_attribute_name(:munin_url) %>:</strong></dt>
         <dd>
           <%= link_to @service.munin_url, @service.munin_url %>

@@ -25,7 +25,7 @@
       class: 'btn btn-danger' %>
 </div>
 
-<% if @munin.find_service_that_hash_munin_url_by(@host) -%>
+<% if @munin.find_service_that_has_munin_url_by(@host) -%>
   <div>
     <h2><%= t('hosts.show.graphs') %></h2>
     <p><%= link_to @munin.url_for(host: @host).to_s, @munin.url_for(host: @host).to_s %></p>
