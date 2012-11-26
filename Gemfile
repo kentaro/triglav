@@ -44,10 +44,12 @@ group :development do
 end
 
 group :test do
-  gem 'pry'
-  gem 'pry-remote'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
+  if !ENV['TRAVIS'] && RUBY_VERSION < '2.0'
+    gem 'pry'
+    gem 'pry-remote'
+    gem 'pry-stack_explorer'
+    gem 'pry-debugger'
+  end
 
   gem 'rspec-rails',        github: 'rspec/rspec-rails'
   gem 'rspec',              github: 'rspec/rspec'
