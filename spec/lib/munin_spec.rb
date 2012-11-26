@@ -19,9 +19,85 @@ describe Munin do
     it { expect(munin.service).to be == service }
   end
 
+  describe '#dummy?' do
+    context 'when `Rails.env` == development', env: :development do
+      context 'and service.munin_url is set' do
+        include_context 'init_munin_with_service'
+
+        it {
+          expect(munin.dummy?).to be_false
+        }
+      end
+
+      context 'and service.munin_url is not set' do
+        include_context 'init_munin_with_service'
+        before { service.munin_url = nil }
+
+        it {
+          expect(munin.dummy?).to be_true
+        }
+      end
+    end
+  end
+
+  describe '#activated?' do
+    context 'when dummy mode for develpment', env: :development do
+      context 'and service.munin_url is set' do
+        include_context 'init_munin_with_service'
+
+        it {
+          expect(munin.activated?).to be_true
+        }
+      end
+    end
+
+    context 'when normal mode' do
+      context 'and service.munin_url is set' do
+        include_context 'init_munin_with_service'
+
+        it {
+          expect(munin.activated?).to be_true
+        }
+      end
+
+      context 'and service.munin_url is not set'do
+        include_context 'init_munin_with_service'
+        before { service.munin_url = nil }
+
+        it {
+          expect(munin.activated?).to be_false
+        }
+      end
+    end
+  end
+
   describe '#root' do
-    include_context 'init_munin_with_service'
-    it { expect(munin.root).to be == URI.parse(service.munin_url) }
+    context 'when dummy mode for development', env: :development  do
+      context 'and service is set' do
+        include_context 'init_munin_with_service'
+
+        it {
+          expect(munin.root).to be == URI.parse(service.munin_url)
+        }
+      end
+
+      context 'and service.munin_url is not set' do
+        include_context 'init_munin_with_service'
+        before { service.munin_url = nil }
+
+        it {
+          expect(munin.root).to be == URI.parse(Munin::DUMMY_MUNIN_URL)
+        }
+      end
+    end
+
+    context 'when normal mode' do
+      include_context 'init_munin_with_service'
+
+      it {
+        expect(munin.root).to be == URI.parse(service.munin_url)
+      }
+    end
   end
 
   describe '#service_url' do
@@ -50,9 +126,9 @@ describe Munin do
   end
 
   describe '#graph_url_for' do
-    include_context 'init_munin_with_service'
-
     context 'when option is passed' do
+      include_context 'init_munin_with_service'
+
       it {
         url = munin.graph_url_for(
           role: role,
@@ -67,6 +143,8 @@ describe Munin do
     end
 
     context 'when option is passed' do
+      include_context 'init_munin_with_service'
+
       it {
         url = munin.graph_url_for(role: role, host: host)
         expect(url).to be == URI.parse(
@@ -74,17 +152,27 @@ describe Munin do
         )
       }
     end
+
+    context 'when `Rails.env` is development', env: :development do
+      include_context 'init_munin_with_service'
+      before { service.munin_url = nil }
+
+      it {
+        url = munin.graph_url_for(role: role, host: host)
+        expect(url).to be == URI.parse(Munin::DUMMY_GRAPH_PATH)
+      }
+    end
   end
 
-  describe '#find_service_that_hash_munin_url_by' do
+  describe '#find_service_that_has_munin_url_by' do
     context 'service is already set' do
       include_context 'init_munin_with_service'
-      it { expect(munin.find_service_that_hash_munin_url_by(host)).to be == service }
+      it { expect(munin.find_service_that_has_munin_url_by(host)).to be == service }
     end
 
     context 'service is not set' do
       include_context 'init_munin'
-      it { expect(munin.find_service_that_hash_munin_url_by(host)).to be == service }
+      it { expect(munin.find_service_that_has_munin_url_by(host)).to be == service }
     end
   end
 end
