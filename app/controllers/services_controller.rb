@@ -11,7 +11,7 @@ class ServicesController < ApplicationController
 
   def show
     @service = Service.find_by_name(params[:id])
-    @munin   = Munin.new(@service) if @service.munin_url.present?
+    @munin   = Munin.new(@service)
 
     respond_with @service
   end

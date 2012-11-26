@@ -1,6 +1,9 @@
 require 'uri'
 
 class Munin
+  DUMMY_MUNIN_URL  = 'http://munin.example.com/'
+  DUMMY_GRAPH_PATH = '/assets/dummy-graph-for-development.png'
+
   class Error < StandardError; end
 
   attr_accessor :service
@@ -9,11 +12,23 @@ class Munin
     @service = service
   end
 
-  def root
-    raise Error, 'No service defined'   unless service
-    raise Error, 'No munin_url defined' unless service.munin_url.present?
+  def dummy?
+    Rails.env.development? && (service && service.munin_url.blank?)
+  end
 
-    URI.parse(service.munin_url)
+  def activated?
+    dummy? || (service && service.munin_url.present?)
+  end
+
+  def root
+    raise Error, 'No service defined'   if !dummy? && !service
+    raise Error, 'No munin_url defined' if !dummy? && !service.munin_url.present?
+
+    if dummy?
+      URI.parse(DUMMY_MUNIN_URL)
+    else
+      URI.parse(service.munin_url)
+    end
   end
 
   def service_url
@@ -25,7 +40,7 @@ class Munin
   def url_for (args)
     host = args[:host]
     role = args[:role] || host.roles.first
-    self.service ||= find_service_that_hash_munin_url_by(host)
+    self.service ||= find_service_that_has_munin_url_by(host)
 
     url  = root
     path = [service, role, host].map { |p| URI.escape(p.name) }.join('/')
@@ -33,16 +48,20 @@ class Munin
   end
 
   def graph_url_for (args)
-    host    = args[:host]
-    role    = args[:role]
-    url     = url_for(role: role, host: host)
-    options = { type: :load, span: :day}.merge(args[:options] || {})
+    if dummy?
+      URI.parse(DUMMY_GRAPH_PATH)
+    else
+      host    = args[:host]
+      role    = args[:role]
+      url     = url_for(role: role, host: host)
+      options = { type: :load, span: :day}.merge(args[:options] || {})
 
-    path = [url.path, URI.escape("#{options[:type].to_s}-#{options[:span].to_s}.png")].join('/')
-    url += path
+      path = [url.path, URI.escape("#{options[:type].to_s}-#{options[:span].to_s}.png")].join('/')
+      url += path
+    end
   end
 
-  def find_service_that_hash_munin_url_by (host)
+  def find_service_that_has_munin_url_by (host)
     found = nil
 
     if service && service.munin_url.present?

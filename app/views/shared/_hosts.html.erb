@@ -13,7 +13,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <% if munin -%>
+        <% if munin.try(:activated?) -%>
           <th class="graph"><%= model_class.human_attribute_name(:graph) %></th>
         <% end -%>
         <th><%= model_class.human_attribute_name(:name) %>/<%= model_class.human_attribute_name(:ip_address) %></th>
@@ -25,7 +25,7 @@
     <tbody>
       <% hosts.each do |host| %>
         <tr>
-          <% if munin -%>
+          <% if munin.try(:activated?) -%>
             <td class="graph">
               <%= link_to image_tag(munin.graph_url_for(role: role, host: host).to_s), munin.url_for(role: role, host: host).to_s, target: '_blank'  %>
             </td>
