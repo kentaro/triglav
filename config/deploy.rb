@@ -14,7 +14,7 @@ set :scm,          :git
 set :bundle_flags, "--deployment --without development test"
 
 client = Triglav::Client.new(
-  base_url:  'http://triglav.pb/',
+  base_url:  'http://triglav.tokyo.pb/',
   api_token: 'P96i2OUWQv_HdyXcSKHcuw',
 )
 
