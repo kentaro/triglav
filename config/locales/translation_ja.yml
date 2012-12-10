@@ -35,6 +35,7 @@ ja:
         active: アクティブ
         inactive: アクティブでない
         graph: グラフ
+        serial_id: シリアルID
         id: :activerecord.attributes.common.id
         created_at: :activerecord.attributes.common.created_at
         updated_at: :activerecord.attributes.common.updated_at

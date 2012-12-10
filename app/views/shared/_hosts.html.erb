@@ -16,7 +16,7 @@
         <% if munin.try(:activated?) -%>
           <th class="graph"><%= model_class.human_attribute_name(:graph) %></th>
         <% end -%>
-        <th><%= model_class.human_attribute_name(:name) %>/<%= model_class.human_attribute_name(:ip_address) %></th>
+        <th><%= model_class.human_attribute_name(:name) %>/<%= model_class.human_attribute_name(:ip_address) %>/<%= model_class.human_attribute_name(:serial_id) %></th>
         <th><%= model_class.human_attribute_name(:description) %></th>
         <th><%= model_class.human_attribute_name(:is_active) %></th>
         <th><%= t(is_deletable ? 'helpers.actions.edit_delete' : 'helpers.actions.edit_revert') %></th>
@@ -33,6 +33,7 @@
           <td>
             <h5><%= link_to host.name, host_path(host) %></h5>
             <p><%= host.ip_address %></p>
+            <p><%= host.serial_id%></p>
           </td>
           <td>
             <% if host.description.present? -%>
