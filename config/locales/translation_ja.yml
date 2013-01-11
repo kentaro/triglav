@@ -192,7 +192,7 @@ ja:
       title: API
       sub_title1: APIへのアクセス
       paragraph1: APIへアクセスするにはAPIトークンが必要です。%{my_page}からAPIトークンを取得してください。
-      sub_title2: Endpoints
+      sub_title2: エンドポイント
 
   services:
     index:

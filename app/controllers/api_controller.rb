@@ -2,9 +2,9 @@ require 'action_dispatch/routing/inspector'
 
 class ApiController < ApplicationController
   def index
-    inspector = ActionDispatch::Routing::RoutesInspector.new
-    routes = _routes.routes.select { |route| route.path.spec.to_s =~ /\A\/api/ }
-    @info  = inspector.format(routes).join("\n")
+    routes    = _routes.routes.select { |route| route.path.spec.to_s =~ /\A\/api/ }
+    inspector = ActionDispatch::Routing::RoutesInspector.new(routes)
+    @info     = inspector.format(ActionDispatch::Routing::ConsoleFormatter.new)
   end
 
   def hosts

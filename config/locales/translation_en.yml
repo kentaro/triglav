@@ -206,7 +206,7 @@ en:
       title: API
       sub_title1: Access the APIs
       paragraph1: You need an API token to access Triglav APIs. Get your own one from %{my_page}.
-      sub_title2: エンドポイント
+      sub_title2: Endpoints
 
   services:
     index:
