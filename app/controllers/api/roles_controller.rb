@@ -1,10 +1,10 @@
 class RolesController < ApplicationController
-  respond_to :html
+  skip_before_filter :verify_authenticity_token
+  respond_to :json
 
   def index
-    @roles_without_deleted = Role.without_deleted
-    @deleted_roles = Role.deleted
-    respond_with @roles_without_deleted
+    @roles = Role.without_deleted
+    respond_with @roles
   end
 
   def show
@@ -12,25 +12,10 @@ class RolesController < ApplicationController
     respond_with @role
   end
 
-  def new
-    @role = Role.new
-    respond_with @role
-  end
-
-  def edit
-    @role = Role.find_by_name(params[:id])
-    respond_with @role
-  end
-
   def create
     @role   = Role.new(role_params)
     context = RoleContext.new(user: current_user, role: @role)
-
-    if context.create
-      flash[:success]   = 'notice.roles.create.success'
-    else
-      flash.now[:error] = 'notice.roles.create.error'
-    end
+    context.create
 
     respond_with @role
   end
@@ -38,23 +23,15 @@ class RolesController < ApplicationController
   def update
     @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
-
-    if context.update(role_params)
-      flash[:success]   = 'notice.roles.update.success'
-    else
-      flash.now[:error] = 'notice.roles.update.error'
-    end
+    context.update(role_params)
 
     respond_with @role
   end
 
   def destroy
-    @role = Role.find_by_name(params[:id])
+    @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
-
-    if context.destroy
-      flash[:success] = 'notice.roles.destroy.success'
-    end
+    context.destroy
 
     respond_with @role, location: roles_path
   end
@@ -62,10 +39,7 @@ class RolesController < ApplicationController
   def revert
     @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
-
-    if context.revert
-      flash[:success] = 'notice.roles.revert.success'
-    end
+    context.revert
 
     respond_with @role, location: roles_path
   end

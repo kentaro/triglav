@@ -1,44 +1,21 @@
-require 'munin'
-
 class HostsController < ApplicationController
-  respond_to :html
+  skip_before_filter :verify_authenticity_token
+  respond_to :json
 
   def index
-    @hosts_without_deleted = Host.without_deleted
-    @deleted_hosts = Host.deleted
-    respond_with @hosts_without_deleted
+    @hosts = Host.without_deleted
+    respond_with @hosts
   end
 
   def show
-    @host  = Host.find_by_name(params[:id])
-    @munin = Munin.new
-
-    respond_with @host
-  end
-
-  def new
-    @host = Host.new
-    @host.host_relations.build
-
-    respond_with @host
-  end
-
-  def edit
     @host = Host.find_by_name(params[:id])
-    @host.host_relations.build
-
     respond_with @host
   end
 
   def create
     @host   = Host.new(host_params)
     context = HostContext.new(user: current_user, host: @host)
-
-    if context.create
-      flash[:success]   = 'notice.hosts.create.success'
-    else
-      flash.now[:error] = 'notice.hosts.create.error'
-    end
+    context.create
 
     respond_with @host
   end
@@ -46,12 +23,7 @@ class HostsController < ApplicationController
   def update
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
-
-    if context.update(host_params)
-      flash[:success]   = 'notice.hosts.update.success'
-    else
-      flash.now[:error] = 'notice.hosts.update.error'
-    end
+    context.update(host_params)
 
     respond_with @host
   end
@@ -59,23 +31,17 @@ class HostsController < ApplicationController
   def destroy
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
+    context.destroy
 
-    if context.destroy
-      flash[:success] = 'notice.hosts.destroy.success'
-    end
-
-    respond_with @host, location: hosts_path
+    respond_with @host
   end
 
   def revert
     @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
+    context.revert
 
-    if context.revert
-      flash[:success] = 'notice.hosts.revert.success'
-    end
-
-    respond_with @host, location: hosts_path
+    respond_with @host
   end
 
   private
