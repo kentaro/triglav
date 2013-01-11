@@ -13,7 +13,7 @@ task 'setup' do
     %x{cp config/settings/environment.sample.yml config/settings/#{env}.yml}
   end
 
-  %x{echo "Triglav::Application.config.secret_token = '`bundle exec rake secret`'" > config/initializers/secret_token.rb}
+  %x{echo "Triglav::Application.config.secret_key_base = '`bundle exec rake secret`'" > config/initializers/secret_token.rb}
 end
 
 task :test do

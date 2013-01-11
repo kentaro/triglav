@@ -29,9 +29,6 @@ Triglav::Application.configure do
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 
-  # Use the testing queue.
-  config.queue = ActiveSupport::TestQueue
-
   # ... custom settings ...
   config.i18n.default_locale = 'en'
 end
