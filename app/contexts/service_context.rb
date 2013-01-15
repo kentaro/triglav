@@ -16,7 +16,7 @@ class ServiceContext
   end
 
   def update (params)
-    if @service.update_attributes(params)
+    if @service.update(params)
       diff = @service.previous_changes.select{ |k, v| k !~ /_at$/ }
 
       @service.activities.create(
@@ -37,6 +37,6 @@ class ServiceContext
 
   def revert ()
     @service.activities.create(user_id: @user.id, tag: 'revert')
-    @service.update_attribute(:deleted_at, nil)
+    @service.update(deleted_at: nil)
   end
 end
