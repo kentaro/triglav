@@ -56,7 +56,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 8a7fad8970aadea3a79657ef09d3247786e27c2e
+  revision: 390ad458b46c0df105a0dd3381f5912b96ba8ea3
   specs:
     actionmailer (4.0.0.beta)
       actionpack (= 4.0.0.beta)
@@ -313,7 +313,7 @@ GEM
       slop (~> 3.0)
     pry-stack_explorer (0.4.7)
       binding_of_caller (~> 0.6.8)
-    rack (1.4.3)
+    rack (1.4.4)
     rack-livereload (0.3.10)
       rack
     rack-test (0.6.2)

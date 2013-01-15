@@ -31,7 +31,7 @@ module LogicallyDeletableRole
         "`deleted_at' column is required to be logically deleted"
       ) unless respond_to?(:deleted_at)
 
-      update_attributes({ deleted_at: Time.now })
+      update(deleted_at: Time.now)
     end
 
     def destroy
