@@ -74,13 +74,13 @@
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span12">
-          <% if success -%>
+          <% if defined?(success) && success -%>
             <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert">×</button>
               <%= t(success) %>
             </div>
           <% end -%>
-          <% if error -%>
+          <% if defined?(error) && error -%>
             <div class="alert alert-error">
               <button type="button" class="close" data-dismiss="alert">×</button>
               <%= t(error) %>

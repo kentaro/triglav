@@ -16,7 +16,7 @@ class RoleContext
   end
 
   def update (params)
-    if @role.update_attributes(params)
+    if @role.update(params)
       diff = @role.previous_changes.select{ |k, v| k !~ /_at$/ }
 
       @role.activities.create(
@@ -37,6 +37,6 @@ class RoleContext
 
   def revert ()
     @role.activities.create(user_id: @user.id, tag: 'revert')
-    @role.update_attribute(:deleted_at, nil)
+    @role.update(deleted_at: nil)
   end
 end

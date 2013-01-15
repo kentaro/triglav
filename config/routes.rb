@@ -31,9 +31,9 @@ Triglav::Application.routes.draw do
   scope '/api' do
     get '/', to: 'api#index'
 
-    resources :services, constraints: { id: /[^\/]+/ }, only: %w(index show)
-    resources :roles   , constraints: { id: /[^\/]+/ }, only: %w(index show)
-    resources :hosts   , constraints: { id: /[^\/]+/ }, only: %w(index show)
+    resources :services, controller: 'api/services', constraints: { id: /[^\/]+/ }, only: %w(index show create update destroy revert), concerns: [:revertable]
+    resources :roles   , controller: 'api/roles',    constraints: { id: /[^\/]+/ }, only: %w(index show create update destroy revert), concerns: [:revertable]
+    resources :hosts   , controller: 'api/hosts',    constraints: { id: /[^\/]+/ }, only: %w(index show create update destroy revert), concerns: [:revertable]
 
     get '/services/:service/:action', controller: 'api'
     get '/services/:service/roles/:role/:action', controller: 'api'

@@ -21,7 +21,7 @@ class HostContext
       result
     end
 
-    if @host.update_attributes(params)
+    if @host.update(params)
       diff = @host.previous_changes.select{ |k, v| k !~ /_at$/ }
 
       new_relations = @host.host_relations.reload.inject([]) do |result, item|
@@ -60,7 +60,7 @@ class HostContext
 
   def revert ()
     @host.activities.create(user_id: @user.id, tag: 'revert')
-    @host.update_attribute(:deleted_at, nil)
+    @host.update(deleted_at: nil)
   end
 end
 

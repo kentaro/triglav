@@ -1,27 +1,13 @@
-require 'munin'
-
-class ServicesController < ApplicationController
-  respond_to :html
+class Api::ServicesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+  respond_to :json
 
   def index
-    @services_without_deleted = Service.without_deleted
-    @deleted_services = Service.deleted
-    respond_with @services_without_deleted
+    @services = Service.without_deleted
+    respond_with @services
   end
 
   def show
-    @service = Service.find_by_name(params[:id])
-    @munin   = Munin.new(@service)
-
-    respond_with @service
-  end
-
-  def new
-    @service = Service.new
-    respond_with @service
-  end
-
-  def edit
     @service = Service.find_by_name(params[:id])
     respond_with @service
   end
@@ -29,12 +15,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     context  = ServiceContext.new(user: current_user, service: @service)
-
-    if context.create
-      flash[:success]   = 'notice.services.create.success'
-    else
-      flash.now[:error] = 'notice.services.create.error'
-    end
+    context.create
 
     respond_with @service
   end
@@ -42,12 +23,7 @@ class ServicesController < ApplicationController
   def update
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
-
-    if context.update(service_params)
-      flash[:success]   = 'notice.services.update.success'
-    else
-      flash.now[:error] = 'notice.services.update.error'
-    end
+    context.update(service_params)
 
     respond_with @service
   end
@@ -55,10 +31,7 @@ class ServicesController < ApplicationController
   def destroy
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
-
-    if context.destroy
-      flash[:success] = 'notice.services.destroy.success'
-    end
+    context.destroy
 
     respond_with @service, location: services_path
   end
@@ -66,10 +39,7 @@ class ServicesController < ApplicationController
   def revert
     @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
-
-    if context.revert
-      flash[:success] = 'notice.services.revert.success'
-    end
+    context.revert
 
     respond_with @service, location: services_path
   end
