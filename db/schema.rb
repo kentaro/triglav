@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20121101092945) do
+ActiveRecord::Schema.define(version: 20121210144811) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -49,9 +49,11 @@ ActiveRecord::Schema.define(version: 20121101092945) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.boolean  "active",      default: true
+    t.string   "serial_id"
   end
 
   add_index "hosts", ["name"], name: "index_hosts_on_name", unique: true
+  add_index "hosts", ["serial_id"], name: "index_hosts_on_serial_id", unique: true
 
   create_table "roles", force: true do |t|
     t.string   "name"

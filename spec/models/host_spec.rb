@@ -73,5 +73,20 @@ describe Host do
         end
       end
     end
+
+    describe 'serial_id' do
+      context 'when invalid' do
+        context 'when serial_id is not unique' do
+          let(:host) { build(:host) }
+          before { create(:host, serial_id: host.serial_id) }
+          it { expect(host.valid?).to be_false }
+        end
+
+        context 'when serial_id is too long' do
+          let(:host) { build(:host, serial_id: 'a' * 129) }
+          it { expect(host.valid?).to be_false }
+        end
+      end
+    end
   end
 end

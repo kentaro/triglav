@@ -8,6 +8,7 @@
 /pkg
 
 # local settings
+/.rbenv-version
 /config/settings/*.yml
 !/config/settings/environment.sample.yml
 /config/database.yml
