@@ -12,16 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
   def require_member
-    if api_access? && params[:api_token].present?
-      self.current_user = User.find_by_api_token(params[:api_token])
-    end
-
-    if !current_user || !current_user.member
-      if api_access?
+    if api_access?
+      if params[:api_token].blank? ||
+         !(self.current_user = User.find_by_api_token(params[:api_token]))
         render status: :forbidden, text: '403 Forbidden'
-      else
-        redirect_to '/caveat'
       end
+    elsif !current_user || !current_user.member
+      redirect_to '/caveat'
     end
   end
 

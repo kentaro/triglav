@@ -7,7 +7,7 @@ describe '/api' do
       let(:service) { create(:service) }
 
       before {
-        visit "/api/services?api_token=#{user.api_token}"
+        visit "/api/services.json?api_token=#{user.api_token}"
       }
 
       it { expect(page.status_code).to be == 200 }
@@ -19,7 +19,7 @@ describe '/api' do
         let(:service) { create(:service) }
 
         before {
-          visit "/api/services"
+          visit "/api/services.json"
         }
 
         it { expect(page.status_code).to be == 403 }
@@ -30,7 +30,7 @@ describe '/api' do
         let(:service) { create(:service) }
 
         before {
-          visit "/api/services?api_token=foo_bar"
+          visit "/api/services.json?api_token=foo_bar"
         }
 
         it { expect(page.status_code).to be == 403 }

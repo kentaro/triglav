@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  respond_to :html, :json
+  respond_to :html
 
   def index
     @roles_without_deleted = Role.without_deleted

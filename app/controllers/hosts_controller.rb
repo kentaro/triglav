@@ -1,7 +1,7 @@
 require 'munin'
 
 class HostsController < ApplicationController
-  respond_to :html, :json
+  respond_to :html
 
   def index
     @hosts_without_deleted = Host.without_deleted

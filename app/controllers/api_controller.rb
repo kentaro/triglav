@@ -1,6 +1,8 @@
 require 'action_dispatch/routing/inspector'
 
 class ApiController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def index
     routes    = _routes.routes.select { |route| route.path.spec.to_s =~ /\A\/api/ }
     inspector = ActionDispatch::Routing::RoutesInspector.new(routes)
