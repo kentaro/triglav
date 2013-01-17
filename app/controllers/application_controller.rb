@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     if api_access?
       if params[:api_token].blank? ||
          !(self.current_user = User.find_by_api_token(params[:api_token]))
-        render status: :forbidden, text: '403 Forbidden'
+        render json: { message: 'Forbidden' }, status: 403
       end
     elsif !current_user || !current_user.member
       redirect_to '/caveat'
