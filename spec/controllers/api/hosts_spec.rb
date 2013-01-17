@@ -304,4 +304,37 @@ describe Api::HostsController do
       end
     end
   end
+
+  describe '#require_host' do
+    let!(:host) { create(:host) }
+
+    context 'when host is found' do
+      include_context 'with_member'
+      before { api_get :show, id: host.name }
+
+      it {
+        expect(assigns(:host)).to be == host
+      }
+    end
+
+    context 'when host is not found' do
+      include_context 'with_member'
+      before { api_get :show, id: host.name + (2**32).to_s } # impossible name
+
+      it {
+        expect(subject.code).to be == "404"
+      }
+    end
+  end
+
+  describe '#bad_request' do
+    context 'when request is bad' do
+      include_context 'with_member'
+      before { api_post :create }
+
+      it {
+        expect(subject.code).to be == "400"
+      }
+    end
+  end
 end

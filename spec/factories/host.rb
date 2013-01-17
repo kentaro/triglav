@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:ip_address)  { |n| "192.168.0.#{n}"   }
     sequence(:name)        { |n| "host #{n}"        }
     sequence(:description) { |n| "description #{n}" }
+    sequence(:serial_id)   { |n| "serial id #{n}"   }
 
     trait :with_relations do
       ignore { count 1 }

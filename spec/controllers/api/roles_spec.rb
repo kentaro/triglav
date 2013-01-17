@@ -229,4 +229,37 @@ describe Api::RolesController do
       end
     end
   end
+
+  describe '#require_role' do
+    let!(:role) { create(:role) }
+
+    context 'when role is found' do
+      include_context 'with_member'
+      before { api_get :show, id: role.name }
+
+      it {
+        expect(assigns(:role)).to be == role
+      }
+    end
+
+    context 'when role is not found' do
+      include_context 'with_member'
+      before { api_get :show, id: role.name + (2**32).to_s } # impossible name
+
+      it {
+        expect(subject.code).to be == "404"
+      }
+    end
+  end
+
+  describe '#bad_request' do
+    context 'when request is bad' do
+      include_context 'with_member'
+      before { api_post :create }
+
+      it {
+        expect(subject.code).to be == "400"
+      }
+    end
+  end
 end

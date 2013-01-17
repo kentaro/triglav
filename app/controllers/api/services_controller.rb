@@ -1,14 +1,16 @@
 class Api::ServicesController < ApplicationController
-  skip_before_filter :verify_authenticity_token
   respond_to :json
 
+  before_filter :require_service, except: %w[index create]
+  skip_before_filter :verify_authenticity_token
+
+  rescue_from ActionController::ParameterMissing, with: :bad_request
+
   def index
-    @services = Service.without_deleted
     respond_with @services
   end
 
   def show
-    @service = Service.find_by_name(params[:id])
     respond_with @service
   end
 
@@ -21,7 +23,6 @@ class Api::ServicesController < ApplicationController
   end
 
   def update
-    @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
     context.update(service_params)
 
@@ -29,7 +30,6 @@ class Api::ServicesController < ApplicationController
   end
 
   def destroy
-    @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
     context.destroy
 
@@ -37,7 +37,6 @@ class Api::ServicesController < ApplicationController
   end
 
   def revert
-    @service = Service.find_by_name(params[:id])
     context  = ServiceContext.new(user: current_user, service: @service)
     context.revert
 
@@ -48,5 +47,17 @@ class Api::ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(:name, :description, :munin_url)
+  end
+
+  def require_service
+    @service = Service.find_by_name(params[:id])
+
+    if (!@service)
+      render json: { message: 'Not Found' }, status: 404
+    end
+  end
+
+  def bad_request(exception)
+    render json: { message: exception.message }, status: 400
   end
 end
