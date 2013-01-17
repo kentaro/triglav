@@ -229,4 +229,37 @@ describe Api::ServicesController do
       end
     end
   end
+
+  describe '#require_service' do
+    let!(:service) { create(:service) }
+
+    context 'when service is found' do
+      include_context 'with_member'
+      before { api_get :show, id: service.name }
+
+      it {
+        expect(assigns(:service)).to be == service
+      }
+    end
+
+    context 'when service is not found' do
+      include_context 'with_member'
+      before { api_get :show, id: service.name + (2**32).to_s } # impossible name
+
+      it {
+        expect(subject.code).to be == "404"
+      }
+    end
+  end
+
+  describe '#bad_request' do
+    context 'when request is bad' do
+      include_context 'with_member'
+      before { api_post :create }
+
+      it {
+        expect(subject.code).to be == "400"
+      }
+    end
+  end
 end

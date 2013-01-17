@@ -1,6 +1,10 @@
 class Api::RolesController < ApplicationController
-  skip_before_filter :verify_authenticity_token
   respond_to :json
+
+  before_filter :require_role, except: %w[index create]
+  skip_before_filter :verify_authenticity_token
+
+  rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def index
     @roles = Role.without_deleted
@@ -8,7 +12,6 @@ class Api::RolesController < ApplicationController
   end
 
   def show
-    @role = Role.find_by_name(params[:id])
     respond_with @role
   end
 
@@ -21,7 +24,6 @@ class Api::RolesController < ApplicationController
   end
 
   def update
-    @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
     context.update(role_params)
 
@@ -29,7 +31,6 @@ class Api::RolesController < ApplicationController
   end
 
   def destroy
-    @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
     context.destroy
 
@@ -37,7 +38,6 @@ class Api::RolesController < ApplicationController
   end
 
   def revert
-    @role   = Role.find_by_name(params[:id])
     context = RoleContext.new(user: current_user, role: @role)
     context.revert
 
@@ -48,5 +48,17 @@ class Api::RolesController < ApplicationController
 
   def role_params
     params.require(:role).permit(:name, :description)
+  end
+
+  def require_role
+    @role = Role.find_by_name(params[:id])
+
+    if (!@role)
+      render json: { message: 'Not Found' }, status: 404
+    end
+  end
+
+  def bad_request(exception)
+    render json: { message: exception.message }, status: 400
   end
 end

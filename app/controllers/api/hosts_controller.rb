@@ -1,6 +1,10 @@
 class Api::HostsController < ApplicationController
-  skip_before_filter :verify_authenticity_token
   respond_to :json
+
+  before_filter :require_host, except: %w[index create]
+  skip_before_filter :verify_authenticity_token
+
+  rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def index
     @hosts = Host.without_deleted
@@ -8,7 +12,6 @@ class Api::HostsController < ApplicationController
   end
 
   def show
-    @host = Host.find_by_name(params[:id])
     respond_with @host
   end
 
@@ -21,7 +24,6 @@ class Api::HostsController < ApplicationController
   end
 
   def update
-    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
     context.update(host_params)
 
@@ -29,7 +31,6 @@ class Api::HostsController < ApplicationController
   end
 
   def destroy
-    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
     context.destroy
 
@@ -37,7 +38,6 @@ class Api::HostsController < ApplicationController
   end
 
   def revert
-    @host   = Host.find_by_name(params[:id])
     context = HostContext.new(user: current_user, host: @host)
     context.revert
 
@@ -58,5 +58,17 @@ class Api::HostsController < ApplicationController
         ]
       }
     )
+  end
+
+  def require_host
+    @host = Host.find_by_name(params[:id])
+
+    if (!@host)
+      render json: { message: 'Not Found' }, status: 404
+    end
+  end
+
+  def bad_request(exception)
+    render json: { message: exception.message }, status: 400
   end
 end
