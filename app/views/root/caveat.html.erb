@@ -8,5 +8,6 @@
   <%= link_to t('layout.nav.sign_in'), signin_path %>
   <% if Rails.env.development? %>
   <%= link_to t('layout.nav.dev_sign_in'), dev_signin_path %>
+  <%= link_to t('layout.nav.dev_sign_up'), new_user_path %>
   <% end %>
 <% end -%>
