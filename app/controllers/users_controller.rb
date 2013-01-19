@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   def show
   end
 
+  def new
+    @user = User.new
+    respond_with @user
+  end
+
   def update
     @user.update(api_token: SecureRandom.urlsafe_base64)
     redirect_to user_path(@user), success: 'notice.users.update_api_token.success'
