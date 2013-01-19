@@ -19,6 +19,18 @@ class UsersController < ApplicationController
     redirect_to user_path(@user), success: 'notice.users.update_api_token.success'
   end
 
+  def create
+    @user = User.new(dev_user_params)
+    context = UserContext.new(user: @user)
+
+    if context.create
+      redirect_to dev_signin_path
+    else
+      flash.now[:error] = 'notice.users.create.error'
+      respond_with @user
+    end
+  end
+
   private
 
   def require_owner
@@ -26,5 +38,11 @@ class UsersController < ApplicationController
     if @user.blank? || @user != current_user
       render status: :forbidden, text: '403 Forbidden'
     end
+  end
+
+  def dev_user_params
+    params.require(:user).permit(:name, :uid).
+           merge(provider: 'developer',
+                 image: '//gravatar.com/avatar/12345678901234567890123456789012')
   end
 end
