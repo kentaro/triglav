@@ -139,6 +139,7 @@ en:
       my_page: :helpers.links.my_page
       sign_in: Sign in
       dev_sign_in: Sign in with developer strategy
+      dev_sign_up: Sign up with developer strategy
       sign_out: Sign out
 
   notice:
@@ -151,6 +152,8 @@ en:
       destroy:
         success: Successfully signed out.
     users:
+      create:
+        error: Failed to create user.
       update_api_token:
         success: API token was successfully updated.
     services:

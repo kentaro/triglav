@@ -23,10 +23,13 @@ RSpec.configure do |config|
 
   config.before(:each, env: :development) do
     Rails.stub(:env).and_return(ActiveSupport::StringInquirer.new('development'))
+    Rails.application.reload_routes!
+    OmniAuth.config.test_mode = false
   end
 
   config.after(:each, env: :development) do
     Rails.unstub(:env)
+    OmniAuth.config.test_mode = true
   end
 
   # factory girl
