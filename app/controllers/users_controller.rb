@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   before_filter :require_owner
   if Rails.env.development?
     respond_to :html, :json
-    skip_before_filter :require_member, :only => [:new, :create]
-    skip_before_filter :require_owner, :only => [:new, :create]
+    skip_before_filter :require_member, only: [:new, :create]
+    skip_before_filter :require_owner,  only: [:new, :create]
   end
 
   def show
