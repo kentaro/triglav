@@ -130,7 +130,7 @@ describe '/users' do
             expect(page).to have_content('Failed to create user.')
             page.within '.error' do
               expect(page).to have_field('user[uid]')
-              expect(page).to have_content('has already been taken')
+              expect(page).to have_content('has already been taken in the scope of this provider')
               expect(page).not_to have_field('user[name]')
             end
           }
