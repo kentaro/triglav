@@ -8,9 +8,10 @@ Triglav::Application.routes.draw do
   if Rails.env.development?
     get    '/dev_signin' => redirect('/auth/developer')
     post   '/auth/developer/callback', to: 'sessions#create'
+    resources :users, constraints: { id: /[^\/\.]+/ }, only: %w(show update new create)
+  else
+    resources :users, constraints: { id: /[^\/\.]+/ }, only: %w(show update)
   end
-
-  resources :users, constraints: { id: /[^\/\.]+/ }, only: %w(show update)
 
   concern :revertable do
     member do

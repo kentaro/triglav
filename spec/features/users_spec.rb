@@ -72,4 +72,70 @@ describe '/users' do
       }
     end
   end
+
+  context 'development environment', env: :development do
+    before {
+      load Rails.root + 'app/controllers/users_controller.rb'
+    }
+
+    describe '/users' do
+      before {
+        visit new_user_path
+      }
+
+      describe '#new' do
+        it {
+          expect(subject).to have_field('Name')
+          expect(subject).to have_field('UID')
+          expect(subject).to have_button('Create User')
+        }
+      end
+
+      describe '#create' do
+        context 'when user will be successfully created' do
+          it {
+            fill_in 'Name', with: 'triglav'
+            fill_in 'UID',  with: '123456'
+
+            expect { click_button 'Create User' }.to change { User.count }.by(1)
+            expect(current_path).to eq('/auth/developer')
+          }
+        end
+
+        context 'when user will fail to be created' do
+          before {
+            User.create name: 'triglav', uid: 123456, provider: 'developer', image: '//gravatar.com/avatar/12345678901234567890123456789012'
+          }
+
+          it {
+            fill_in 'Name', with: 'triglav'
+            fill_in 'UID',  with: '1'
+
+            expect { click_button 'Create User' }.to change { User.count }.by(0)
+            expect(current_path).to eq(users_path)
+            expect(page).to have_content('Failed to create user.')
+            page.within '.error' do
+              expect(page).to have_field('user[name]')
+              expect(page).to have_content('has already been taken')
+              expect(page).not_to have_field('user[uid]')
+            end
+          }
+
+          it {
+            fill_in 'Name', with: 'hyperion'
+            fill_in 'UID',  with: '123456'
+
+            expect { click_button 'Create User' }.to change { User.count }.by(0)
+            expect(current_path).to eq(users_path)
+            expect(page).to have_content('Failed to create user.')
+            page.within '.error' do
+              expect(page).to have_field('user[uid]')
+              expect(page).to have_content('has already been taken in the scope of this provider')
+              expect(page).not_to have_field('user[name]')
+            end
+          }
+        end
+      end
+    end
+  end
 end

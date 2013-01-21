@@ -1,7 +1,7 @@
 module Triglav
   class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     basic_helpers     = %w(
-      text_field text_area select email_field password_field check_box
+      text_field text_area select email_field password_field check_box number_field
     )
 
     def get_error_text(object, field, options)
