@@ -117,6 +117,7 @@ en:
       odd: must be odd
       record_invalid: ! 'Validation failed: %{errors}'
       taken: has already been taken
+      taken_in_scope: has already been taken in the scope of this provider
       too_long:
         one: is too long (maximum is 1 character)
         other: is too long (maximum is %{count} characters)
