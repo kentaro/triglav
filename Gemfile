@@ -49,8 +49,7 @@ group :development do
     gem 'rspec-expectations', github: 'rspec/rspec-expectations'
     gem 'rspec-mocks',        github: 'rspec/rspec-mocks'
 
-    # for capybara >=2.0
-    gem 'capybara', github: 'jnicklas/capybara'
+    gem 'capybara', '~> 2.0.0'
 
     gem 'factory_girl'
     gem 'database_cleaner'
