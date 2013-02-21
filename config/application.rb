@@ -1,15 +1,16 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "sprockets/railtie"
+require 'rails/all'
 
 # Require roles in advance
 require File.expand_path('../../app/roles/has_declarative_path', __FILE__)
 
-# Assets should be precompiled for production (so we don't need the gems loaded then)
-Bundler.require(*Rails.groups(assets: %w(production development test)))
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  # Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  Bundler.require(:default, :assets, Rails.env)
+end
 
 module Triglav
   class Application < Rails::Application
@@ -33,6 +34,9 @@ module Triglav
 
     # Version of your assets, change this if you want to expire all your assets.
     config.assets.version = '1.0'
+
+    # Configure the default encoding used in templates for Ruby 1.9.
+    config.encoding = "utf-8"
 
     # ... custom settings ...
     config.i18n.default_locale = 'en'
