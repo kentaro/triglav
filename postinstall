@@ -1,0 +1,4 @@
+#!/bin/sh
+
+set -e
+cp -R /home/sqale/config/* /home/sqale/current/config
