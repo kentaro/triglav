@@ -9,7 +9,7 @@ require "sprockets/railtie"
 require File.expand_path('../../app/roles/has_declarative_path', __FILE__)
 
 # Assets should be precompiled for production (so we don't need the gems loaded then)
-Bundler.require(*Rails.groups(assets: %w(development test)))
+Bundler.require(*Rails.groups(assets: %w(production development test)))
 
 module Triglav
   class Application < Rails::Application
