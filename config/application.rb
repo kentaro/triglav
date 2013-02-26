@@ -45,3 +45,7 @@ module Triglav
     config.action_view.default_form_builder = Triglav::BootstrapFormBuilder
   end
 end
+
+# workaround
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE

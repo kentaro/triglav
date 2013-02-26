@@ -7,6 +7,7 @@ class Api::ServicesController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def index
+    @services = Service.without_deleted
     respond_with @services
   end
 

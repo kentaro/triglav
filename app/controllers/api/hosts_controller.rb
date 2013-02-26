@@ -47,7 +47,7 @@ class Api::HostsController < ApplicationController
   private
 
   def host_params
-    params.require(:host).permit(:ip_address, :name, :active, :description, {
+    params.require(:host).permit(:ip_address, :name, :active, :description, :serial_id, {
         host_relations_attributes: [
           :service_id,
           :role_id,
