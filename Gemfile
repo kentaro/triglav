@@ -5,6 +5,7 @@ gem 'rails', github: 'rails/rails'
 # for edge rails
 gem 'journey',                         github: 'rails/journey'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
+gem 'arel',                            github: 'rails/arel'
 
 gem 'rails_config'
 gem 'turbolinks'
