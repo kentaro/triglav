@@ -74,10 +74,6 @@ describe '/users' do
   end
 
   context 'development environment', env: :development do
-    before {
-      load Rails.root + 'app/controllers/users_controller.rb'
-    }
-
     describe '/users' do
       before {
         visit new_user_path
