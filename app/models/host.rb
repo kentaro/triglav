@@ -7,7 +7,7 @@ class Host < ActiveRecord::Base
   validates :name,        presence: true, uniqueness: true, length: { maximum:  100 }, format: { with: /\A[^\/]+\Z/ }
   validates :ip_address,  format: { with: /(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/ }, allow_blank: true
   validates :description, length: { maximum: 255 }
-  validates :serial_id,   uniqueness: true, length: { maximum:  128 }, format: { with: /\A[^\/]*\Z/ }
+  validates :serial_id,   allow_blank: true, uniqueness: true, length: { maximum:  128 }, format: { with: /\A[^\/]*\Z/ }
 
   has_many :host_relations, dependent: :delete_all
   has_many :services, through: :host_relations
