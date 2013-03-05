@@ -150,15 +150,6 @@ GIT
       rspec-mocks (~> 2.13.0)
 
 GIT
-  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 00af23121f7954e41880d87dc42908b271f0db14
-  specs:
-    twitter-bootstrap-rails (2.2.5)
-      actionpack (>= 3.1)
-      execjs
-      railties (>= 3.1)
-
-GIT
   remote: git://github.com/sstephenson/sprockets.git
   revision: ac9eca7d8eff492c5ff24b14b150e611fb9750cd
   specs:
@@ -167,6 +158,14 @@ GIT
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+
+GIT
+  remote: git://github.com/yabawock/bootstrap-sass-rails.git
+  revision: f1e3c861251e1950448d944d3d019e06d1417b8e
+  specs:
+    bootstrap-sass-rails (2.3.1.0)
+      railties (>= 3.1.0)
+      sass-rails (>= 3.1.0)
 
 GEM
   remote: http://rubygems.org/
@@ -359,6 +358,7 @@ DEPENDENCIES
   arel!
   artii
   bluecloth
+  bootstrap-sass-rails!
   capistrano
   capistrano_banner
   capistrano_colors
@@ -396,6 +396,5 @@ DEPENDENCIES
   thin
   triglav-client
   turbolinks
-  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   unicorn

@@ -67,13 +67,13 @@ end
 
 group :assets do
   # for edge rails
-  gem 'sprockets',       github: 'sstephenson/sprockets'
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',      github: 'rails/sass-rails'
-  gem 'coffee-rails',    github: 'rails/coffee-rails'
+  gem 'sprockets',            github: 'sstephenson/sprockets'
+  gem 'sprockets-rails',      github: 'rails/sprockets-rails'
+  gem 'sass-rails',           github: 'rails/sass-rails'
+  gem 'coffee-rails',         github: 'rails/coffee-rails'
   gem 'jquery-rails'
-  gem 'less-rails',      github: 'metaskills/less-rails'
-  gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
+  gem 'less-rails',           github: 'metaskills/less-rails'
+  gem 'bootstrap-sass-rails', github: 'yabawock/bootstrap-sass-rails'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
 end
