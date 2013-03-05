@@ -33,7 +33,7 @@ ja:
         services: サービス  #g
         is_active: 有効/無効
         active: アクティブ
-        inactive: アクティブでない
+        inactive: アクティブではない
         graph: グラフ
         serial_id: シリアルID
         id: :activerecord.attributes.common.id
