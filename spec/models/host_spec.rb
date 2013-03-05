@@ -75,6 +75,34 @@ describe Host do
     end
 
     describe 'serial_id' do
+      context 'when valid' do
+        context 'when serial_id is empty string' do
+          context 'and there is not a host whose serial_id is empty' do
+            let(:host) { build(:host, serial_id: '') }
+            it { expect(host.valid?).to be_true }
+          end
+
+          context 'and there is already a host whose serial_id is empty' do
+            let(:host) { build(:host, serial_id: '') }
+            before { create(:host, serial_id: '') }
+            it { expect(host.valid?).to be_true }
+          end
+        end
+
+        context 'when serial_id is nil' do
+          context 'and there is not a host whose serial_id is nil' do
+            let(:host) { build(:host, serial_id: nil) }
+            it { expect(host.valid?).to be_true }
+          end
+
+          context 'and there is already a host whose serial_id is nil' do
+            let(:host) { build(:host, serial_id: nil) }
+            before { create(:host, serial_id: '') }
+            it { expect(host.valid?).to be_true }
+          end
+        end
+      end
+
       context 'when invalid' do
         context 'when serial_id is not unique' do
           let(:host) { build(:host) }
