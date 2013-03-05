@@ -173,6 +173,11 @@ GEM
     addressable (2.3.3)
     artii (2.0.3)
     atomic (1.0.1)
+    better_errors (0.7.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     bluecloth (2.2.0)
     builder (3.1.4)
     capistrano (2.14.2)
@@ -203,6 +208,7 @@ GEM
     commonjs (0.2.6)
     daemons (1.1.9)
     database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
     diff-lcs (1.2.1)
     em-websocket (0.4.0)
       eventmachine (>= 0.12.9)
@@ -252,6 +258,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    meta_request (0.2.2)
+      rack-contrib
+      railties
     method_source (0.8.1)
     mime-types (1.21)
     minitest (4.6.2)
@@ -295,6 +304,8 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-contrib (1.1.0)
+      rack (>= 0.9.1)
     rack-livereload (0.3.11)
       rack
     rack-test (0.6.2)
@@ -357,6 +368,8 @@ DEPENDENCIES
   activerecord-deprecated_finders!
   arel!
   artii
+  better_errors
+  binding_of_caller
   bluecloth
   bootstrap-sass-rails!
   capistrano
@@ -374,6 +387,7 @@ DEPENDENCIES
   kaminari-bootstrap!
   launchy
   less-rails!
+  meta_request
   mysql2
   octokit
   omniauth
