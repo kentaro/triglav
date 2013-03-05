@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :require_owner
-  skip_before_filter :require_member, only: [:new, :create]
-  skip_before_filter :require_owner,  only: [:new, :create]
+  before_action :require_owner
+  skip_before_action :require_member, only: [:new, :create]
+  skip_before_action :require_owner,  only: [:new, :create]
   respond_to :html, :json, only: [:new, :create]
 
   def show

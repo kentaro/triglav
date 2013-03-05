@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   protect_from_forgery with: :exception
-  before_filter :require_member, :set_locale
+  before_action :require_member, :set_locale
   add_flash_types :success, :error
 
   private

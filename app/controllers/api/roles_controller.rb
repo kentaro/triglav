@@ -1,8 +1,8 @@
 class Api::RolesController < ApplicationController
   respond_to :json
 
-  before_filter :require_role, except: %w[index create]
-  skip_before_filter :verify_authenticity_token
+  before_action :require_role, except: %w[index create]
+  skip_before_action :verify_authenticity_token
 
   rescue_from ActionController::ParameterMissing, with: :bad_request
 

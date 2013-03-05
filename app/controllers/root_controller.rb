@@ -1,5 +1,5 @@
 class RootController < ApplicationController
-  skip_before_filter :require_member, only: :caveat
+  skip_before_action :require_member, only: :caveat
 
   def index
     @services   = Service.without_deleted
