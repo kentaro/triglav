@@ -7,38 +7,39 @@ class Api::HostsController < ApplicationController
   rescue_from ActionController::ParameterMissing, with: :bad_request
 
   def index
-    @hosts = Host.without_deleted
-    respond_with @hosts
+    context = HostApiContext.new
+    respond_with context.index
   end
 
   def show
-    respond_with @host
+    context = HostApiContext.new(host: @host)
+    respond_with context.show
   end
 
   def create
     @host   = Host.new(host_params)
-    context = HostContext.new(user: current_user, host: @host)
+    context = HostApiContext.new(user: current_user, host: @host)
     context.create
 
     respond_with @host
   end
 
   def update
-    context = HostContext.new(user: current_user, host: @host)
+    context = HostApiContext.new(user: current_user, host: @host)
     context.update(host_params)
 
     respond_with @host
   end
 
   def destroy
-    context = HostContext.new(user: current_user, host: @host)
+    context = HostApiContext.new(user: current_user, host: @host)
     context.destroy
 
     respond_with @host
   end
 
   def revert
-    context = HostContext.new(user: current_user, host: @host)
+    context = HostApiContext.new(user: current_user, host: @host)
     context.revert
 
     respond_with @host
