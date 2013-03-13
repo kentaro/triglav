@@ -63,9 +63,3 @@ class HostContext
     @host.update(deleted_at: nil)
   end
 end
-
-
-
-
-
-
