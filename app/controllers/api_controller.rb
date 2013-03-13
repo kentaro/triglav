@@ -13,7 +13,7 @@ class ApiController < ApplicationController
     service = Service.where(name: params[:service]).first
     role    = Role.where(name: params[:role]).first
     context = HostApiContext.new(service: service, role: role)
-    hosts   = context.hosts
+    hosts   = context.hosts_of(service, role)
 
     render json: hosts
   end

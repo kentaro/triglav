@@ -1,7 +1,7 @@
 class HostContext
   attr_accessor :user, :host
 
-  def initialize (args)
+  def initialize (args = {})
     @user = args[:user]
     @host = args[:host]
   end

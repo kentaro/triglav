@@ -1,37 +1,30 @@
 class HostApiContext < HostContext
-  attr_accessor :service, :role
-
-  def initialize(args = {})
-    super
-
-    @service = args[:service]
-    @role    = args[:role]
-  end
-
   def index
     with_relations(Host.without_deleted)
   end
 
   def show
-    host
+    with_relations([host]).first
   end
 
-  def hosts
+  def hosts_of(service, role = nil)
     if service && role
-      HostRelation.where(
+      hosts = HostRelation.where(
         service_id: service.id,
         role_id:    role.id,
       ).includes(:host).map(&:host).uniq.select { |host| !host.deleted_at }
     elsif service && !role
-      service.hosts.uniq
+      hosts = service.hosts.uniq
     end
+
+    with_relations(hosts)
   end
 
   private
 
   def with_relations(hosts)
     host_ids  = hosts.map { |h| h.id }
-    relations = HostRelation.where(id: host_ids)
+    relations = HostRelation.where(host_id: host_ids)
 
     host_services_map = relations.each_with_object({}) do |relation, services|
       services[relation.host_id] ||= []
@@ -68,6 +61,10 @@ class HostApiContext < HostContext
   end
 
   module Embeddable
+    def as_json(options = {})
+      super(methods: [:services, :roles])
+    end
+
     def services
       @services
     end
