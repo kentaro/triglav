@@ -30,7 +30,7 @@ class HostApiContext < HostContext
   private
 
   def with_relations(hosts)
-    host_ids  = hosts.pluck(:id)
+    host_ids  = hosts.map { |h| h.id }
     relations = HostRelation.where(id: host_ids)
 
     host_services_map = relations.each_with_object({}) do |relation, services|
