@@ -76,7 +76,6 @@ group :assets do
   gem 'sass-rails',           github: 'rails/sass-rails'
   gem 'coffee-rails',         github: 'rails/coffee-rails'
   gem 'jquery-rails'
-  gem 'less-rails',           github: 'metaskills/less-rails'
   gem 'bootstrap-sass-rails', github: 'yabawock/bootstrap-sass-rails'
   gem 'therubyracer'
   gem 'uglifier', '>= 1.0.3'
