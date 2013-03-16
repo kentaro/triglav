@@ -10,8 +10,7 @@ Server Admin Tool.
 
 # Setup
 
- * Triglav で学ぶ Ruby on Rails & GitHub 第0回
-   * https://github.com/kentaro/triglav/wiki/LearningRailsWithTriglav00
+ * Triglav で学ぶ Ruby on Rails & GitHub 第1回
    * https://github.com/kentaro/triglav/wiki/LearningRailsWithTriglav01
 
 # Documentations
