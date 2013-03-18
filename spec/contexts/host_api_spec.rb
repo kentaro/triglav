@@ -22,16 +22,33 @@ describe HostApiContext do
   end
 
   describe '#show' do
-    let!(:host)   { create(:host, :with_relations, count: 2) }
-    let(:context) { HostApiContext.new(host: host) }
+    context 'when format is not passed' do
+      let!(:host)   { create(:host, :with_relations, count: 2) }
+      let(:context) { HostApiContext.new(host: host) }
 
-    it {
-      host = context.show
+      it {
+        host = context.show
 
-      expect(host).to be_a_kind_of(HostApiContext::Embeddable)
-      expect(host.services.count).to be == 2
-      expect(host.roles.count).to be    == 2
-    }
+        expect(host).to be_a_kind_of(HostApiContext::Embeddable)
+        expect(host).not_to be_a_kind_of(HostApiContext::Serializable)
+        expect(host.services.count).to be == 2
+        expect(host.roles.count).to be    == 2
+      }
+    end
+
+    context 'when format is puppet' do
+      let!(:host)   { create(:host, :with_relations, count: 2) }
+      let(:context) { HostApiContext.new(host: host, format: 'puppet') }
+
+      it {
+        host = context.show
+
+        expect(host).to be_a_kind_of(HostApiContext::Embeddable)
+        expect(host).to be_a_kind_of(HostApiContext::Serializable)
+        expect(host.services.count).to be == 2
+        expect(host.roles.count).to be    == 2
+      }
+    end
   end
 
   describe '#hosts_of' do
