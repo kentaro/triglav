@@ -1,10 +1,23 @@
 class HostApiContext < HostContext
+  attr_accessor :format
+
+  def initialize(args = {})
+    @format = args[:format]
+    super
+  end
+
   def index
     with_relations(Host.without_deleted)
   end
 
   def show
-    with_relations([host]).first
+    result = with_relations([host]).first
+
+    if format == 'puppet'
+      result.extend(Serializable)
+    end
+
+    result
   end
 
   def hosts_of(service, role = nil)
@@ -79,6 +92,19 @@ class HostApiContext < HostContext
 
     def roles=(roles)
       @roles = roles
+    end
+  end
+
+  module Serializable
+    def to_puppet
+      result = {}
+      result['classes'] = roles.map { |r| r.name }
+
+      # XXX
+      result['environment'] = 'production'
+      result['parameters']  = {}
+
+      result.to_yaml
     end
   end
 end
