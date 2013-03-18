@@ -1,5 +1,6 @@
 class Api::HostsController < ApplicationController
   respond_to :json
+  respond_to :puppet, only: [:show]
 
   before_action :require_host, except: %w[index create]
   skip_before_action :verify_authenticity_token
@@ -12,7 +13,7 @@ class Api::HostsController < ApplicationController
   end
 
   def show
-    context = HostApiContext.new(host: @host)
+    context = HostApiContext.new(host: @host, format: params[:format])
     respond_with context.show
   end
 
