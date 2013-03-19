@@ -29,10 +29,11 @@ describe HostApiContext do
       it {
         host = context.show
 
-        expect(host).to be_a_kind_of(HostApiContext::Embeddable)
         expect(host).not_to be_a_kind_of(HostApiContext::Serializable)
         expect(host.services.count).to be == 2
         expect(host.roles.count).to be    == 2
+
+        expect(host).to be_a_kind_of(HostApiContext::Embeddable)
       }
     end
 
@@ -44,9 +45,11 @@ describe HostApiContext do
         host = context.show
 
         expect(host).to be_a_kind_of(HostApiContext::Embeddable)
-        expect(host).to be_a_kind_of(HostApiContext::Serializable)
         expect(host.services.count).to be == 2
         expect(host.roles.count).to be    == 2
+
+        expect(host).to be_a_kind_of(HostApiContext::Serializable)
+        expect(host.to_puppet.match(/\A---\n/)).to be_true
       }
     end
   end
