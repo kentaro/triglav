@@ -62,6 +62,7 @@ group :development do
     gem 'rake'
 
     gem 'simplecov'
+    gem 'coveralls', require: false
   end
 end
 
