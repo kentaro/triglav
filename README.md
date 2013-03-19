@@ -1,4 +1,4 @@
-# Triglav [![BuildStatus](https://secure.travis-ci.org/kentaro/triglav.png)](http://travis-ci.org/kentaro/triglav)
+# Triglav [![BuildStatus](https://secure.travis-ci.org/kentaro/triglav.png)](http://travis-ci.org/kentaro/triglav) [![Coverage Status](https://coveralls.io/repos/kentaro/triglav/badge.png?branch=master)](https://coveralls.io/r/kentaro/triglav)
 
 Server Admin Tool.
 
