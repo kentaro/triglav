@@ -25,23 +25,35 @@ class Api::RolesController < ApplicationController
 
   def update
     context = RoleContext.new(user: current_user, role: @role)
-    context.update(role_params)
 
-    respond_with @role
+    # `responder` responds as 204 if request method is GET nor POST,
+    # so I'll render object manually as JSON. The same can be applied
+    # the methods below.
+    if context.update(role_params)
+      render json: @role
+    else
+      respond_with @role
+    end
   end
 
   def destroy
     context = RoleContext.new(user: current_user, role: @role)
-    context.destroy
 
-    respond_with @role, location: roles_path
+    if context.destroy
+      render json: @role
+    else
+      respond_with @role
+    end
   end
 
   def revert
     context = RoleContext.new(user: current_user, role: @role)
-    context.revert
 
-    respond_with @role, location: roles_path
+    if context.revert
+      render json: @role
+    else
+      respond_with @role
+    end
   end
 
   private

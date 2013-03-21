@@ -1,5 +1,6 @@
 class Api::HostsController < ApplicationController
   respond_to :json
+
   respond_to :puppet, only: [:show]
 
   before_action :require_host, except: %w[index create]
@@ -27,23 +28,35 @@ class Api::HostsController < ApplicationController
 
   def update
     context = HostApiContext.new(user: current_user, host: @host)
-    context.update(host_params)
 
-    respond_with @host
+    # `responder` responds as 204 if request method is GET nor POST,
+    # so I'll render object manually as JSON. The same can be applied
+    # the methods below.
+    if context.update(host_params)
+      render json: @host
+    else
+      respond_with @host
+    end
   end
 
   def destroy
     context = HostApiContext.new(user: current_user, host: @host)
-    context.destroy
 
-    respond_with @host
+    if context.destroy
+      render json: @host
+    else
+      respond_with @host
+    end
   end
 
   def revert
     context = HostApiContext.new(user: current_user, host: @host)
-    context.revert
 
-    respond_with @host
+    if context.revert
+      render json: @host
+    else
+      respond_with @host
+    end
   end
 
   private

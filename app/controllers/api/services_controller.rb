@@ -25,23 +25,35 @@ class Api::ServicesController < ApplicationController
 
   def update
     context  = ServiceContext.new(user: current_user, service: @service)
-    context.update(service_params)
 
-    respond_with @service
+    # `responder` responds as 204 if request method is GET nor POST,
+    # so I'll render object manually as JSON. The same can be applied
+    # the methods below.
+    if context.update(service_params)
+      render json: @service
+    else
+      respond_with @service
+    end
   end
 
   def destroy
     context  = ServiceContext.new(user: current_user, service: @service)
-    context.destroy
 
-    respond_with @service, location: services_path
+    if context.destroy
+      render json: @service
+    else
+      respond_with @service
+    end
   end
 
   def revert
     context  = ServiceContext.new(user: current_user, service: @service)
-    context.revert
 
-    respond_with @service, location: services_path
+    if context.revert
+      render json: @service
+    else
+      respond_with @service
+    end
   end
 
   private
