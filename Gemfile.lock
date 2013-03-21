@@ -22,9 +22,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 425925b1c6433309fcbaa7242df39394b70280a6
+  revision: 933ea218116645eafaf3b7ea5695520db0f9d9ba
   specs:
-    arel (4.0.0.beta1.20130225132415)
+    arel (4.0.0.beta2.20130314230643)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 258f1e5980641767dd4f0a80bdade39beabbfe6c
+  revision: 70d0537d5550958d7e006787de869ce9046101fc
   specs:
     actionmailer (4.0.0.beta1)
       actionpack (= 4.0.0.beta1)
@@ -60,7 +60,7 @@ GIT
       activemodel (= 4.0.0.beta1)
       activerecord-deprecated_finders (~> 0.0.3)
       activesupport (= 4.0.0.beta1)
-      arel (~> 4.0.0.beta1)
+      arel (~> 4.0.0.beta2)
     activesupport (4.0.0.beta1)
       i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
@@ -103,20 +103,20 @@ GIT
 
 GIT
   remote: git://github.com/rspec/rspec-core.git
-  revision: d5551d597746cb2400a4e36c721cdc2ef053b261
+  revision: cf60482f87dde91a833e72691e1bcfead6c0ca5e
   specs:
     rspec-core (2.13.1)
 
 GIT
   remote: git://github.com/rspec/rspec-expectations.git
-  revision: 9679d6e00eb0a7f8752bd2cf4d0cbded64aa2ce5
+  revision: 138e8ad0d08ab12d1866f72da33d1c392bdf175c
   specs:
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
 
 GIT
   remote: git://github.com/rspec/rspec-mocks.git
-  revision: e7417e155cbb380d5cbb67039948c455cda9b2ca
+  revision: 42a175e1b932a14958c005501fe98a599a0ef3ca
   specs:
     rspec-mocks (2.13.0)
 
@@ -196,9 +196,9 @@ GEM
     coffee-script (2.2.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.6.1)
+    coffee-script-source (1.6.2)
     colorize (0.5.8)
-    coveralls (0.6.2)
+    coveralls (0.6.3)
       colorize
       multi_json (~> 1.3)
       rest-client
@@ -221,7 +221,7 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
-    ffi (1.4.0)
+    ffi (1.5.0)
     guard (1.6.2)
       listen (>= 0.6.0)
       lumberjack (>= 1.0.2)
@@ -233,7 +233,7 @@ GEM
       guard (>= 1.5.0)
       multi_json (~> 1.0)
     hashie (1.2.0)
-    highline (1.6.15)
+    highline (1.6.16)
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
@@ -249,7 +249,7 @@ GEM
       addressable (~> 2.3)
     libv8 (3.11.8.13)
     listen (0.7.3)
-    lumberjack (1.0.2)
+    lumberjack (1.0.3)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -259,8 +259,8 @@ GEM
       railties
     method_source (0.8.1)
     mime-types (1.21)
-    minitest (4.6.2)
-    multi_json (1.6.1)
+    minitest (4.7.0)
+    multi_json (1.7.1)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
     net-scp (1.1.0)
@@ -271,7 +271,7 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     netrc (0.7.7)
-    nokogiri (1.5.6)
+    nokogiri (1.5.8)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -302,7 +302,7 @@ GEM
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
-    rack-livereload (0.3.11)
+    rack-livereload (0.3.12)
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -313,7 +313,7 @@ GEM
     rb-fsevent (0.9.3)
     rdoc (3.12.2)
       json (~> 1.4)
-    ref (1.0.2)
+    ref (1.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
@@ -333,18 +333,18 @@ GEM
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
-    thin (1.5.0)
+    thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.17.0)
     thread_safe (0.1.0)
       atomic
-    tilt (1.3.5)
+    tilt (1.3.6)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    triglav-client (0.0.5)
+    triglav-client (0.0.6)
     turbolinks (1.0.0)
       coffee-rails
     tzinfo (0.3.37)
