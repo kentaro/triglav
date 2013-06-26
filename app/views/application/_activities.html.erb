@@ -1,0 +1,64 @@
+<%- model_class = Activity -%>
+
+<% if activities.empty? -%>
+  <p><%= t('activities.index.empty') %></p>
+<% else -%>
+  <table class="table table-striped">
+    <tbody>
+      <% activities.each do |activity| %>
+        <tr>
+          <td>
+            <%= image_tag activity.user.image, width: 16, height: 16 %>
+            <%= activity.user.name %>
+            さんが
+            <% if activity.model_type == 'User' -%>
+              <%= activity.model.class.model_name.human %>
+            <% elsif activity.model_type == 'Comment' -%>
+              <%
+                name = activity.model.class.model_name.human
+                name << " (#{activity.model.model.name})"
+                -%>
+              <%= link_to name, activity.model.model %>
+            <% else -%>
+              <%
+                name = activity.model.class.model_name.human
+                name << " (#{activity.model.name})" if activity.model.respond_to?('name') -%>
+              <%= link_to name, activity.model %>
+            <% end -%>
+            を
+            <%= t("helpers.activities.tag.#{activity.tag}") %>
+            しました。
+            (<%= datetime_ago(activity.created_at) %>)
+            <% if activity.diff -%>
+              <p>
+                変更点:
+                <% activity.diff.each do |key, value| -%>
+                  <ul>
+                    <% if key == 'host_relations' -%>
+                      <% value.each do |type, relations| -%>
+                        <li><%= t('helpers.activities.relation', type: t("helpers.activities.#{type}")) %>
+                          <ul>
+                            <% relations.each do |relation| -%>
+                              <li><%= t('activerecord.models.service') %>: <%= relation['service'] %>/<%= t('activerecord.models.role') %>: <%= relation['role'] %></li>
+                            <% end -%>
+                          </ul>
+                        </li>
+                      <% end -%>
+                    <% else -%>
+                      <li><%= key %>
+                        <ul>
+                          <li><%= t('helpers.activities.old') %>: <% if value[0].blank? -%><%= t('helpers.activities.blank') %><% else -%><%= value[0] %><% end -%></li>
+                          <li><%= t('helpers.activities.new') %>: <% if value[1].blank? -%><%= t('helpers.activities.blank') %><% else -%><%= value[1] %><% end -%></li>
+                        </ul>
+                      </li>
+                    <% end -%>
+                  </ul>
+                <% end -%>
+              </p>
+            <% end -%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end -%>
