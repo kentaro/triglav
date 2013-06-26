@@ -41,7 +41,7 @@ group :development do
   gem 'thin'
 
   group :test do
-    if !ENV['TRAVIS'] && RUBY_VERSION < '2.0'
+    if !ENV['TRAVIS']
       gem 'pry'
       gem 'pry-remote'
       gem 'pry-stack_explorer'

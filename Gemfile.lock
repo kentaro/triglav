@@ -16,15 +16,15 @@ GIT
 
 GIT
   remote: git://github.com/rails/activerecord-deprecated_finders.git
-  revision: c00788c2b7e01170f63bd9651f7efd8deb4bd4b0
+  revision: f6ed71d62d47f0f6397b5b3e801271567f30f960
   specs:
-    activerecord-deprecated_finders (0.0.3)
+    activerecord-deprecated_finders (1.0.3)
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 933ea218116645eafaf3b7ea5695520db0f9d9ba
+  revision: a1b72178714fbf0033fe076b7e51f57eff152bdd
   specs:
-    arel (4.0.0.beta2.20130314230643)
+    arel (4.0.0.20130418133826)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -42,45 +42,49 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 70d0537d5550958d7e006787de869ce9046101fc
+  revision: 16caf63d32e0a643b7fd5bea2085804f4ec74c8d
   specs:
-    actionmailer (4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
-      mail (~> 2.5.3)
-    actionpack (4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
-      builder (~> 3.1.0)
-      erubis (~> 2.7.0)
+    actionmailer (4.1.0.beta)
+      actionpack (= 4.1.0.beta)
+      mail (~> 2.5.4)
+    actionpack (4.1.0.beta)
+      actionview (= 4.1.0.beta)
+      activesupport (= 4.1.0.beta)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+    actionview (4.1.0.beta)
+      activemodel (= 4.1.0.beta)
+      activesupport (= 4.1.0.beta)
       builder (~> 3.1.0)
-    activerecord (4.0.0.beta1)
-      activemodel (= 4.0.0.beta1)
-      activerecord-deprecated_finders (~> 0.0.3)
-      activesupport (= 4.0.0.beta1)
-      arel (~> 4.0.0.beta2)
-    activesupport (4.0.0.beta1)
+      erubis (~> 2.7.0)
+    activemodel (4.1.0.beta)
+      activesupport (= 4.1.0.beta)
+      builder (~> 3.1.0)
+    activerecord (4.1.0.beta)
+      activemodel (= 4.1.0.beta)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.1.0.beta)
+      arel (~> 4.0.0)
+    activesupport (4.1.0.beta)
       i18n (~> 0.6, >= 0.6.4)
-      minitest (~> 4.2)
-      multi_json (~> 1.3)
+      json (~> 1.7)
+      minitest (~> 5.0)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.33)
-    rails (4.0.0.beta1)
-      actionmailer (= 4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
-      activerecord (= 4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+      tzinfo (~> 0.3.37)
+    rails (4.1.0.beta)
+      actionmailer (= 4.1.0.beta)
+      actionpack (= 4.1.0.beta)
+      actionview (= 4.1.0.beta)
+      activerecord (= 4.1.0.beta)
+      activesupport (= 4.1.0.beta)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0.beta1)
-      sprockets-rails (~> 2.0.0.rc3)
-    railties (4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+      railties (= 4.1.0.beta)
+      sprockets-rails (~> 2.0.0)
+    railties (4.1.0.beta)
+      actionpack (= 4.1.0.beta)
+      activesupport (= 4.1.0.beta)
       rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.17.0, < 2.0)
+      thor (>= 0.18.1, < 2.0)
 
 GIT
   remote: git://github.com/rails/sass-rails.git
@@ -94,9 +98,9 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: afce1e65f7c6df4ae96522b26e755915d238ff80
+  revision: b522561d2d83b83c99e9aa54c8079fd1241fdf49
   specs:
-    sprockets-rails (2.0.0.rc3)
+    sprockets-rails (2.0.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -143,9 +147,9 @@ GIT
 
 GIT
   remote: git://github.com/sstephenson/sprockets.git
-  revision: 18fca5c20c0dfa34d8c112353b82520869f5f099
+  revision: cb859189faf4704022cec66863bb5bc799a1aea6
   specs:
-    sprockets (2.9.0)
+    sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -164,7 +168,7 @@ GEM
   specs:
     addressable (2.3.3)
     artii (2.0.3)
-    atomic (1.0.1)
+    atomic (1.1.9)
     better_errors (0.7.2)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -198,6 +202,7 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     colorize (0.5.8)
+    columnize (0.3.6)
     coveralls (0.6.3)
       colorize
       multi_json (~> 1.3)
@@ -207,6 +212,12 @@ GEM
     daemons (1.1.9)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
+    debugger (1.6.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.2)
     diff-lcs (1.2.1)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -234,14 +245,14 @@ GEM
       multi_json (~> 1.0)
     hashie (1.2.0)
     highline (1.6.16)
-    hike (1.2.1)
+    hike (1.2.3)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.4)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.7.7)
+    json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.0)
@@ -250,18 +261,17 @@ GEM
     libv8 (3.11.8.13)
     listen (0.7.3)
     lumberjack (1.0.3)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     meta_request (0.2.2)
       rack-contrib
       railties
     method_source (0.8.1)
-    mime-types (1.21)
+    mime-types (1.23)
     mini_portile (0.5.0)
-    minitest (4.7.0)
-    multi_json (1.7.1)
+    minitest (5.0.5)
+    multi_json (1.7.7)
     multipart-post (1.2.0)
     mysql2 (0.3.11)
     net-scp (1.1.0)
@@ -301,6 +311,15 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.9)
+      binding_of_caller (>= 0.7)
+      pry (~> 0.9.11)
     rack (1.5.2)
     rack-contrib (1.1.0)
       rack (>= 0.9.1)
@@ -311,10 +330,8 @@ GEM
     rails_config (0.3.2)
       activesupport (>= 3.0)
     raindrops (0.10.0)
-    rake (10.0.3)
+    rake (10.1.0)
     rb-fsevent (0.9.3)
-    rdoc (3.12.2)
-      json (~> 1.4)
     ref (1.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -339,11 +356,11 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
-    thor (0.17.0)
+    thor (0.18.1)
     thread_safe (0.1.0)
       atomic
-    tilt (1.3.6)
-    treetop (1.4.12)
+    tilt (1.4.1)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     triglav-client (0.0.6)
@@ -392,6 +409,10 @@ DEPENDENCIES
   octokit
   omniauth
   omniauth-github
+  pry
+  pry-debugger
+  pry-remote
+  pry-stack_explorer
   rack-livereload
   rails!
   rails_config

@@ -22,7 +22,7 @@ class HostContext
     end
 
     if @host.update(params)
-      diff = @host.previous_changes.select{ |k, v| k !~ /_at$/ }
+      diff = @host.previous_changes.select{ |k, v| k !~ /_at$/ } || {}
 
       new_relations = @host.host_relations.reload.inject([]) do |result, item|
         result.push('service' => item.service.name, 'role' => item.role.name)
