@@ -146,7 +146,8 @@ describe SessionContext do
     let(:user)    { create(:user, member: nil) }
     let(:context) { SessionContext.new(user: user) }
 
-    let(:original_url) { "https://secure.gravatar.com/avatar/23f4d5d797a91b6d17d627b90b5a42d9?s=420&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png "}
+    let(:original_url) { "https://0.gravatar.com/avatar/23f4d5d797a91b6d17d627b90b5a42d9?
+d=https%3A%2F%2Fidenticons.github.com%2Fe3ea33961a7c5b1ec04d6c97aa3b5379.png"}
     let(:shrinked_url) { context.shrink_avatar_url(original_url) }
 
     it { expect(shrinked_url).to be == "//gravatar.com/avatar/23f4d5d797a91b6d17d627b90b5a42d9" }

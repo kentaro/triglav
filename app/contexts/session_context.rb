@@ -48,7 +48,7 @@ class SessionContext
   end
 
   def shrink_avatar_url(avatar_url)
-    avatar_url.sub(/^https:/, '').sub(/^(\/\/)secure\./, '\1').sub(/\?.+$/, '')
+    avatar_url.sub(/^https:/, '').sub(/^\/\/[^\.]+\./, '//').sub(/\?.+$/, '')
   end
 
   def update_access_token(credentials)
