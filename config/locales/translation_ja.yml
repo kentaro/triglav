@@ -7,7 +7,7 @@ ja:
       service: サービス  #g
       user: ユーザー  #g
       activity: アクティビティ
-      comment: コメント
+      comment: コメトン
 
     attributes:
       common:
